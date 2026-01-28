@@ -201,13 +201,10 @@ html, body {
     color: #ffffff;
 }
 
-.tab .tab-logo {
-    height: 20px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 3px;
-    background: white;
-    padding: 2px 4px;
+/* Tab icons styling */
+.tab i {
+    font-size: 14px;
+    opacity: 0.8;
 }
 
 /* Salwa @ Liwa Tab */
@@ -3832,13 +3829,17 @@ summary.panel-finding-header:hover {
     border-bottom: 1px solid var(--bg-accent);
 }
 
-.entity-card-logo {
+.entity-card-icon {
     width: 48px;
     height: 48px;
-    object-fit: contain;
-    background: white;
-    border-radius: 8px;
-    padding: 6px;
+    border-radius: 10px;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    flex-shrink: 0;
 }
 
 .entity-card-title { flex: 1; }
