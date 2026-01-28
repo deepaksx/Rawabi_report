@@ -7,19 +7,20 @@ const REPORT_DATA = {
     "client": "Emirates Rawabi Group"
   },
   "summary": {
-    "total": 67,
-    "high": 67,
-    "medium": 0,
-    "low": 0,
-    "mapped": 67,
+    "total": 457,
+    "high": 340,
+    "medium": 110,
+    "low": 7,
+    "mapped": 457,
     "orphan": 0,
     "entities": 4,
-    "processSteps": 19
+    "processSteps": 89
   },
   "bySource": {
-    "ARDC-PP": { "total": 18, "high": 18, "medium": 0, "low": 0 },
-    "ARDC-SD": { "total": 15, "high": 15, "medium": 0, "low": 0 },
-    "ENF-GF": { "total": 34, "high": 34, "medium": 0, "low": 0 }
+    "ARDC": { "total": 118, "high": 80, "medium": 31, "low": 7 },
+    "ENF": { "total": 191, "high": 154, "medium": 37, "low": 0 },
+    "GF": { "total": 70, "high": 50, "medium": 20, "low": 0 },
+    "SL": { "total": 78, "high": 56, "medium": 22, "low": 0 }
   },
   "stepStats": {
     "PP-01": { "total": 3, "high": 3, "medium": 0, "low": 0 },
