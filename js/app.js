@@ -29,11 +29,20 @@ function switchTab(tabId) {
         animateCurrentSlide();
     }
 
-    // Auto-select first process for entity tabs to ensure panel is always visible
-    if (['ardc', 'enf', 'greenfields', 'alrawdah'].includes(tabId)) {
-        // Small delay to ensure DOM is ready
+    // Initialize Deep-Dive tab when switching to it
+    if (tabId === 'deepdive') {
         setTimeout(() => {
-            autoSelectFirstProcess(tabId);
+            // Check if already initialized
+            const container = document.getElementById('deepdive-flowcharts');
+            if (container && container.children.length === 0) {
+                // Initialize with first module
+                const firstItem = document.querySelector('#tab-deepdive .nav-entity-modules .nav-item.active');
+                if (firstItem) {
+                    const flowKey = firstItem.dataset.flow;
+                    const entityId = firstItem.dataset.entity;
+                    selectDeepDiveModule(entityId, flowKey, firstItem);
+                }
+            }
         }, 100);
     }
 }
@@ -482,6 +491,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize entity nav click handlers
     initEntityNavHandlers();
+
+    // Initialize Deep-Dive nav click handlers
+    initDeepDiveNavHandlers();
 
     // Initialize swipe gestures
     initSwipeGestures();
@@ -4458,13 +4470,16 @@ function getStepMetadata(stepId, stepName) {
 }
 
 function selectEntityFlowStep(entityId, stepId, stepName) {
+    // Handle deepdive as a special case - use deepdive tab but track original entity
+    const tabId = entityId === 'deepdive' ? 'deepdive' : entityId;
+
     // Clear previous selection in this entity
-    document.querySelectorAll(`#tab-${entityId} .process-node`).forEach(node => {
+    document.querySelectorAll(`#tab-${tabId} .process-node`).forEach(node => {
         node.classList.remove('selected');
     });
 
     // Select new node
-    const node = document.querySelector(`#tab-${entityId} [data-step="${stepId}"]`);
+    const node = document.querySelector(`#tab-${tabId} [data-step="${stepId}"]`);
     if (node) {
         node.classList.add('selected');
     }
@@ -4720,7 +4735,9 @@ function closeEntityPanel(entityId) {
     if (panel) panel.classList.remove('open');
     if (overlay) overlay.classList.remove('active');
 
-    document.querySelectorAll(`#tab-${entityId} .process-node`).forEach(node => {
+    // Handle tab ID for deepdive
+    const tabId = entityId === 'deepdive' ? 'deepdive' : entityId;
+    document.querySelectorAll(`#tab-${tabId} .process-node`).forEach(node => {
         node.classList.remove('selected');
     });
 
@@ -4731,9 +4748,217 @@ function closeEntityPanel(entityId) {
 }
 
 function closeAllPanels() {
-    ['ardc', 'enf', 'greenfields', 'alrawdah'].forEach(entityId => {
+    ['ardc', 'enf', 'greenfields', 'alrawdah', 'deepdive'].forEach(entityId => {
         closeEntityPanel(entityId);
     });
+}
+
+// =====================================================
+// DEEP-DIVE TAB FUNCTIONALITY
+// =====================================================
+
+// Current deep-dive state
+let currentDeepDiveEntity = 'ardc';
+let currentDeepDiveFlow = 'ARDC-PP';
+
+/**
+ * Toggle entity group expand/collapse in Deep-Dive TOC
+ */
+function toggleEntityGroup(entityId) {
+    const group = document.querySelector(`.nav-entity-group[data-entity="${entityId}"]`);
+    if (group) {
+        group.classList.toggle('collapsed');
+    }
+}
+
+/**
+ * Initialize Deep-Dive navigation handlers
+ */
+function initDeepDiveNavHandlers() {
+    const deepdiveTab = document.getElementById('tab-deepdive');
+    if (!deepdiveTab) return;
+
+    // Bind module nav item clicks
+    const navItems = deepdiveTab.querySelectorAll('.nav-entity-modules .nav-item[data-flow]');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const flowKey = this.dataset.flow;
+            const entityId = this.dataset.entity;
+            selectDeepDiveModule(entityId, flowKey, this);
+        });
+    });
+
+    // Initialize first module
+    setTimeout(() => {
+        const firstItem = deepdiveTab.querySelector('.nav-entity-modules .nav-item.active');
+        if (firstItem) {
+            const flowKey = firstItem.dataset.flow;
+            const entityId = firstItem.dataset.entity;
+            selectDeepDiveModule(entityId, flowKey, firstItem);
+        }
+    }, 100);
+}
+
+/**
+ * Select and display a module in Deep-Dive tab
+ */
+function selectDeepDiveModule(entityId, flowKey, navItem) {
+    const deepdiveTab = document.getElementById('tab-deepdive');
+    if (!deepdiveTab) return;
+
+    // Update nav item active states
+    deepdiveTab.querySelectorAll('.nav-entity-modules .nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    if (navItem) navItem.classList.add('active');
+
+    // Store current selection
+    currentDeepDiveEntity = entityId;
+    currentDeepDiveFlow = flowKey;
+
+    // Update header breadcrumb
+    updateDeepDiveHeader(entityId, flowKey);
+
+    // Close any open panel
+    closeEntityPanel('deepdive');
+
+    // Render flowchart
+    renderDeepDiveFlowchart(flowKey);
+}
+
+/**
+ * Update the Deep-Dive header with current selection
+ */
+function updateDeepDiveHeader(entityId, flowKey) {
+    const header = document.getElementById('deepdive-header');
+    if (!header) return;
+
+    // Entity names mapping
+    const entityNames = {
+        'ardc': 'Al Rawabi Dairy',
+        'enf': 'Emirates National Factory',
+        'greenfields': 'Greenfields LLC',
+        'alrawdah': 'Salwa @ Liwa'
+    };
+
+    // Module names mapping
+    const moduleNames = {
+        'ARDC-PP': 'Production Planning',
+        'ARDC-SD': 'Sales & Distribution',
+        'ARDC-MM': 'Materials Management',
+        'ARDC-FICO': 'Finance & Controlling',
+        'ENF-SD': 'Sales & Distribution',
+        'ENF-HATCH': 'Hatchery Operations',
+        'ENF-FARM': 'Farm Operations',
+        'ENF-PROC': 'Processing Plant',
+        'ENF-MM': 'Materials Management',
+        'ENF-QM': 'Quality Management',
+        'ENF-FICO': 'Finance & Controlling',
+        'GF-SD': 'Sales & Distribution',
+        'GF-MM': 'Materials Management',
+        'GF-PP': 'Production Planning',
+        'GF-QM': 'Quality Management',
+        'GF-FICO': 'Finance & Controlling',
+        'SL-PP': 'Production Planning',
+        'SL-QM': 'Quality Management',
+        'SL-MM': 'Materials Management',
+        'SL-FICO': 'Finance & Controlling',
+        'SL-SD': 'Sales & Distribution'
+    };
+
+    // Get stats for this flow
+    const stats = getFlowStats(flowKey);
+
+    header.innerHTML = `
+        <div class="deepdive-breadcrumb">
+            <span class="breadcrumb-entity">${entityNames[entityId] || entityId}</span>
+            <i class="fas fa-chevron-right"></i>
+            <span class="breadcrumb-module">${moduleNames[flowKey] || flowKey}</span>
+        </div>
+        <div class="deepdive-stats">
+            <span class="stat-badge total">${stats.total} Findings</span>
+            <span class="stat-badge high">High: ${stats.high}</span>
+            <span class="stat-badge medium">Medium: ${stats.medium}</span>
+        </div>
+    `;
+}
+
+/**
+ * Get stats for a flow
+ */
+function getFlowStats(flowKey) {
+    // Count findings for all steps in this flow
+    let total = 0, high = 0, medium = 0, low = 0;
+
+    // Get the flow definition from VISUAL_FLOWCHARTS
+    const flow = VISUAL_FLOWCHARTS[flowKey];
+    if (flow && flow.steps) {
+        flow.steps.forEach(step => {
+            const stepId = step.id;
+            const findings = REPORT_DATA.findingsByStep[stepId] || [];
+            total += findings.length;
+            findings.forEach(f => {
+                if (f.risk === 'high') high++;
+                else if (f.risk === 'medium') medium++;
+                else low++;
+            });
+        });
+    }
+
+    return { total, high, medium, low };
+}
+
+/**
+ * Render flowchart for Deep-Dive tab
+ */
+function renderDeepDiveFlowchart(flowKey) {
+    const container = document.getElementById('deepdive-flowcharts');
+    if (!container) return;
+
+    // Clear existing content
+    container.innerHTML = '';
+
+    // Get the flow definition from VISUAL_FLOWCHARTS
+    if (typeof VISUAL_FLOWCHARTS === 'undefined') {
+        container.innerHTML = '<p class="no-data">Flowchart data not loaded</p>';
+        return;
+    }
+
+    const flow = VISUAL_FLOWCHARTS[flowKey];
+    if (!flow) {
+        container.innerHTML = '<p class="no-data">Flow not found: ' + flowKey + '</p>';
+        return;
+    }
+
+    // Render using the visual-flowcharts rendering function
+    if (typeof renderVisualFlowchart === 'function') {
+        const html = renderVisualFlowchart(flowKey, flow, 'deepdive');
+        container.innerHTML = html;
+    } else {
+        // Fallback: simple rendering
+        container.innerHTML = `<div class="visual-flowchart" data-flow="${flowKey}">
+            <div class="flow-title-bar">
+                <h3>${flow.title || flowKey}</h3>
+                <p>${flow.subtitle || ''}</p>
+            </div>
+            <div class="process-flow-visual">
+                ${flow.rows ? flow.rows.map(row => `
+                    <div class="flow-row">
+                        ${row.nodes.map((node, idx) => `
+                            <div class="process-node" data-step="${node.id}" data-entity="deepdive"
+                                 onclick="selectEntityFlowStep('deepdive', '${node.id}', '${node.name}')">
+                                <div class="node-number">${String(idx + 1).padStart(2, '0')}</div>
+                                <div class="node-label">
+                                    <span class="label-name">${node.name}</span>
+                                    <span class="label-desc">${node.desc || ''}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('') : '<p>No process steps defined</p>'}
+            </div>
+        </div>`;
+    }
 }
 
 function toggleFindingDetails(element) {

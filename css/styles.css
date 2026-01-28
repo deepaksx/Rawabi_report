@@ -3704,6 +3704,184 @@ summary.panel-finding-header:hover {
     line-height: 1.5;
 }
 
+/* =========================================
+   DEEP-DIVE HIERARCHICAL NAVIGATION
+   ========================================= */
+
+.deepdive-nav {
+    width: 280px !important;
+    overflow-y: auto;
+}
+
+.nav-entity-group {
+    border-bottom: 1px solid var(--bg-accent);
+}
+
+.nav-entity-group:last-of-type {
+    border-bottom: none;
+}
+
+.nav-entity-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--bg-subtle);
+}
+
+.nav-entity-header:hover {
+    background: var(--bg-accent);
+}
+
+.nav-entity-header i:first-child {
+    color: var(--primary);
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+}
+
+.nav-entity-header .entity-name {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nav-entity-header .entity-count {
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--accent);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.nav-entity-header .toggle-icon {
+    color: var(--text-light);
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.nav-entity-group.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.nav-entity-group.collapsed .nav-entity-modules {
+    display: none;
+}
+
+.nav-entity-modules {
+    padding: 4px 0;
+    background: white;
+}
+
+.nav-entity-modules .nav-item {
+    padding: 10px 16px 10px 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-entity-modules .nav-item:hover {
+    background: var(--bg-subtle);
+}
+
+.nav-entity-modules .nav-item.active {
+    background: rgba(200, 16, 46, 0.08);
+    border-left-color: var(--accent);
+}
+
+.nav-entity-modules .nav-item .nav-text {
+    font-size: 12px;
+    color: var(--text-medium);
+}
+
+.nav-entity-modules .nav-item.active .nav-text {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.nav-entity-modules .nav-item .nav-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-light);
+    background: var(--bg-subtle);
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+
+.nav-entity-modules .nav-item.active .nav-badge {
+    background: var(--accent);
+    color: white;
+}
+
+/* Deep-Dive Header */
+.deepdive-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: white;
+    border-bottom: 1px solid var(--bg-accent);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.deepdive-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.deepdive-breadcrumb .breadcrumb-entity {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.deepdive-breadcrumb i {
+    color: var(--text-light);
+    font-size: 10px;
+}
+
+.deepdive-breadcrumb .breadcrumb-module {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.deepdive-stats {
+    display: flex;
+    gap: 10px;
+}
+
+.deepdive-stats .stat-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.deepdive-stats .stat-badge.total {
+    background: var(--bg-subtle);
+    color: var(--text-dark);
+}
+
+.deepdive-stats .stat-badge.high {
+    background: rgba(196, 30, 58, 0.1);
+    color: var(--danger);
+}
+
+.deepdive-stats .stat-badge.medium {
+    background: rgba(212, 130, 10, 0.1);
+    color: var(--warning);
+}
+
 /* Compact Stats Grid */
 .stats-grid.compact {
     display: flex;

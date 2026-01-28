@@ -6,9 +6,9 @@
     <title>Emirates Rawabi Group - SAP & Process Audit Report | NXSYS Advisory</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css?v=31">
-    <link rel="stylesheet" href="css/flowcharts.css?v=31">
-    <script src="js/data.js?v=31"></script>
+    <link rel="stylesheet" href="css/styles.css?v=32">
+    <link rel="stylesheet" href="css/flowcharts.css?v=32">
+    <script src="js/data.js?v=32"></script>
 </head>
 <body>
     <!-- Unified Header & Navigation -->
@@ -28,21 +28,9 @@
                 <i class="fas fa-chart-line"></i>
                 Summary
             </button>
-            <button class="tab" data-tab="ardc" onclick="switchTab('ardc')">
-                <i class="fas fa-cow"></i>
-                Al Rawabi Dairy
-            </button>
-            <button class="tab" data-tab="enf" onclick="switchTab('enf')">
-                <i class="fas fa-drumstick-bite"></i>
-                ENF
-            </button>
-            <button class="tab" data-tab="greenfields" onclick="switchTab('greenfields')">
-                <i class="fas fa-wheat-awn"></i>
-                Greenfields
-            </button>
-            <button class="tab tab-salwa" data-tab="alrawdah" onclick="switchTab('alrawdah')">
-                <i class="fas fa-egg"></i>
-                Salwa @ Liwa
+            <button class="tab" data-tab="deepdive" onclick="switchTab('deepdive')">
+                <i class="fas fa-microscope"></i>
+                Deep-Dive
             </button>
         </div>
 
@@ -793,46 +781,161 @@
     </div>
 
     <!-- ============================================= -->
-    <!-- TAB 2: AL RAWABI DAIRY COMPANY -->
+    <!-- TAB 2: DEEP-DIVE (Unified Entity View) -->
     <!-- ============================================= -->
-    <div id="tab-ardc" class="tab-content">
+    <div id="tab-deepdive" class="tab-content">
         <div class="entity-layout">
-            <!-- Left Navigation Panel -->
-            <nav class="pres-titles-nav">
+            <!-- Left Navigation Panel - Hierarchical TOC -->
+            <nav class="pres-titles-nav deepdive-nav">
                 <div class="nav-header">
-                    <i class="fas fa-bars"></i>
-                    <span>Contents</span>
+                    <i class="fas fa-sitemap"></i>
+                    <span>Entity & Module Navigator</span>
                 </div>
-                <div class="nav-section">
-                    <div class="nav-item active" data-flow="ARDC-PP">
-                        <span class="nav-num">01</span>
-                        <span class="nav-text">Production Planning</span>
+
+                <!-- Al Rawabi Dairy -->
+                <div class="nav-entity-group" data-entity="ardc">
+                    <div class="nav-entity-header" onclick="toggleEntityGroup('ardc')">
+                        <i class="fas fa-cow"></i>
+                        <span class="entity-name">Al Rawabi Dairy</span>
+                        <span class="entity-count">118</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="nav-item" data-flow="ARDC-SD">
-                        <span class="nav-num">02</span>
-                        <span class="nav-text">Sales & Distribution</span>
-                    </div>
-                    <div class="nav-item" data-flow="ARDC-MM">
-                        <span class="nav-num">03</span>
-                        <span class="nav-text">Materials Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="ARDC-FICO">
-                        <span class="nav-num">04</span>
-                        <span class="nav-text">Finance & Controlling</span>
+                    <div class="nav-entity-modules">
+                        <div class="nav-item active" data-flow="ARDC-PP" data-entity="ardc">
+                            <span class="nav-text">Production Planning</span>
+                            <span class="nav-badge">29</span>
+                        </div>
+                        <div class="nav-item" data-flow="ARDC-SD" data-entity="ardc">
+                            <span class="nav-text">Sales & Distribution</span>
+                            <span class="nav-badge">41</span>
+                        </div>
+                        <div class="nav-item" data-flow="ARDC-MM" data-entity="ardc">
+                            <span class="nav-text">Materials Management</span>
+                            <span class="nav-badge">24</span>
+                        </div>
+                        <div class="nav-item" data-flow="ARDC-FICO" data-entity="ardc">
+                            <span class="nav-text">Finance & Controlling</span>
+                            <span class="nav-badge">24</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Emirates National Factory -->
+                <div class="nav-entity-group" data-entity="enf">
+                    <div class="nav-entity-header" onclick="toggleEntityGroup('enf')">
+                        <i class="fas fa-drumstick-bite"></i>
+                        <span class="entity-name">Emirates National Factory</span>
+                        <span class="entity-count">191</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-entity-modules">
+                        <div class="nav-item" data-flow="ENF-SD" data-entity="enf">
+                            <span class="nav-text">Sales & Distribution</span>
+                            <span class="nav-badge">19</span>
+                        </div>
+                        <div class="nav-item" data-flow="ENF-HATCH" data-entity="enf">
+                            <span class="nav-text">Hatchery Operations</span>
+                            <span class="nav-badge">18</span>
+                        </div>
+                        <div class="nav-item" data-flow="ENF-FARM" data-entity="enf">
+                            <span class="nav-text">Farm Operations</span>
+                            <span class="nav-badge">18</span>
+                        </div>
+                        <div class="nav-item" data-flow="ENF-PROC" data-entity="enf">
+                            <span class="nav-text">Processing Plant</span>
+                            <span class="nav-badge">18</span>
+                        </div>
+                        <div class="nav-item" data-flow="ENF-MM" data-entity="enf">
+                            <span class="nav-text">Materials Management</span>
+                            <span class="nav-badge">17</span>
+                        </div>
+                        <div class="nav-item" data-flow="ENF-QM" data-entity="enf">
+                            <span class="nav-text">Quality Management</span>
+                            <span class="nav-badge">17</span>
+                        </div>
+                        <div class="nav-item" data-flow="ENF-FICO" data-entity="enf">
+                            <span class="nav-text">Finance & Controlling</span>
+                            <span class="nav-badge">17</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Greenfields -->
+                <div class="nav-entity-group" data-entity="greenfields">
+                    <div class="nav-entity-header" onclick="toggleEntityGroup('greenfields')">
+                        <i class="fas fa-wheat-awn"></i>
+                        <span class="entity-name">Greenfields LLC</span>
+                        <span class="entity-count">70</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-entity-modules">
+                        <div class="nav-item" data-flow="GF-SD" data-entity="greenfields">
+                            <span class="nav-text">Sales & Distribution</span>
+                            <span class="nav-badge">15</span>
+                        </div>
+                        <div class="nav-item" data-flow="GF-MM" data-entity="greenfields">
+                            <span class="nav-text">Materials Management</span>
+                            <span class="nav-badge">13</span>
+                        </div>
+                        <div class="nav-item" data-flow="GF-PP" data-entity="greenfields">
+                            <span class="nav-text">Production Planning</span>
+                            <span class="nav-badge">17</span>
+                        </div>
+                        <div class="nav-item" data-flow="GF-QM" data-entity="greenfields">
+                            <span class="nav-text">Quality Management</span>
+                            <span class="nav-badge">11</span>
+                        </div>
+                        <div class="nav-item" data-flow="GF-FICO" data-entity="greenfields">
+                            <span class="nav-text">Finance & Controlling</span>
+                            <span class="nav-badge">14</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Salwa @ Liwa -->
+                <div class="nav-entity-group" data-entity="alrawdah">
+                    <div class="nav-entity-header" onclick="toggleEntityGroup('alrawdah')">
+                        <i class="fas fa-egg"></i>
+                        <span class="entity-name">Salwa @ Liwa</span>
+                        <span class="entity-count">78</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="nav-entity-modules">
+                        <div class="nav-item" data-flow="SL-PP" data-entity="alrawdah">
+                            <span class="nav-text">Production Planning</span>
+                            <span class="nav-badge">18</span>
+                        </div>
+                        <div class="nav-item" data-flow="SL-QM" data-entity="alrawdah">
+                            <span class="nav-text">Quality Management</span>
+                            <span class="nav-badge">12</span>
+                        </div>
+                        <div class="nav-item" data-flow="SL-MM" data-entity="alrawdah">
+                            <span class="nav-text">Materials Management</span>
+                            <span class="nav-badge">15</span>
+                        </div>
+                        <div class="nav-item" data-flow="SL-FICO" data-entity="alrawdah">
+                            <span class="nav-text">Finance & Controlling</span>
+                            <span class="nav-badge">15</span>
+                        </div>
+                        <div class="nav-item" data-flow="SL-SD" data-entity="alrawdah">
+                            <span class="nav-text">Sales & Distribution</span>
+                            <span class="nav-badge">18</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="nav-footer">
                     <div class="nav-stats-summary">
                         <div class="nav-stat-item">
-                            <span class="nav-stat-count">118</span>
+                            <span class="nav-stat-count">457</span>
                             <span class="nav-stat-label">Total</span>
                         </div>
                         <div class="nav-stat-item danger">
-                            <span class="nav-stat-count">80</span>
+                            <span class="nav-stat-count">340</span>
                             <span class="nav-stat-label">High</span>
                         </div>
                         <div class="nav-stat-item warning">
-                            <span class="nav-stat-count">31</span>
+                            <span class="nav-stat-count">110</span>
                             <span class="nav-stat-label">Medium</span>
                         </div>
                     </div>
@@ -842,279 +945,38 @@
             <!-- Main Content Area -->
             <div class="entity-main">
                 <div class="slide-content entity-content">
+                    <!-- Current Entity/Module Header -->
+                    <div id="deepdive-header" class="deepdive-header">
+                        <div class="deepdive-breadcrumb">
+                            <span class="breadcrumb-entity">Al Rawabi Dairy</span>
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="breadcrumb-module">Production Planning</span>
+                        </div>
+                        <div class="deepdive-stats">
+                            <span class="stat-badge total">29 Findings</span>
+                            <span class="stat-badge high">High: 23</span>
+                            <span class="stat-badge medium">Medium: 6</span>
+                        </div>
+                    </div>
                     <!-- Process Flows Container -->
-                    <div id="ardc-flowcharts" class="flowcharts-container">
+                    <div id="deepdive-flowcharts" class="flowcharts-container">
                         <!-- Populated by JavaScript -->
                     </div>
                 </div>
             </div>
 
             <!-- Bottom Panel for Findings -->
-            <aside id="ardc-flowPanel" class="flow-panel entity-panel">
-                <div class="panel-drag-handle" onclick="closeEntityPanel('ardc')"></div>
+            <aside id="deepdive-flowPanel" class="flow-panel entity-panel">
+                <div class="panel-drag-handle" onclick="closeEntityPanel('deepdive')"></div>
                 <div class="panel-header">
                     <div class="panel-title-section">
-                        <h3 id="ardc-panelTitle">Select a Process Step</h3>
-                        <span id="ardc-panelSubtitle" class="panel-subtitle"></span>
+                        <h3 id="deepdive-panelTitle">Select a Process Step</h3>
+                        <span id="deepdive-panelSubtitle" class="panel-subtitle"></span>
                     </div>
-                    <button class="panel-close" onclick="closeEntityPanel('ardc')"><i class="fas fa-chevron-down"></i></button>
+                    <button class="panel-close" onclick="closeEntityPanel('deepdive')"><i class="fas fa-chevron-down"></i></button>
                 </div>
-                <div id="ardc-panelStats" class="panel-stats"></div>
-                <div id="ardc-panelContent" class="panel-content">
-                    <div class="panel-placeholder">
-                        <i class="fas fa-hand-pointer"></i>
-                        <p>Click on a process step to view findings</p>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- TAB 3: EMIRATES NATIONAL FACTORY -->
-    <!-- ============================================= -->
-    <div id="tab-enf" class="tab-content">
-        <div class="entity-layout">
-            <!-- Left Navigation Panel -->
-            <nav class="pres-titles-nav">
-                <div class="nav-header">
-                    <i class="fas fa-bars"></i>
-                    <span>Contents</span>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-item active" data-flow="ENF-SD">
-                        <span class="nav-num">01</span>
-                        <span class="nav-text">Sales & Distribution</span>
-                    </div>
-                    <div class="nav-item" data-flow="ENF-HATCH">
-                        <span class="nav-num">02</span>
-                        <span class="nav-text">Hatchery Operations</span>
-                    </div>
-                    <div class="nav-item" data-flow="ENF-FARM">
-                        <span class="nav-num">03</span>
-                        <span class="nav-text">Farm Operations</span>
-                    </div>
-                    <div class="nav-item" data-flow="ENF-PROC">
-                        <span class="nav-num">04</span>
-                        <span class="nav-text">Processing Plant</span>
-                    </div>
-                    <div class="nav-item" data-flow="ENF-MM">
-                        <span class="nav-num">05</span>
-                        <span class="nav-text">Materials Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="ENF-QM">
-                        <span class="nav-num">06</span>
-                        <span class="nav-text">Quality Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="ENF-FICO">
-                        <span class="nav-num">07</span>
-                        <span class="nav-text">Finance & Controlling</span>
-                    </div>
-                </div>
-                <div class="nav-footer">
-                    <div class="nav-stats-summary">
-                        <div class="nav-stat-item">
-                            <span class="nav-stat-count">558</span>
-                            <span class="nav-stat-label">Total</span>
-                        </div>
-                        <div class="nav-stat-item danger">
-                            <span class="nav-stat-count">268</span>
-                            <span class="nav-stat-label">High</span>
-                        </div>
-                        <div class="nav-stat-item warning">
-                            <span class="nav-stat-count">250</span>
-                            <span class="nav-stat-label">Medium</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Main Content Area -->
-            <div class="entity-main">
-                <div class="slide-content entity-content">
-                    <!-- Process Flows Container -->
-                    <div id="enf-flowcharts" class="flowcharts-container">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Panel for Findings -->
-            <aside id="enf-flowPanel" class="flow-panel entity-panel">
-                <div class="panel-drag-handle" onclick="closeEntityPanel('enf')"></div>
-                <div class="panel-header">
-                    <div class="panel-title-section">
-                        <h3 id="enf-panelTitle">Select a Process Step</h3>
-                        <span id="enf-panelSubtitle" class="panel-subtitle"></span>
-                    </div>
-                    <button class="panel-close" onclick="closeEntityPanel('enf')"><i class="fas fa-chevron-down"></i></button>
-                </div>
-                <div id="enf-panelStats" class="panel-stats"></div>
-                <div id="enf-panelContent" class="panel-content">
-                    <div class="panel-placeholder">
-                        <i class="fas fa-hand-pointer"></i>
-                        <p>Click on a process step to view findings</p>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- TAB 4: GREENFIELDS -->
-    <!-- ============================================= -->
-    <div id="tab-greenfields" class="tab-content">
-        <div class="entity-layout">
-            <!-- Left Navigation Panel -->
-            <nav class="pres-titles-nav">
-                <div class="nav-header">
-                    <i class="fas fa-bars"></i>
-                    <span>Contents</span>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-item active" data-flow="GF-SD">
-                        <span class="nav-num">01</span>
-                        <span class="nav-text">Sales & Distribution</span>
-                    </div>
-                    <div class="nav-item" data-flow="GF-MM">
-                        <span class="nav-num">02</span>
-                        <span class="nav-text">Materials Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="GF-PP">
-                        <span class="nav-num">03</span>
-                        <span class="nav-text">Production Planning</span>
-                    </div>
-                    <div class="nav-item" data-flow="GF-QM">
-                        <span class="nav-num">04</span>
-                        <span class="nav-text">Quality Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="GF-FICO">
-                        <span class="nav-num">05</span>
-                        <span class="nav-text">Finance & Controlling</span>
-                    </div>
-                </div>
-                <div class="nav-footer">
-                    <div class="nav-stats-summary">
-                        <div class="nav-stat-item">
-                            <span class="nav-stat-count">312</span>
-                            <span class="nav-stat-label">Total</span>
-                        </div>
-                        <div class="nav-stat-item danger">
-                            <span class="nav-stat-count">150</span>
-                            <span class="nav-stat-label">High</span>
-                        </div>
-                        <div class="nav-stat-item warning">
-                            <span class="nav-stat-count">140</span>
-                            <span class="nav-stat-label">Medium</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Main Content Area -->
-            <div class="entity-main">
-                <div class="slide-content entity-content">
-                    <!-- Process Flows Container -->
-                    <div id="greenfields-flowcharts" class="flowcharts-container">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Panel for Findings -->
-            <aside id="greenfields-flowPanel" class="flow-panel entity-panel">
-                <div class="panel-drag-handle" onclick="closeEntityPanel('greenfields')"></div>
-                <div class="panel-header">
-                    <div class="panel-title-section">
-                        <h3 id="greenfields-panelTitle">Select a Process Step</h3>
-                        <span id="greenfields-panelSubtitle" class="panel-subtitle"></span>
-                    </div>
-                    <button class="panel-close" onclick="closeEntityPanel('greenfields')"><i class="fas fa-chevron-down"></i></button>
-                </div>
-                <div id="greenfields-panelStats" class="panel-stats"></div>
-                <div id="greenfields-panelContent" class="panel-content">
-                    <div class="panel-placeholder">
-                        <i class="fas fa-hand-pointer"></i>
-                        <p>Click on a process step to view findings</p>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <!-- ============================================= -->
-    <!-- TAB 5: AL RAWDAH -->
-    <!-- ============================================= -->
-    <div id="tab-alrawdah" class="tab-content">
-        <div class="entity-layout">
-            <!-- Left Navigation Panel -->
-            <nav class="pres-titles-nav">
-                <div class="nav-header">
-                    <i class="fas fa-bars"></i>
-                    <span>Contents</span>
-                </div>
-                <div class="nav-section">
-                    <div class="nav-item active" data-flow="SL-PP">
-                        <span class="nav-num">01</span>
-                        <span class="nav-text">Production Planning</span>
-                    </div>
-                    <div class="nav-item" data-flow="SL-QM">
-                        <span class="nav-num">02</span>
-                        <span class="nav-text">Quality Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="SL-MM">
-                        <span class="nav-num">03</span>
-                        <span class="nav-text">Materials Management</span>
-                    </div>
-                    <div class="nav-item" data-flow="SL-FICO">
-                        <span class="nav-num">04</span>
-                        <span class="nav-text">Finance & Controlling</span>
-                    </div>
-                    <div class="nav-item" data-flow="SL-SD">
-                        <span class="nav-num">05</span>
-                        <span class="nav-text">Sales & Distribution</span>
-                    </div>
-                </div>
-                <div class="nav-footer">
-                    <div class="nav-stats-summary">
-                        <div class="nav-stat-item">
-                            <span class="nav-stat-count">246</span>
-                            <span class="nav-stat-label">Total</span>
-                        </div>
-                        <div class="nav-stat-item danger">
-                            <span class="nav-stat-count">118</span>
-                            <span class="nav-stat-label">High</span>
-                        </div>
-                        <div class="nav-stat-item warning">
-                            <span class="nav-stat-count">111</span>
-                            <span class="nav-stat-label">Medium</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Main Content Area -->
-            <div class="entity-main">
-                <div class="slide-content entity-content">
-                    <!-- Process Flows Container -->
-                    <div id="alrawdah-flowcharts" class="flowcharts-container">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Panel for Findings -->
-            <aside id="alrawdah-flowPanel" class="flow-panel entity-panel">
-                <div class="panel-drag-handle" onclick="closeEntityPanel('alrawdah')"></div>
-                <div class="panel-header">
-                    <div class="panel-title-section">
-                        <h3 id="alrawdah-panelTitle">Select a Process Step</h3>
-                        <span id="alrawdah-panelSubtitle" class="panel-subtitle"></span>
-                    </div>
-                    <button class="panel-close" onclick="closeEntityPanel('alrawdah')"><i class="fas fa-chevron-down"></i></button>
-                </div>
-                <div id="alrawdah-panelStats" class="panel-stats"></div>
-                <div id="alrawdah-panelContent" class="panel-content">
+                <div id="deepdive-panelStats" class="panel-stats"></div>
+                <div id="deepdive-panelContent" class="panel-content">
                     <div class="panel-placeholder">
                         <i class="fas fa-hand-pointer"></i>
                         <p>Click on a process step to view findings</p>
@@ -1134,7 +996,7 @@
         <div class="footer-right">Confidential</div>
     </footer>
 
-    <script src="js/app.js?v=31"></script>
-    <script src="js/visual-flowcharts.js?v=31"></script>
+    <script src="js/app.js?v=32"></script>
+    <script src="js/visual-flowcharts.js?v=32"></script>
 </body>
 </html>
