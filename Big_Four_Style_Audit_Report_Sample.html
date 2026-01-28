@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Independent Auditor's Report | Al Rawabi Group - SAP System Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Big Four inspired color palette - Professional & Conservative */
+            --primary-dark: #1a1f35;
+            --primary-blue: #002b5c;
+            --accent-blue: #0066b3;
+            --accent-gold: #b8860b;
+            --accent-copper: #c4804a;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --bg-cream: #fdfcfa;
+            --bg-light: #f8f7f5;
+            --bg-white: #ffffff;
+            --border-light: #e8e6e3;
+            --border-medium: #d1cdc7;
+            --success: #2d6a4f;
+            --warning: #b45309;
+            --danger: #9b2c2c;
+            --info: #1e40af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; font-size: 11pt; }
+            .sidebar, .floating-nav, .no-print { display: none !important; }
+            .main-content { margin-left: 0 !important; padding: 0 !important; }
+            .page-break { page-break-before: always; }
+            section { break-inside: avoid; }
+        }
+
+        /* Navigation Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--primary-dark);
+            color: white;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 32px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .firm-logo {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .report-title-sidebar {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .nav-section {
+            padding: 16px 0;
+        }
+
+        .nav-section-title {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            padding: 8px 24px;
+            margin-bottom: 4px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: var(--accent-gold);
+            color: white;
+        }
+
+        .nav-item-number {
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .nav-item.active .nav-item-number {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        /* Cover Section */
+        .cover-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%);
+            transform: rotate(-12deg);
+        }
+
+        .cover-firm-name {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 48px;
+        }
+
+        .cover-title {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            max-width: 700px;
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 48px;
+            max-width: 600px;
+        }
+
+        .cover-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 800px;
+            margin-top: 48px;
+            padding-top: 48px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cover-meta-item label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .cover-meta-item span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .cover-classification {
+            position: absolute;
+            bottom: 40px;
+            right: 80px;
+            padding: 8px 16px;
+            background: rgba(184, 134, 11, 0.2);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 40px;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .section-number {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-copper);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 40px 0 20px;
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 32px 0 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Cross Reference Links */
+        .cross-ref {
+            color: var(--accent-blue);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-blue);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cross-ref:hover {
+            color: var(--primary-blue);
+            border-bottom-style: solid;
+        }
+
+        .cross-ref::before {
+            content: '§';
+            margin-right: 2px;
+            font-size: 0.9em;
+        }
+
+        /* Reference Tooltip */
+        .ref-tooltip {
+            position: fixed;
+            background: var(--primary-dark);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 2000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .ref-tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .ref-tooltip-header {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .callout::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .callout-finding {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+        }
+
+        .callout-finding::before {
+            background: #f59e0b;
+        }
+
+        .callout-critical {
+            background: #fee2e2;
+            border: 1px solid #dc2626;
+        }
+
+        .callout-critical::before {
+            background: #dc2626;
+        }
+
+        .callout-recommendation {
+            background: #dbeafe;
+            border: 1px solid #2563eb;
+        }
+
+        .callout-recommendation::before {
+            background: #2563eb;
+        }
+
+        .callout-opinion {
+            background: linear-gradient(to right, #f0fdf4, #ecfdf5);
+            border: 1px solid #059669;
+        }
+
+        .callout-opinion::before {
+            background: linear-gradient(to bottom, #059669, #047857);
+        }
+
+        .callout-title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .callout-finding .callout-title { color: #92400e; }
+        .callout-critical .callout-title { color: #991b1b; }
+        .callout-recommendation .callout-title { color: #1e40af; }
+        .callout-opinion .callout-title { color: #047857; }
+
+        .callout p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Data Tables */
+        .data-table-wrapper {
+            margin: 32px 0;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .data-table caption {
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 0 0 12px 0;
+        }
+
+        .data-table th {
+            background: var(--primary-dark);
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .data-table tbody tr:nth-child(even):hover {
+            background: #f0efed;
+        }
+
+        /* Rating Badges */
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .rating-high { background: #dcfce7; color: #166534; }
+        .rating-medium { background: #fef9c3; color: #854d0e; }
+        .rating-low { background: #fee2e2; color: #991b1b; }
+        .rating-critical { background: #991b1b; color: white; }
+
+        .rating-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .rating-high .rating-indicator { background: #22c55e; }
+        .rating-medium .rating-indicator { background: #eab308; }
+        .rating-low .rating-indicator { background: #ef4444; }
+        .rating-critical .rating-indicator { background: white; }
+
+        /* Confidence Score Gauge */
+        .confidence-gauge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+        }
+
+        .confidence-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        .confidence-value {
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 45px;
+        }
+
+        /* Finding Cards */
+        .finding-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 28px;
+            margin: 24px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .finding-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .finding-id {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .finding-title {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-top: 4px;
+        }
+
+        .finding-section {
+            margin-top: 20px;
+        }
+
+        .finding-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        /* Appendix Reference Links */
+        .appendix-ref {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-light);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .appendix-ref:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .appendix-ref svg {
+            width: 12px;
+            height: 12px;
+            margin-right: 4px;
+        }
+
+        /* Opinion Box */
+        .opinion-box {
+            background: white;
+            border: 2px solid var(--primary-blue);
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .opinion-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 40px;
+            right: 40px;
+            height: 4px;
+            background: var(--accent-gold);
+        }
+
+        .opinion-type {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+        }
+
+        .opinion-text {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--primary-dark);
+        }
+
+        /* Signature Block */
+        .signature-block {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-medium);
+        }
+
+        .signature-line {
+            width: 250px;
+            border-bottom: 1px solid var(--text-primary);
+            margin-bottom: 8px;
+            padding-bottom: 60px;
+        }
+
+        .signature-name {
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .signature-title {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .signature-date {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Floating Navigation */
+        .floating-nav {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .floating-nav-item {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-medium);
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .floating-nav-item:hover,
+        .floating-nav-item.active {
+            background: var(--accent-blue);
+            transform: scale(1.3);
+        }
+
+        .floating-nav-item::after {
+            content: attr(data-section);
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-dark);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .floating-nav-item:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Progress Indicator */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            right: 0;
+            height: 3px;
+            background: var(--border-light);
+            z-index: 1001;
+        }
+
+        .reading-progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-gold));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Executive Summary Cards */
+        .exec-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .exec-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .exec-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .exec-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-blue);
+        }
+
+        .exec-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .exec-card-value {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .exec-card-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Maturity Model */
+        .maturity-model {
+            display: flex;
+            align-items: stretch;
+            margin: 32px 0;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .maturity-level {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .maturity-level:last-child {
+            border-right: none;
+        }
+
+        .maturity-level.current {
+            background: linear-gradient(to bottom, #dbeafe, #eff6ff);
+        }
+
+        .maturity-level.current::after {
+            content: 'Current State';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            background: var(--accent-blue);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px;
+        }
+
+        .maturity-level.target {
+            background: linear-gradient(to bottom, #dcfce7, #f0fdf4);
+        }
+
+        .maturity-level.target::after {
+            content: 'Target State';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            background: var(--success);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px;
+        }
+
+        .maturity-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .maturity-name {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-blue);
+            transform: translateY(-4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .reading-progress {
+                left: 0;
+            }
+            .floating-nav {
+                display: none;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        /* Footnotes */
+        .footnote-ref {
+            font-size: 11px;
+            vertical-align: super;
+            color: var(--accent-blue);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .footnotes {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-medium);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footnotes ol {
+            padding-left: 20px;
+        }
+
+        .footnotes li {
+            margin-bottom: 8px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .toc-title {
+            font-family: 'Source Serif Pro', Georgia, serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dotted var(--border-light);
+        }
+
+        .toc-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .toc-item a:hover {
+            color: var(--accent-blue);
+        }
+
+        .toc-page {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Annex Marker */
+        .annex-marker {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 2px;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="firm-logo">NXSYS Advisory</div>
+            <div class="report-title-sidebar">SAP System Assessment Report</div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Report Sections</div>
+            <a href="#cover" class="nav-item active" data-section="cover">
+                <span class="nav-item-number">—</span>
+                Cover
+            </a>
+            <a href="#executive-summary" class="nav-item" data-section="executive-summary">
+                <span class="nav-item-number">1</span>
+                Executive Summary
+            </a>
+            <a href="#scope" class="nav-item" data-section="scope">
+                <span class="nav-item-number">2</span>
+                Scope & Methodology
+            </a>
+            <a href="#findings" class="nav-item" data-section="findings">
+                <span class="nav-item-number">3</span>
+                Key Findings
+            </a>
+            <a href="#detailed-analysis" class="nav-item" data-section="detailed-analysis">
+                <span class="nav-item-number">4</span>
+                Detailed Analysis
+            </a>
+            <a href="#maturity" class="nav-item" data-section="maturity">
+                <span class="nav-item-number">5</span>
+                Maturity Assessment
+            </a>
+            <a href="#recommendations" class="nav-item" data-section="recommendations">
+                <span class="nav-item-number">6</span>
+                Recommendations
+            </a>
+            <a href="#opinion" class="nav-item" data-section="opinion">
+                <span class="nav-item-number">7</span>
+                Opinion
+            </a>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Appendices</div>
+            <a href="#appendix-a" class="nav-item" data-section="appendix-a">
+                <span class="nav-item-number">A</span>
+                Testing Procedures
+            </a>
+            <a href="#appendix-b" class="nav-item" data-section="appendix-b">
+                <span class="nav-item-number">B</span>
+                Confidence Methodology
+            </a>
+            <a href="#appendix-c" class="nav-item" data-section="appendix-c">
+                <span class="nav-item-number">C</span>
+                Glossary of Terms
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Section Navigation -->
+    <div class="floating-nav" id="floatingNav">
+        <div class="floating-nav-item active" data-section="cover" data-target="cover"></div>
+        <div class="floating-nav-item" data-section="Executive Summary" data-target="executive-summary"></div>
+        <div class="floating-nav-item" data-section="Scope" data-target="scope"></div>
+        <div class="floating-nav-item" data-section="Findings" data-target="findings"></div>
+        <div class="floating-nav-item" data-section="Analysis" data-target="detailed-analysis"></div>
+        <div class="floating-nav-item" data-section="Maturity" data-target="maturity"></div>
+        <div class="floating-nav-item" data-section="Recommendations" data-target="recommendations"></div>
+        <div class="floating-nav-item" data-section="Opinion" data-target="opinion"></div>
+    </div>
+
+    <!-- Reference Tooltip -->
+    <div class="ref-tooltip" id="refTooltip">
+        <div class="ref-tooltip-header"></div>
+        <div class="ref-tooltip-content"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Cover Section -->
+        <section id="cover" class="cover-section">
+            <div class="cover-firm-name">NXSYS Advisory Services</div>
+            <h1 class="cover-title">Independent Auditor's Assessment Report</h1>
+            <p class="cover-subtitle">SAP Enterprise System Pre-Implementation Assessment for Al Rawabi Group — ENF & GF Entities</p>
+            
+            <div class="cover-meta">
+                <div class="cover-meta-item">
+                    <label>Report Date</label>
+                    <span>January 27, 2026</span>
+                </div>
+                <div class="cover-meta-item">
+                    <label>Engagement Period</label>
+                    <span>January 23–26, 2026</span>
+                </div>
+                <div class="cover-meta-item">
+                    <label>Report Number</label>
+                    <span>NXSYS-2026-ARG-001</span>
+                </div>
+            </div>
+            <div class="cover-classification">Confidential — Management Use Only</div>
+        </section>
+
+        <div class="content-wrapper">
+            <!-- Table of Contents -->
+            <section id="toc" class="page-break">
+                <div class="toc">
+                    <div class="toc-title">Table of Contents</div>
+                    <ol class="toc-list">
+                        <li class="toc-item">
+                            <a href="#executive-summary">1. Executive Summary</a>
+                            <span class="toc-page">3</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#scope">2. Scope and Methodology</a>
+                            <span class="toc-page">5</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#findings">3. Key Findings</a>
+                            <span class="toc-page">7</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#detailed-analysis">4. Detailed Analysis by Functional Area</a>
+                            <span class="toc-page">10</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#maturity">5. Maturity Assessment</a>
+                            <span class="toc-page">15</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#recommendations">6. Recommendations</a>
+                            <span class="toc-page">17</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#opinion">7. Opinion</a>
+                            <span class="toc-page">20</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#appendix-a">Appendix A: Testing Procedures</a>
+                            <span class="toc-page">22</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#appendix-b">Appendix B: Confidence Score Methodology</a>
+                            <span class="toc-page">24</span>
+                        </li>
+                        <li class="toc-item">
+                            <a href="#appendix-c">Appendix C: Glossary of Terms</a>
+                            <span class="toc-page">26</span>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 1: Executive Summary -->
+            <section id="executive-summary" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section One</div>
+                    <h2 class="section-title">Executive Summary</h2>
+                </div>
+
+                <p>We were engaged by the Board of Directors of Al Rawabi Group to perform an independent assessment of the SAP enterprise system landscape across Emirates National Food Company (ENF) and Greenfields for Feed Industries (GF). This assessment was conducted to evaluate system readiness for a proposed S/4HANA transformation and to identify material gaps in current operational processes.</p>
+
+                <div class="exec-summary-grid">
+                    <div class="exec-card">
+                        <div class="exec-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                            </svg>
+                        </div>
+                        <div class="exec-card-title">Overall Assessment</div>
+                        <div class="exec-card-value">Qualified</div>
+                        <div class="exec-card-subtitle">Material gaps identified requiring remediation</div>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="exec-card-title">Confidence Level</div>
+                        <div class="exec-card-value">78%</div>
+                        <div class="exec-card-subtitle">Based on evidence gathered during engagement</div>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                        <div class="exec-card-title">Critical Findings</div>
+                        <div class="exec-card-value">5</div>
+                        <div class="exec-card-subtitle">Requiring immediate management attention</div>
+                    </div>
+                    <div class="exec-card">
+                        <div class="exec-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <polyline points="14,2 14,8 20,8"></polyline>
+                            </svg>
+                        </div>
+                        <div class="exec-card-title">Functional Areas</div>
+                        <div class="exec-card-value">8</div>
+                        <div class="exec-card-subtitle">Assessed across both entities</div>
+                    </div>
+                </div>
+
+                <div class="callout callout-opinion">
+                    <div class="callout-title">Assessment Opinion</div>
+                    <p>In our opinion, the current SAP ECC implementation at ENF and GF entities <strong>does not adequately support</strong> the poultry industry operational requirements. Material deficiencies exist in livestock management, feed planning, production costing, and quality traceability that cannot be addressed through configuration alone. We recommend a <strong>Greenfield S/4HANA implementation</strong> with SAP industry-specific solutions.</p>
+                </div>
+
+                <h3>Key Matters</h3>
+                <p>During our assessment, we identified the following matters requiring management attention. Each finding is cross-referenced to the detailed analysis in <a href="#findings" class="cross-ref" data-ref="findings" data-title="Section 3: Key Findings" data-content="Detailed analysis of all material findings identified during the assessment, including impact ratings and remediation paths.">Section 3</a> and supporting evidence in <a href="#appendix-a" class="cross-ref" data-ref="appendix-a" data-title="Appendix A: Testing Procedures" data-content="Complete listing of testing procedures performed, sample sizes, and evidence obtained for each finding.">Appendix A</a>.</p>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <caption>Summary of Critical Findings</caption>
+                        <thead>
+                            <tr>
+                                <th style="width: 12%">Finding Ref</th>
+                                <th style="width: 28%">Description</th>
+                                <th style="width: 20%">Impact</th>
+                                <th style="width: 20%">Confidence</th>
+                                <th style="width: 20%">Cross-Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>F-001</strong></td>
+                                <td>Absence of SAP Livestock Management module</td>
+                                <td><span class="rating rating-critical"><span class="rating-indicator"></span>Critical</span></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 90%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">90%</span>
+                                    </div>
+                                </td>
+                                <td><a href="#finding-001" class="appendix-ref">§4.1</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>F-002</strong></td>
+                                <td>Feed management without store control</td>
+                                <td><span class="rating rating-critical"><span class="rating-indicator"></span>Critical</span></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 95%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">95%</span>
+                                    </div>
+                                </td>
+                                <td><a href="#finding-002" class="appendix-ref">§4.2</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>F-003</strong></td>
+                                <td>Period costing instead of production costing</td>
+                                <td><span class="rating rating-low"><span class="rating-indicator"></span>High</span></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 85%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">85%</span>
+                                    </div>
+                                </td>
+                                <td><a href="#finding-003" class="appendix-ref">§4.3</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>F-004</strong></td>
+                                <td>Co-packer operations without contracts</td>
+                                <td><span class="rating rating-low"><span class="rating-indicator"></span>High</span></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 80%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">80%</span>
+                                    </div>
+                                </td>
+                                <td><a href="#finding-004" class="appendix-ref">§4.4</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>F-005</strong></td>
+                                <td>Quality management on paper</td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 70%; background: #eab308;"></div></div>
+                                        <span class="confidence-value" style="color: #854d0e;">70%</span>
+                                    </div>
+                                </td>
+                                <td><a href="#finding-005" class="appendix-ref">§4.5</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 2: Scope & Methodology -->
+            <section id="scope" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section Two</div>
+                    <h2 class="section-title">Scope and Methodology</h2>
+                </div>
+
+                <h3>2.1 Engagement Scope</h3>
+                <p>Our assessment covered the SAP ECC systems and related business processes at two entities within the Al Rawabi Group poultry division:</p>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <caption>Entities in Scope</caption>
+                        <thead>
+                            <tr>
+                                <th>Entity</th>
+                                <th>Operations</th>
+                                <th>SAP Modules Active</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Emirates National Food (ENF)</strong></td>
+                                <td>Poultry processing, FPP production, Van sales distribution</td>
+                                <td>SD, MM (partial), PP, FI/CO</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Greenfields (GF)</strong></td>
+                                <td>Breeder farms, Egg production, Animal feed manufacturing</td>
+                                <td>PP, FI/CO, MM (limited)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>2.2 Assessment Methodology</h3>
+                <p>We conducted our assessment in accordance with NXSYS Advisory Standards for IT System Assessments. Our methodology comprised the following phases, with detailed procedures documented in <a href="#appendix-a" class="cross-ref" data-ref="appendix-a" data-title="Appendix A: Testing Procedures" data-content="Complete documentation of all testing procedures performed during the engagement.">Appendix A</a>:</p>
+
+                <h4>Phase 1: Document Review</h4>
+                <p>We obtained and reviewed existing SAP configuration documentation, business process flows, and prior assessment reports. We noted a significant absence of formal documentation for custom developments and integration specifications.<a href="#fn1" class="footnote-ref" id="fnref1">1</a></p>
+
+                <h4>Phase 2: Workshop Sessions</h4>
+                <p>We conducted cross-functional discovery workshops over a four-day period with key stakeholders from both entities. Sessions covered all major functional areas as detailed in <a href="#detailed-analysis" class="cross-ref" data-ref="detailed-analysis" data-title="Section 4: Detailed Analysis" data-content="Comprehensive analysis of each functional area including Sales, Production, Quality, Finance, and Maintenance.">Section 4</a>.</p>
+
+                <h4>Phase 3: System Walkthrough</h4>
+                <p>We performed system walkthroughs to validate information gathered during workshops and to observe actual transaction processing.</p>
+
+                <h4>Phase 4: Analysis and Reporting</h4>
+                <p>Findings were analyzed, risk-rated, and subjected to our confidence scoring methodology as described in <a href="#appendix-b" class="cross-ref" data-ref="appendix-b" data-title="Appendix B: Confidence Methodology" data-content="Detailed explanation of how confidence scores are calculated based on evidence quality and corroboration.">Appendix B</a>.</p>
+
+                <div class="callout callout-finding">
+                    <div class="callout-title">Limitation of Scope</div>
+                    <p>Our assessment was limited to the ENF and GF entities. Al Rawabi Dairy Company (ARDC) was not included in this engagement phase and will be subject to a separate assessment. Conclusions herein should not be extrapolated to ARDC operations.</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Key Findings -->
+            <section id="findings" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section Three</div>
+                    <h2 class="section-title">Key Findings</h2>
+                </div>
+
+                <p>The following findings represent material deficiencies identified during our assessment. Each finding is rated according to our risk classification framework and assigned a confidence score based on the quality of evidence obtained. For the complete confidence scoring methodology, refer to <a href="#appendix-b" class="cross-ref" data-ref="appendix-b" data-title="Appendix B: Confidence Methodology" data-content="Explanation of how confidence percentages are determined based on evidence completeness and stakeholder validation.">Appendix B</a>.</p>
+
+                <div class="finding-card" id="finding-001">
+                    <div class="finding-card-header">
+                        <div>
+                            <div class="finding-id">FINDING F-001</div>
+                            <div class="finding-title">Absence of SAP Livestock Management Module</div>
+                        </div>
+                        <span class="rating rating-critical"><span class="rating-indicator"></span>Critical</span>
+                    </div>
+                    
+                    <div class="finding-section">
+                        <div class="finding-section-title">Condition</div>
+                        <p>The current SAP ECC implementation does not include SAP Livestock Management functionality. Flock tracking, biological asset valuation (IAS 41), FCR monitoring, and vaccination management are performed manually using Excel spreadsheets and journal vouchers.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Criteria</div>
+                        <p>Industry best practice for poultry operations requires integrated livestock management with real-time flock performance monitoring. IAS 41 requires biological assets to be measured at fair value less costs to sell, with changes recognized in profit or loss.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Cause</div>
+                        <p>The original SAP ECC implementation did not include industry-specific solutions. The Livestock Management module was not available or not considered during initial deployment.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Effect</div>
+                        <p>Management lacks real-time visibility into flock performance. FCR calculations are delayed and potentially inaccurate. Biological asset valuations are estimates rather than system-calculated. Audit trail for IAS 41 compliance is incomplete.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Confidence Assessment</div>
+                        <div class="confidence-gauge" style="max-width: 300px;">
+                            <div class="confidence-bar"><div class="confidence-fill" style="width: 90%; background: #22c55e;"></div></div>
+                            <span class="confidence-value" style="color: #166534;">90%</span>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Based on: System configuration review, stakeholder interviews (5), process walkthroughs (3), documentary evidence review. See <a href="#appendix-a" class="cross-ref">Appendix A, Procedure P-001</a>.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Cross-References</div>
+                        <a href="#recommendation-1" class="appendix-ref">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path><polyline points="15,3 21,3 21,9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            Recommendation R-001
+                        </a>
+                        <a href="#detailed-analysis" class="appendix-ref">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14,2 14,8 20,8"></polyline></svg>
+                            Section 4.1
+                        </a>
+                    </div>
+                </div>
+
+                <div class="finding-card" id="finding-002">
+                    <div class="finding-card-header">
+                        <div>
+                            <div class="finding-id">FINDING F-002</div>
+                            <div class="finding-title">Feed Management Without Store Control</div>
+                        </div>
+                        <span class="rating rating-critical"><span class="rating-indicator"></span>Critical</span>
+                    </div>
+                    
+                    <div class="finding-section">
+                        <div class="finding-section-title">Condition</div>
+                        <p>Feed is delivered directly from suppliers to farm silos in bulk tankers (32.5 tons capacity) without passing through a central store. There is no measurement at silo level, no ability to transfer between farms, and excess feed is disposed as waste. Annual feed expenditure is approximately AED 55-60 million.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Criteria</div>
+                        <p>Feed represents 95-98% of poultry production cost. Industry practice requires controlled feed procurement through stores, consumption tracking, and FCR-based planning to optimize the largest variable cost component.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Cause</div>
+                        <p>Historical process design bypassed store function for operational convenience. Lack of silo-level measurement infrastructure. Absence of central planning function.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Effect</div>
+                        <p>Current FCR of 1.7-1.9 versus industry benchmark of 1.4 indicates significant feed wastage. Unable to correlate feed supplier quality with flock performance. Potential cost leakage estimated at several million AED annually (as noted in <a href="#detailed-analysis" class="cross-ref" data-ref="detailed-analysis" data-title="Section 4: Detailed Analysis" data-content="Quantification of cost impact from FCR variance against industry benchmarks.">Section 4.2</a>).</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Confidence Assessment</div>
+                        <div class="confidence-gauge" style="max-width: 300px;">
+                            <div class="confidence-bar"><div class="confidence-fill" style="width: 95%; background: #22c55e;"></div></div>
+                            <span class="confidence-value" style="color: #166534;">95%</span>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Based on: Site visit observations, procurement records review, stakeholder interviews (7), FCR calculation verification. See <a href="#appendix-a" class="cross-ref">Appendix A, Procedure P-002</a>.</p>
+                    </div>
+                </div>
+
+                <!-- Additional findings would continue here -->
+
+            </section>
+
+            <!-- Section 4: Detailed Analysis -->
+            <section id="detailed-analysis" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section Four</div>
+                    <h2 class="section-title">Detailed Analysis by Functional Area</h2>
+                </div>
+
+                <p>This section provides detailed analysis of each functional area assessed. Confidence scores reflect the completeness and reliability of information gathered, calculated according to the methodology in <a href="#appendix-b" class="cross-ref" data-ref="appendix-b" data-title="Appendix B" data-content="Confidence Score Methodology">Appendix B</a>.</p>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <caption>Functional Area Assessment Summary</caption>
+                        <thead>
+                            <tr>
+                                <th style="width: 20%">Functional Area</th>
+                                <th style="width: 12%">Confidence</th>
+                                <th style="width: 15%">Rating</th>
+                                <th style="width: 53%">Key Observations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sales & Distribution</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 85%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">85%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>Van sales system (SONIC) operational with 32 routes. Export sales minimal. Contract sales lack formal system management.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Production Planning</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 75%; background: #eab308;"></div></div>
+                                        <span class="confidence-value" style="color: #854d0e;">75%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-low"><span class="rating-indicator"></span>High Risk</span></td>
+                                <td>No Livestock Management. Manual biological asset accounting. Disconnected feed planning.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Feed Management</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 90%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">90%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-critical"><span class="rating-indicator"></span>Critical</span></td>
+                                <td>Direct silo delivery. No consumption tracking. FCR 1.7-1.9 vs 1.4 benchmark. Significant cost leakage.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quality Management</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 70%; background: #eab308;"></div></div>
+                                        <span class="confidence-value" style="color: #854d0e;">70%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>QM partially activated. In-process quality manual. DOC specifications recently implemented.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Finance & Costing</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 80%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">80%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-low"><span class="rating-indicator"></span>High Risk</span></td>
+                                <td>Period costing only. No product-level COGS. Manual biological asset amortization.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Procurement</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 75%; background: #eab308;"></div></div>
+                                        <span class="confidence-value" style="color: #854d0e;">75%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>Government subsidy quota managed. MRP not running. Excel-based planning.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Warehouse & Returns</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 80%; background: #22c55e;"></div></div>
+                                        <span class="confidence-value" style="color: #166534;">80%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>Returns process established. Complex 3-code handling for repack. Value loss captured.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plant Maintenance</strong></td>
+                                <td>
+                                    <div class="confidence-gauge">
+                                        <div class="confidence-bar"><div class="confidence-fill" style="width: 65%; background: #f97316;"></div></div>
+                                        <span class="confidence-value" style="color: #c2410c;">65%</span>
+                                    </div>
+                                </td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>PM active for preventive maintenance. Requests via Excel. Document upload not utilized.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4.1 Feed Conversion Ratio Analysis</h3>
+                <p>The Feed Conversion Ratio (FCR) represents the most significant KPI for poultry operations, directly impacting profitability. Our analysis revealed a material variance from industry benchmarks:</p>
+
+                <div class="callout callout-critical">
+                    <div class="callout-title">Financial Impact Assessment</div>
+                    <p>Based on annual feed expenditure of AED 55-60 million and an FCR variance of 0.3-0.5 against the regional benchmark of 1.4, we estimate annual cost leakage in the range of <strong>AED 3-5 million</strong>. This estimate is subject to the limitations noted in <a href="#scope" class="cross-ref">Section 2</a> and should be validated through detailed financial analysis.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Maturity Assessment -->
+            <section id="maturity" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section Five</div>
+                    <h2 class="section-title">Maturity Assessment</h2>
+                </div>
+
+                <p>We assessed the current state of SAP utilization against a five-level maturity model. The assessment indicates that ENF and GF currently operate at Level 2 (Developing), with a target state of Level 4 (Integrated) following S/4HANA implementation.</p>
+
+                <div class="maturity-model">
+                    <div class="maturity-level">
+                        <div class="maturity-number">1</div>
+                        <div class="maturity-name">Initial</div>
+                    </div>
+                    <div class="maturity-level current">
+                        <div class="maturity-number">2</div>
+                        <div class="maturity-name">Developing</div>
+                    </div>
+                    <div class="maturity-level">
+                        <div class="maturity-number">3</div>
+                        <div class="maturity-name">Defined</div>
+                    </div>
+                    <div class="maturity-level target">
+                        <div class="maturity-number">4</div>
+                        <div class="maturity-name">Integrated</div>
+                    </div>
+                    <div class="maturity-level">
+                        <div class="maturity-number">5</div>
+                        <div class="maturity-name">Optimized</div>
+                    </div>
+                </div>
+
+                <h3>Current State Characteristics (Level 2)</h3>
+                <ul style="margin-left: 24px; color: var(--text-secondary);">
+                    <li>Basic SAP modules deployed (SD, MM, PP, FI/CO)</li>
+                    <li>Significant manual workarounds for industry-specific processes</li>
+                    <li>Limited integration between modules</li>
+                    <li>Spreadsheet-based planning and analysis</li>
+                    <li>Reactive rather than predictive decision-making</li>
+                </ul>
+
+                <h3>Target State Characteristics (Level 4)</h3>
+                <ul style="margin-left: 24px; color: var(--text-secondary);">
+                    <li>Industry-specific solutions (Livestock Management, MSG) deployed</li>
+                    <li>End-to-end process integration across entities</li>
+                    <li>Real-time visibility and analytics</li>
+                    <li>Automated compliance and traceability</li>
+                    <li>Proactive decision support capabilities</li>
+                </ul>
+            </section>
+
+            <!-- Section 6: Recommendations -->
+            <section id="recommendations" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section Six</div>
+                    <h2 class="section-title">Recommendations</h2>
+                </div>
+
+                <p>Based on our findings, we recommend the following actions. Each recommendation is cross-referenced to the related finding and assigned a priority based on risk and implementation dependencies.</p>
+
+                <div class="finding-card" id="recommendation-1">
+                    <div class="finding-card-header">
+                        <div>
+                            <div class="finding-id">RECOMMENDATION R-001</div>
+                            <div class="finding-title">Implement S/4HANA with Industry Solutions</div>
+                        </div>
+                        <span class="rating rating-critical"><span class="rating-indicator"></span>Priority 1</span>
+                    </div>
+                    
+                    <div class="finding-section">
+                        <div class="finding-section-title">Recommendation</div>
+                        <p>Proceed with a Greenfield S/4HANA implementation incorporating SAP Livestock Management and SAP Meat & Fish Management (MSG) industry solutions. The current ECC system cannot be cost-effectively enhanced to address identified gaps.</p>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Expected Benefits</div>
+                        <ul style="margin-left: 20px; color: var(--text-secondary);">
+                            <li>Real-time flock tracking and biological asset valuation</li>
+                            <li>Integrated feed planning with FCR optimization</li>
+                            <li>Production costing with carcass splitting valuation</li>
+                            <li>End-to-end quality traceability</li>
+                            <li>IAS 41 compliance automation</li>
+                        </ul>
+                    </div>
+
+                    <div class="finding-section">
+                        <div class="finding-section-title">Related Findings</div>
+                        <a href="#finding-001" class="appendix-ref">F-001</a>
+                        <a href="#finding-002" class="appendix-ref">F-002</a>
+                        <a href="#finding-003" class="appendix-ref">F-003</a>
+                    </div>
+                </div>
+
+                <div class="callout callout-recommendation">
+                    <div class="callout-title">Immediate Actions (Pre-Implementation)</div>
+                    <p>While planning the S/4HANA implementation, we recommend the following immediate process improvements:</p>
+                    <ul style="margin-left: 20px; margin-top: 12px;">
+                        <li>Establish central feed planning function with store intermediary</li>
+                        <li>Implement co-packer contract management with confirmed order policy</li>
+                        <li>Complete DOC/egg supplier specification rollout</li>
+                        <li>Consider bag-based feed procurement for improved control</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 7: Opinion -->
+            <section id="opinion" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Section Seven</div>
+                    <h2 class="section-title">Opinion</h2>
+                </div>
+
+                <div class="opinion-box">
+                    <div class="opinion-type">Independent Assessor's Opinion</div>
+                    <p class="opinion-text">
+                        In our opinion, based on the assessment procedures performed and evidence obtained, the current SAP ECC implementation at Emirates National Food Company and Greenfields for Feed Industries <strong>does not adequately support</strong> the operational requirements of a modern poultry business.
+                    </p>
+                    <br>
+                    <p class="opinion-text">
+                        We identified five critical findings relating to the absence of industry-specific functionality, inadequate feed management controls, deficient production costing, uncontrolled co-packer operations, and incomplete quality management. These deficiencies result in material operational inefficiencies and potential financial leakage estimated in the millions of AED annually.
+                    </p>
+                    <br>
+                    <p class="opinion-text">
+                        We recommend that management proceed with a <strong>Greenfield S/4HANA implementation</strong> incorporating SAP Livestock Management and Meat & Fish Management solutions as the most viable path to address identified gaps and achieve target operational maturity.
+                    </p>
+                </div>
+
+                <div class="signature-block">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+                        <div>
+                            <div class="signature-line"></div>
+                            <div class="signature-name">Engagement Partner</div>
+                            <div class="signature-title">NXSYS Advisory Services</div>
+                        </div>
+                        <div>
+                            <div class="signature-line"></div>
+                            <div class="signature-name">Technical Reviewer</div>
+                            <div class="signature-title">NXSYS Advisory Services</div>
+                        </div>
+                    </div>
+                    <div class="signature-date">
+                        Dubai, United Arab Emirates<br>
+                        January 27, 2026
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appendix A -->
+            <section id="appendix-a" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Appendix A</div>
+                    <h2 class="section-title">Testing Procedures Performed</h2>
+                </div>
+
+                <p>The following procedures were performed to gather evidence supporting our findings. All procedures were conducted in accordance with NXSYS Advisory Standards.</p>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <caption>Summary of Procedures</caption>
+                        <thead>
+                            <tr>
+                                <th>Procedure ID</th>
+                                <th>Description</th>
+                                <th>Related Finding</th>
+                                <th>Evidence Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>P-001</strong></td>
+                                <td>SAP module configuration review - Livestock Management</td>
+                                <td><a href="#finding-001" class="cross-ref">F-001</a></td>
+                                <td>System, Documentary</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P-002</strong></td>
+                                <td>Feed procurement and delivery process walkthrough</td>
+                                <td><a href="#finding-002" class="cross-ref">F-002</a></td>
+                                <td>Observation, Interview</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P-003</strong></td>
+                                <td>FCR calculation methodology review</td>
+                                <td><a href="#finding-002" class="cross-ref">F-002</a></td>
+                                <td>Documentary, Analytical</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P-004</strong></td>
+                                <td>Production costing configuration review</td>
+                                <td><a href="#finding-003" class="cross-ref">F-003</a></td>
+                                <td>System, Documentary</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P-005</strong></td>
+                                <td>Co-packer contract and inventory review</td>
+                                <td><a href="#finding-004" class="cross-ref">F-004</a></td>
+                                <td>Documentary, Interview</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P-006</strong></td>
+                                <td>Quality management system assessment</td>
+                                <td><a href="#finding-005" class="cross-ref">F-005</a></td>
+                                <td>Observation, Documentary</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Appendix B -->
+            <section id="appendix-b" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Appendix B</div>
+                    <h2 class="section-title">Confidence Score Methodology</h2>
+                </div>
+
+                <p>Confidence scores reflect the completeness and reliability of evidence gathered for each finding. Scores are calculated based on the following framework:</p>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <caption>Confidence Score Components</caption>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Weight</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Evidence Quality</strong></td>
+                                <td>40%</td>
+                                <td>Direct observation, system evidence, and documentary support</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Corroboration</strong></td>
+                                <td>30%</td>
+                                <td>Confirmation from multiple independent sources</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Stakeholder Validation</strong></td>
+                                <td>20%</td>
+                                <td>Management acknowledgment and agreement with findings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Completeness</strong></td>
+                                <td>10%</td>
+                                <td>Coverage of all relevant aspects of the finding</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Score Interpretation</h3>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Score Range</th>
+                                <th>Rating</th>
+                                <th>Interpretation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>80-100%</td>
+                                <td><span class="rating rating-high"><span class="rating-indicator"></span>High</span></td>
+                                <td>Strong evidence with full corroboration; high reliability</td>
+                            </tr>
+                            <tr>
+                                <td>60-79%</td>
+                                <td><span class="rating rating-medium"><span class="rating-indicator"></span>Medium</span></td>
+                                <td>Adequate evidence with partial corroboration; reasonable reliability</td>
+                            </tr>
+                            <tr>
+                                <td>40-59%</td>
+                                <td><span class="rating rating-low"><span class="rating-indicator"></span>Low</span></td>
+                                <td>Limited evidence; additional procedures recommended</td>
+                            </tr>
+                            <tr>
+                                <td>0-39%</td>
+                                <td><span class="rating rating-critical"><span class="rating-indicator"></span>Insufficient</span></td>
+                                <td>Insufficient evidence to form conclusion; finding tentative</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Appendix C -->
+            <section id="appendix-c" class="page-break">
+                <div class="section-header">
+                    <div class="section-number">Appendix C</div>
+                    <h2 class="section-title">Glossary of Terms</h2>
+                </div>
+
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">Term</th>
+                                <th>Definition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>DOC</strong></td>
+                                <td>Day-Old Chick; newly hatched chicks used to start broiler or breeder flocks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>FCR</strong></td>
+                                <td>Feed Conversion Ratio; measure of efficiency in converting feed to body weight gain</td>
+                            </tr>
+                            <tr>
+                                <td><strong>FPP</strong></td>
+                                <td>Further Processed Products; value-added chicken products (marinated, cooked, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IAS 41</strong></td>
+                                <td>International Accounting Standard 41: Agriculture; prescribes accounting treatment for biological assets</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MSG</strong></td>
+                                <td>SAP Meat & Fish Management; industry solution for meat processing operations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>S/4HANA</strong></td>
+                                <td>SAP S/4HANA; SAP's next-generation intelligent ERP suite</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SAP ECC</strong></td>
+                                <td>SAP ERP Central Component; SAP's traditional on-premise ERP system</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SFG</strong></td>
+                                <td>Semi-Finished Goods; intermediate products in the production process</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SONIC</strong></td>
+                                <td>Van sales application used by ENF for route-based distribution</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footnotes -->
+                <div class="footnotes">
+                    <h4 style="margin-bottom: 16px;">Notes</h4>
+                    <ol>
+                        <li id="fn1">We were informed that original implementation documentation was not retained following a system upgrade in 2019. <a href="#fnref1">↩</a></li>
+                    </ol>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const progressBar = document.getElementById('progressBar');
+        const backToTop = document.getElementById('backToTop');
+        const navItems = document.querySelectorAll('.nav-item');
+        const floatingNavItems = document.querySelectorAll('.floating-nav-item');
+        const refTooltip = document.getElementById('refTooltip');
+        const crossRefs = document.querySelectorAll('.cross-ref');
+
+        // Mobile Menu Toggle
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1200 && 
+                !sidebar.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Reading Progress
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // Back to Top Button
+        function toggleBackToTop() {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Active Section Detection
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    // Update sidebar nav
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-section') === sectionId) {
+                            item.classList.add('active');
+                        }
+                    });
+
+                    // Update floating nav
+                    floatingNavItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === sectionId) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Smooth Scroll for Navigation
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile sidebar
+                    if (window.innerWidth <= 1200) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+        });
+
+        // Floating Nav Click
+        floatingNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Cross Reference Tooltips
+        crossRefs.forEach(ref => {
+            ref.addEventListener('mouseenter', (e) => {
+                const title = ref.getAttribute('data-title');
+                const content = ref.getAttribute('data-content');
+                
+                if (title && content) {
+                    refTooltip.querySelector('.ref-tooltip-header').textContent = title;
+                    refTooltip.querySelector('.ref-tooltip-content').textContent = content;
+                    
+                    const rect = ref.getBoundingClientRect();
+                    refTooltip.style.left = rect.left + 'px';
+                    refTooltip.style.top = (rect.bottom + 10) + 'px';
+                    
+                    // Adjust if tooltip would go off screen
+                    const tooltipRect = refTooltip.getBoundingClientRect();
+                    if (rect.left + tooltipRect.width > window.innerWidth) {
+                        refTooltip.style.left = (window.innerWidth - tooltipRect.width - 20) + 'px';
+                    }
+                    
+                    refTooltip.classList.add('visible');
+                }
+            });
+
+            ref.addEventListener('mouseleave', () => {
+                refTooltip.classList.remove('visible');
+            });
+
+            ref.addEventListener('click', (e) => {
+                refTooltip.classList.remove('visible');
+            });
+        });
+
+        // Scroll Event Listener
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateProgress();
+                    toggleBackToTop();
+                    updateActiveSection();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Initial calls
+        updateProgress();
+        updateActiveSection();
+
+        // Animate confidence bars on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const confidenceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fill = entry.target.querySelector('.confidence-fill');
+                    if (fill) {
+                        const width = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 100);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.confidence-gauge').forEach(gauge => {
+            confidenceObserver.observe(gauge);
+        });
+
+        // Print functionality
+        function printReport() {
+            window.print();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // Press 'p' to print
+            if (e.key === 'p' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                printReport();
+            }
+            // Press 't' to go to top
+            if (e.key === 't' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                const activeElement = document.activeElement;
+                if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

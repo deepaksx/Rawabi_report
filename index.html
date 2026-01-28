@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emirates Rawabi Group - SAP & Process Audit Report | NXSYS Advisory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css?v=26">
+    <link rel="stylesheet" href="css/flowcharts.css?v=26">
+    <script src="js/data.js?v=26"></script>
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-left">
+            <img src="NXSYS Logo.png" alt="NXSYS" class="header-logo-img">
+        </div>
+        <div class="header-center">
+            <h1>Emirates Rawabi Group</h1>
+            <p>SAP & Process Audit Report</p>
+        </div>
+        <div class="header-right">
+            <span class="report-number">NXSYS-2026-ARG-005</span>
+            <span class="report-date">January 27, 2026</span>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tabs">
+        <button class="tab active" data-tab="executive" onclick="switchTab('executive')">
+            <i class="fas fa-chart-line"></i>
+            Summary
+        </button>
+        <button class="tab" data-tab="ardc" onclick="switchTab('ardc')">
+            <img src="logos/al-rawabi-dairy.png" alt="" class="tab-logo">
+            Al Rawabi Dairy
+        </button>
+        <button class="tab" data-tab="enf" onclick="switchTab('enf')">
+            <img src="logos/ENF-Logo.png" alt="" class="tab-logo">
+            ENF
+        </button>
+        <button class="tab" data-tab="greenfields" onclick="switchTab('greenfields')">
+            <img src="logos/Greenfields.png" alt="" class="tab-logo">
+            Greenfields
+        </button>
+        <button class="tab tab-salwa" data-tab="alrawdah" onclick="switchTab('alrawdah')">
+            <i class="fas fa-egg"></i>
+            <span class="tab-salwa-text">Salwa @ Liwa</span>
+        </button>
+    </nav>
+
+    <!-- ============================================= -->
+    <!-- TAB 1: EXECUTIVE REPORT (Animated Presentation) -->
+    <!-- ============================================= -->
+    <div id="tab-executive" class="tab-content active">
+        <div class="presentation-container">
+            <!-- Progress Bar -->
+            <div class="pres-progress-bar" id="presProgressBar"></div>
+
+            <!-- Slide Counter -->
+            <div class="pres-slide-counter" id="presSlideCounter">
+                <span class="current">01</span>
+                <span class="divider">/</span>
+                <span class="total">10</span>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="pres-nav-arrows">
+                <button class="pres-nav-arrow prev" id="presPrevSlide" aria-label="Previous slide">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+                <button class="pres-nav-arrow next" id="presNextSlide" aria-label="Next slide">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <!-- Slide Indicators -->
+            <div class="pres-slide-indicators" id="presSlideIndicators"></div>
+
+            <!-- Left Navigation Panel -->
+            <div class="pres-titles-nav" id="presTitlesNav">
+                <div class="nav-header">
+                    <i class="fas fa-list"></i>
+                    <span>Contents</span>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-item active" data-nav="0">
+                        <span class="nav-num">01</span>
+                        <span class="nav-text">Cover</span>
+                    </div>
+                    <div class="nav-item" data-nav="1">
+                        <span class="nav-num">02</span>
+                        <span class="nav-text">Executive Summary</span>
+                    </div>
+                    <div class="nav-item" data-nav="2">
+                        <span class="nav-num">03</span>
+                        <span class="nav-text">Scope & Methodology</span>
+                    </div>
+                    <div class="nav-item" data-nav="3">
+                        <span class="nav-num">04</span>
+                        <span class="nav-text">Entities Overview</span>
+                    </div>
+                    <div class="nav-item" data-nav="4">
+                        <span class="nav-num">05</span>
+                        <span class="nav-text">Risk Dashboard</span>
+                    </div>
+                    <div class="nav-item" data-nav="5">
+                        <span class="nav-num">06</span>
+                        <span class="nav-text">Category Analysis</span>
+                    </div>
+                    <div class="nav-item" data-nav="6">
+                        <span class="nav-num">07</span>
+                        <span class="nav-text">Critical Findings</span>
+                    </div>
+                    <div class="nav-item" data-nav="7">
+                        <span class="nav-num">08</span>
+                        <span class="nav-text">Maturity Assessment</span>
+                    </div>
+                    <div class="nav-item" data-nav="8">
+                        <span class="nav-num">09</span>
+                        <span class="nav-text">Recommendations</span>
+                    </div>
+                    <div class="nav-item" data-nav="9">
+                        <span class="nav-num">10</span>
+                        <span class="nav-text">Opinion & Signature</span>
+                    </div>
+                </div>
+                <div class="nav-footer">
+                    <div class="keyboard-hint">
+                        <kbd>←</kbd><kbd>→</kbd> Navigate
+                        <kbd>F</kbd> Fullscreen
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Presentation Area -->
+            <div class="presentation" id="presentation">
+
+                <!-- Slide 1: Cover -->
+                <section class="slide slide-title active" data-slide="0">
+                    <div class="slide-bg">
+                        <div class="bg-gradient"></div>
+                        <div class="bg-pattern"></div>
+                        <div class="diagonal-cut"></div>
+                        <div class="floating-orb orb-1"></div>
+                        <div class="floating-orb orb-2"></div>
+                    </div>
+                    <div class="slide-content centered">
+                        <div class="title-badge animate-item" data-delay="0">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Confidential</span>
+                        </div>
+                        <div class="mega-title animate-item" data-delay="200">
+                            <span class="line-1">SAP & Process</span>
+                            <span class="line-2">Audit Report</span>
+                        </div>
+                        <div class="title-sub animate-item" data-delay="400">
+                            Emirates Rawabi Group
+                        </div>
+                        <div class="cover-entities animate-item" data-delay="500">
+                            <span class="entity-tag">ARDC</span>
+                            <span class="entity-tag">ENF</span>
+                            <span class="entity-tag">Greenfields</span>
+                            <span class="entity-tag">LIWA</span>
+                        </div>
+                        <div class="presenter-info animate-item" data-delay="600">
+                            <img src="NXSYS Logo.png" alt="NXSYS" class="presenter-logo-img">
+                        </div>
+                        <div class="cover-meta animate-item" data-delay="700">
+                            <div class="meta-item">
+                                <span class="meta-label">Report</span>
+                                <span class="meta-value">NXSYS-2026-ARG-005</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Period</span>
+                                <span class="meta-value">Jan 22-26, 2026</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Issued</span>
+                                <span class="meta-value">January 27, 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-footer animate-item" data-delay="800">
+                        Press <kbd>Space</kbd> or <kbd>→</kbd> to continue
+                    </div>
+                </section>
+
+                <!-- Slide 2: Executive Summary -->
+                <section class="slide slide-stats" data-slide="1">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Overview</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Executive Summary</h1>
+                        <p class="slide-subtitle animate-item" data-delay="200">Comprehensive assessment across Emirates Rawabi Group entities identified significant opportunities for optimization</p>
+                        <div class="stats-grid">
+                            <div class="stat-card animate-item" data-delay="300">
+                                <div class="stat-icon"><i class="fas fa-clipboard-list"></i></div>
+                                <div class="stat-value" data-count="1831">0</div>
+                                <div class="stat-label">Total Findings</div>
+                                <div class="stat-detail">Across all entities</div>
+                            </div>
+                            <div class="stat-card danger animate-item" data-delay="400">
+                                <div class="stat-icon"><i class="fas fa-exclamation-circle"></i></div>
+                                <div class="stat-value" data-count="845">0</div>
+                                <div class="stat-label">High Risk</div>
+                                <div class="stat-detail">Immediate attention</div>
+                            </div>
+                            <div class="stat-card warning animate-item" data-delay="500">
+                                <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="stat-value" data-count="848">0</div>
+                                <div class="stat-label">Medium Risk</div>
+                                <div class="stat-detail">Short-term priority</div>
+                            </div>
+                            <div class="stat-card success animate-item" data-delay="600">
+                                <div class="stat-icon"><i class="fas fa-info-circle"></i></div>
+                                <div class="stat-value" data-count="138">0</div>
+                                <div class="stat-label">Low Risk</div>
+                                <div class="stat-detail">Improvements</div>
+                            </div>
+                        </div>
+                        <div class="key-insights animate-item" data-delay="700">
+                            <div class="insight-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <span><strong>46%</strong> High Risk - Nearly half require immediate attention</span>
+                            </div>
+                            <div class="insight-card">
+                                <i class="fas fa-file-excel"></i>
+                                <span><strong>Manual Dependencies</strong> - Heavy reliance on Excel workarounds</span>
+                            </div>
+                            <div class="insight-card">
+                                <i class="fas fa-plug"></i>
+                                <span><strong>Integration Gaps</strong> - Limited SAP-equipment connectivity</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3: Scope & Methodology -->
+                <section class="slide slide-module-detail" data-slide="2">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Engagement Framework</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Scope & Methodology</h1>
+                        <div class="detail-grid two-col">
+                            <div class="detail-card animate-item" data-delay="200">
+                                <div class="detail-card-icon"><i class="fas fa-cubes"></i></div>
+                                <h4>SAP Module Review</h4>
+                                <p class="detail-desc">Comprehensive assessment of core modules</p>
+                                <ul class="detail-list">
+                                    <li>PP - Production Planning</li>
+                                    <li>SD - Sales & Distribution</li>
+                                    <li>MM - Materials Management</li>
+                                    <li>QM - Quality Management</li>
+                                    <li>FI/CO - Finance & Controlling</li>
+                                </ul>
+                            </div>
+                            <div class="detail-card animate-item" data-delay="300">
+                                <div class="detail-card-icon"><i class="fas fa-sitemap"></i></div>
+                                <h4>Business Process Analysis</h4>
+                                <p class="detail-desc">End-to-end process evaluation</p>
+                                <ul class="detail-list">
+                                    <li>Production workflows</li>
+                                    <li>Sales order processing</li>
+                                    <li>Distribution & logistics</li>
+                                    <li>Quality control procedures</li>
+                                </ul>
+                            </div>
+                            <div class="detail-card animate-item" data-delay="400">
+                                <div class="detail-card-icon"><i class="fas fa-link"></i></div>
+                                <h4>Integration Assessment</h4>
+                                <p class="detail-desc">System connectivity review</p>
+                                <ul class="detail-list">
+                                    <li>Interface mapping</li>
+                                    <li>Data flow analysis</li>
+                                    <li>Automation gaps</li>
+                                    <li>Real-time capabilities</li>
+                                </ul>
+                            </div>
+                            <div class="detail-card animate-item" data-delay="500">
+                                <div class="detail-card-icon"><i class="fas fa-shield-alt"></i></div>
+                                <h4>Control Environment</h4>
+                                <p class="detail-desc">Governance & compliance review</p>
+                                <ul class="detail-list">
+                                    <li>Segregation of duties</li>
+                                    <li>Authorization controls</li>
+                                    <li>Regulatory compliance</li>
+                                    <li>Audit trail integrity</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-section animate-item" data-delay="600">
+                            <div class="timeline-bar">
+                                <div class="timeline-point">
+                                    <span class="point-date">Jan 22</span>
+                                    <span class="point-label">Kickoff</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-point">
+                                    <span class="point-date">Jan 23-24</span>
+                                    <span class="point-label">Data Collection</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-point">
+                                    <span class="point-date">Jan 25</span>
+                                    <span class="point-label">Analysis</span>
+                                </div>
+                                <div class="timeline-connector"></div>
+                                <div class="timeline-point active">
+                                    <span class="point-date">Jan 26-27</span>
+                                    <span class="point-label">Reporting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4: Entities Overview -->
+                <section class="slide slide-challenge" data-slide="3">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Group Structure</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Entities Overview</h1>
+                        <div class="challenges-container">
+                            <div class="challenge-card animate-item" data-delay="200">
+                                <div class="challenge-number">ARDC</div>
+                                <div class="entity-logo">
+                                    <img src="logos/al-rawabi-dairy.png" alt="Al Rawabi Dairy">
+                                </div>
+                                <h3>Al Rawabi Dairy Company</h3>
+                                <p>Leading dairy producer with state-of-the-art processing</p>
+                                <div class="entity-stats-mini">
+                                    <span class="stat-mini">715 Findings</span>
+                                    <span class="stat-mini danger">309 High</span>
+                                </div>
+                                <div class="module-tags">
+                                    <span>PP</span><span>SD</span><span>QM</span>
+                                </div>
+                            </div>
+                            <div class="challenge-card animate-item" data-delay="300">
+                                <div class="challenge-number">ENF</div>
+                                <div class="entity-logo">
+                                    <img src="logos/ENF-Logo.png" alt="Emirates National Food">
+                                </div>
+                                <h3>Emirates National Factory</h3>
+                                <p>Poultry processing - Al Rawdah & Al Salwa brands</p>
+                                <div class="entity-stats-mini">
+                                    <span class="stat-mini">1,116 Findings</span>
+                                    <span class="stat-mini danger">536 High</span>
+                                </div>
+                                <div class="module-tags">
+                                    <span>PP-PI</span><span>QM</span><span>SD</span>
+                                </div>
+                            </div>
+                            <div class="challenge-card animate-item" data-delay="400">
+                                <div class="challenge-number">GF</div>
+                                <div class="entity-logo">
+                                    <img src="logos/Greenfields.png" alt="Greenfields">
+                                </div>
+                                <h3>Greenfields LLC</h3>
+                                <p>Feed mill operations supporting poultry production</p>
+                                <div class="entity-stats-mini">
+                                    <span class="stat-mini">Combined</span>
+                                    <span class="stat-mini">with ENF</span>
+                                </div>
+                                <div class="module-tags">
+                                    <span>PP</span><span>MM</span><span>QM</span>
+                                </div>
+                            </div>
+                            <div class="challenge-card animate-item" data-delay="500">
+                                <div class="challenge-number">LIWA</div>
+                                <div class="entity-logo">
+                                    <img src="logos/Al Rawdah.png" alt="Al Rawdah">
+                                </div>
+                                <h3>LIWA Poultry (Al Salwa)</h3>
+                                <p>Parent stock and breeding operations</p>
+                                <div class="entity-stats-mini">
+                                    <span class="stat-mini">Combined</span>
+                                    <span class="stat-mini">with ENF</span>
+                                </div>
+                                <div class="module-tags">
+                                    <span>Livestock</span><span>Biological</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 5: Risk Dashboard -->
+                <section class="slide slide-stats" data-slide="4">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Risk Analysis</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Risk Dashboard</h1>
+                        <div class="dashboard-layout">
+                            <div class="dashboard-left animate-item" data-delay="200">
+                                <div class="donut-chart-container" id="riskDonutChart">
+                                    <svg viewBox="0 0 200 200" class="donut-svg">
+                                        <circle class="donut-ring" cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="20"/>
+                                        <circle class="donut-segment high" cx="100" cy="100" r="80" fill="none" stroke="#c41e3a" stroke-width="20" stroke-dasharray="232 270" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+                                        <circle class="donut-segment medium" cx="100" cy="100" r="80" fill="none" stroke="#d4820a" stroke-width="20" stroke-dasharray="233 270" stroke-dashoffset="-232" transform="rotate(-90 100 100)"/>
+                                        <circle class="donut-segment low" cx="100" cy="100" r="80" fill="none" stroke="#1a7f64" stroke-width="20" stroke-dasharray="38 270" stroke-dashoffset="-465" transform="rotate(-90 100 100)"/>
+                                    </svg>
+                                    <div class="donut-center">
+                                        <div class="donut-value">1,831</div>
+                                        <div class="donut-label">Total</div>
+                                    </div>
+                                </div>
+                                <div class="donut-legend">
+                                    <div class="legend-item"><span class="legend-dot high"></span>High: 845 (46%)</div>
+                                    <div class="legend-item"><span class="legend-dot medium"></span>Medium: 848 (46%)</div>
+                                    <div class="legend-item"><span class="legend-dot low"></span>Low: 138 (8%)</div>
+                                </div>
+                            </div>
+                            <div class="dashboard-right animate-item" data-delay="400">
+                                <div class="risk-def-card high">
+                                    <div class="risk-badge">HIGH</div>
+                                    <div class="risk-count">845</div>
+                                    <p>Critical issues requiring immediate management attention</p>
+                                </div>
+                                <div class="risk-def-card medium">
+                                    <div class="risk-badge">MEDIUM</div>
+                                    <div class="risk-count">848</div>
+                                    <p>Important issues for short-term remediation</p>
+                                </div>
+                                <div class="risk-def-card low">
+                                    <div class="risk-badge">LOW</div>
+                                    <div class="risk-count">138</div>
+                                    <p>Operational improvements and best practices</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6: Category Analysis -->
+                <section class="slide slide-module-detail" data-slide="5">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Finding Classification</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Category Analysis</h1>
+                        <div class="category-bars animate-item" data-delay="200">
+                            <div class="bar-item">
+                                <span class="bar-label">Process</span>
+                                <div class="bar-track"><div class="bar-fill" style="width: 64%"><span>1,174</span></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <span class="bar-label">Pain Point</span>
+                                <div class="bar-track"><div class="bar-fill warning" style="width: 12%"><span>214</span></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <span class="bar-label">Requirement</span>
+                                <div class="bar-track"><div class="bar-fill info" style="width: 10%"><span>176</span></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <span class="bar-label">Integration</span>
+                                <div class="bar-track"><div class="bar-fill purple" style="width: 5%"><span>84</span></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <span class="bar-label">Compliance</span>
+                                <div class="bar-track"><div class="bar-fill danger" style="width: 3%"><span>63</span></div></div>
+                            </div>
+                        </div>
+                        <div class="highlight-cards animate-item" data-delay="400">
+                            <div class="highlight-card">
+                                <div class="highlight-icon"><i class="fas fa-cog"></i></div>
+                                <h4>Quality Management</h4>
+                                <p>Significant gaps in QM module utilization</p>
+                            </div>
+                            <div class="highlight-card">
+                                <div class="highlight-icon"><i class="fas fa-file-excel"></i></div>
+                                <h4>Manual Processes</h4>
+                                <p>Heavy reliance on Excel spreadsheets</p>
+                            </div>
+                            <div class="highlight-card">
+                                <div class="highlight-icon"><i class="fas fa-plug"></i></div>
+                                <h4>System Integration</h4>
+                                <p>Limited real-time data exchange</p>
+                            </div>
+                            <div class="highlight-card">
+                                <div class="highlight-icon"><i class="fas fa-dollar-sign"></i></div>
+                                <h4>Costing & Finance</h4>
+                                <p>Variance analysis needs enhancement</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 7: Critical Findings -->
+                <section class="slide slide-concerns" data-slide="6">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Priority Items</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Critical Findings</h1>
+                        <div class="concerns-grid" id="criticalFindingsGrid">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 8: Maturity Assessment -->
+                <section class="slide slide-transformation" data-slide="7">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Assessment</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Maturity Assessment</h1>
+                        <div class="maturity-chart animate-item" data-delay="200">
+                            <div class="maturity-row">
+                                <span class="maturity-label">Production Planning</span>
+                                <div class="maturity-bar-track">
+                                    <div class="maturity-bar-fill" style="width: 56%"></div>
+                                </div>
+                                <span class="maturity-score">2.8</span>
+                            </div>
+                            <div class="maturity-row">
+                                <span class="maturity-label">Quality Management</span>
+                                <div class="maturity-bar-track">
+                                    <div class="maturity-bar-fill low" style="width: 40%"></div>
+                                </div>
+                                <span class="maturity-score">2.0</span>
+                            </div>
+                            <div class="maturity-row">
+                                <span class="maturity-label">Sales & Distribution</span>
+                                <div class="maturity-bar-track">
+                                    <div class="maturity-bar-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="maturity-score">3.0</span>
+                            </div>
+                            <div class="maturity-row">
+                                <span class="maturity-label">Inventory Management</span>
+                                <div class="maturity-bar-track">
+                                    <div class="maturity-bar-fill" style="width: 50%"></div>
+                                </div>
+                                <span class="maturity-score">2.5</span>
+                            </div>
+                            <div class="maturity-row">
+                                <span class="maturity-label">Costing & Finance</span>
+                                <div class="maturity-bar-track">
+                                    <div class="maturity-bar-fill low" style="width: 46%"></div>
+                                </div>
+                                <span class="maturity-score">2.3</span>
+                            </div>
+                            <div class="maturity-row">
+                                <span class="maturity-label">System Integration</span>
+                                <div class="maturity-bar-track">
+                                    <div class="maturity-bar-fill critical" style="width: 36%"></div>
+                                </div>
+                                <span class="maturity-score">1.8</span>
+                            </div>
+                        </div>
+                        <div class="maturity-summary animate-item" data-delay="400">
+                            <div class="overall-score-box">
+                                <div class="overall-value">2.4</div>
+                                <div class="overall-label">Overall Maturity</div>
+                            </div>
+                            <div class="maturity-legend-bar">
+                                <span class="legend-seg critical">1-2 Initial</span>
+                                <span class="legend-seg developing">2-3 Developing</span>
+                                <span class="legend-seg defined">3-4 Defined</span>
+                                <span class="legend-seg optimized">4-5 Optimized</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 9: Recommendations -->
+                <section class="slide slide-challenge" data-slide="8">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Action Plan</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Key Recommendations</h1>
+                        <div class="recommendations-grid">
+                            <div class="rec-card immediate animate-item" data-delay="200">
+                                <div class="rec-priority">Immediate</div>
+                                <h4>QM Module Activation</h4>
+                                <p>Enable SAP QM inspection lots, usage decisions, and quality notifications</p>
+                                <div class="rec-impact"><i class="fas fa-bullseye"></i> Compliance, Traceability</div>
+                            </div>
+                            <div class="rec-card immediate animate-item" data-delay="300">
+                                <div class="rec-priority">Immediate</div>
+                                <h4>Integration Framework</h4>
+                                <p>Implement real-time data integration between equipment and SAP</p>
+                                <div class="rec-impact"><i class="fas fa-bullseye"></i> Efficiency, Accuracy</div>
+                            </div>
+                            <div class="rec-card shortterm animate-item" data-delay="400">
+                                <div class="rec-priority">Short-term</div>
+                                <h4>Batch Traceability</h4>
+                                <p>Enhance batch management for recall scenarios and compliance</p>
+                                <div class="rec-impact"><i class="fas fa-bullseye"></i> Risk Mitigation</div>
+                            </div>
+                            <div class="rec-card shortterm animate-item" data-delay="500">
+                                <div class="rec-priority">Short-term</div>
+                                <h4>Costing Enhancement</h4>
+                                <p>Refine product costing and variance analysis for profitability</p>
+                                <div class="rec-impact"><i class="fas fa-bullseye"></i> Decision Making</div>
+                            </div>
+                            <div class="rec-card mediumterm animate-item" data-delay="600">
+                                <div class="rec-priority">Medium-term</div>
+                                <h4>Process Standardization</h4>
+                                <p>Eliminate Excel workarounds with proper SAP functionality</p>
+                                <div class="rec-impact"><i class="fas fa-bullseye"></i> Efficiency, Control</div>
+                            </div>
+                            <div class="rec-card mediumterm animate-item" data-delay="700">
+                                <div class="rec-priority">Medium-term</div>
+                                <h4>Training Program</h4>
+                                <p>Comprehensive SAP training to maximize system utilization</p>
+                                <div class="rec-impact"><i class="fas fa-bullseye"></i> Adoption, Competency</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 10: Opinion & Signature -->
+                <section class="slide slide-cta" data-slide="9">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content centered">
+                        <div class="section-label animate-item" data-delay="0">Conclusion</div>
+                        <h1 class="cta-title animate-item" data-delay="100">Opinion & Signature</h1>
+                        <div class="opinion-box animate-item" data-delay="200">
+                            <p>Based on our comprehensive assessment, we conclude that the SAP implementation provides a <strong>solid foundation</strong> but is <strong>significantly underutilized</strong>. There are material gaps in quality management and integration that require immediate attention. With targeted remediation, the group can achieve substantial improvements.</p>
+                        </div>
+                        <div class="signature-section animate-item" data-delay="400">
+                            <div class="signature-block">
+                                <div class="signature-line"></div>
+                                <div class="signature-name">Engagement Partner</div>
+                                <div class="signature-role">NXSYS Advisory Services</div>
+                            </div>
+                            <div class="signature-block">
+                                <div class="signature-line"></div>
+                                <div class="signature-name">Quality Review Partner</div>
+                                <div class="signature-role">NXSYS Advisory Services</div>
+                            </div>
+                        </div>
+                        <div class="cta-footer animate-item" data-delay="600">
+                            <img src="NXSYS Logo.png" alt="NXSYS" class="cta-logo-img">
+                            <div class="cta-contact">
+                                <span>www.nxsys.ae</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 2: AL RAWABI DAIRY COMPANY -->
+    <!-- ============================================= -->
+    <div id="tab-ardc" class="tab-content">
+        <div class="entity-layout">
+            <!-- Left Navigation Panel -->
+            <nav class="pres-titles-nav">
+                <div class="nav-header">
+                    <i class="fas fa-bars"></i>
+                    <span>Contents</span>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-item active" data-flow="ARDC-PP">
+                        <span class="nav-num">01</span>
+                        <span class="nav-text">Production Planning</span>
+                    </div>
+                    <div class="nav-item" data-flow="ARDC-SD">
+                        <span class="nav-num">02</span>
+                        <span class="nav-text">Sales & Distribution</span>
+                    </div>
+                    <div class="nav-item" data-flow="ARDC-MM">
+                        <span class="nav-num">03</span>
+                        <span class="nav-text">Materials Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="ARDC-FICO">
+                        <span class="nav-num">04</span>
+                        <span class="nav-text">Finance & Controlling</span>
+                    </div>
+                </div>
+                <div class="nav-footer">
+                    <div class="nav-stats-summary">
+                        <div class="nav-stat-item">
+                            <span class="nav-stat-count">715</span>
+                            <span class="nav-stat-label">Total</span>
+                        </div>
+                        <div class="nav-stat-item danger">
+                            <span class="nav-stat-count">309</span>
+                            <span class="nav-stat-label">High</span>
+                        </div>
+                        <div class="nav-stat-item warning">
+                            <span class="nav-stat-count">347</span>
+                            <span class="nav-stat-label">Medium</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="entity-main">
+                <div class="slide-content entity-content">
+                    <!-- Process Flows Container -->
+                    <div id="ardc-flowcharts" class="flowcharts-container">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Panel for Findings -->
+            <aside id="ardc-flowPanel" class="flow-panel entity-panel">
+                <div class="panel-drag-handle" onclick="closeEntityPanel('ardc')"></div>
+                <div class="panel-header">
+                    <div class="panel-title-section">
+                        <h3 id="ardc-panelTitle">Select a Process Step</h3>
+                        <span id="ardc-panelSubtitle" class="panel-subtitle"></span>
+                    </div>
+                    <button class="panel-close" onclick="closeEntityPanel('ardc')"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div id="ardc-panelStats" class="panel-stats"></div>
+                <div id="ardc-panelContent" class="panel-content">
+                    <div class="panel-placeholder">
+                        <i class="fas fa-hand-pointer"></i>
+                        <p>Click on a process step to view findings</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 3: EMIRATES NATIONAL FACTORY -->
+    <!-- ============================================= -->
+    <div id="tab-enf" class="tab-content">
+        <div class="entity-layout">
+            <!-- Left Navigation Panel -->
+            <nav class="pres-titles-nav">
+                <div class="nav-header">
+                    <i class="fas fa-bars"></i>
+                    <span>Contents</span>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-item active" data-flow="ENF-SD">
+                        <span class="nav-num">01</span>
+                        <span class="nav-text">Sales & Distribution</span>
+                    </div>
+                    <div class="nav-item" data-flow="ENF-HATCH">
+                        <span class="nav-num">02</span>
+                        <span class="nav-text">Hatchery Operations</span>
+                    </div>
+                    <div class="nav-item" data-flow="ENF-FARM">
+                        <span class="nav-num">03</span>
+                        <span class="nav-text">Farm Operations</span>
+                    </div>
+                    <div class="nav-item" data-flow="ENF-PROC">
+                        <span class="nav-num">04</span>
+                        <span class="nav-text">Processing Plant</span>
+                    </div>
+                    <div class="nav-item" data-flow="ENF-MM">
+                        <span class="nav-num">05</span>
+                        <span class="nav-text">Materials Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="ENF-QM">
+                        <span class="nav-num">06</span>
+                        <span class="nav-text">Quality Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="ENF-FICO">
+                        <span class="nav-num">07</span>
+                        <span class="nav-text">Finance & Controlling</span>
+                    </div>
+                </div>
+                <div class="nav-footer">
+                    <div class="nav-stats-summary">
+                        <div class="nav-stat-item">
+                            <span class="nav-stat-count">558</span>
+                            <span class="nav-stat-label">Total</span>
+                        </div>
+                        <div class="nav-stat-item danger">
+                            <span class="nav-stat-count">268</span>
+                            <span class="nav-stat-label">High</span>
+                        </div>
+                        <div class="nav-stat-item warning">
+                            <span class="nav-stat-count">250</span>
+                            <span class="nav-stat-label">Medium</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="entity-main">
+                <div class="slide-content entity-content">
+                    <!-- Process Flows Container -->
+                    <div id="enf-flowcharts" class="flowcharts-container">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Panel for Findings -->
+            <aside id="enf-flowPanel" class="flow-panel entity-panel">
+                <div class="panel-drag-handle" onclick="closeEntityPanel('enf')"></div>
+                <div class="panel-header">
+                    <div class="panel-title-section">
+                        <h3 id="enf-panelTitle">Select a Process Step</h3>
+                        <span id="enf-panelSubtitle" class="panel-subtitle"></span>
+                    </div>
+                    <button class="panel-close" onclick="closeEntityPanel('enf')"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div id="enf-panelStats" class="panel-stats"></div>
+                <div id="enf-panelContent" class="panel-content">
+                    <div class="panel-placeholder">
+                        <i class="fas fa-hand-pointer"></i>
+                        <p>Click on a process step to view findings</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 4: GREENFIELDS -->
+    <!-- ============================================= -->
+    <div id="tab-greenfields" class="tab-content">
+        <div class="entity-layout">
+            <!-- Left Navigation Panel -->
+            <nav class="pres-titles-nav">
+                <div class="nav-header">
+                    <i class="fas fa-bars"></i>
+                    <span>Contents</span>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-item active" data-flow="GF-SD">
+                        <span class="nav-num">01</span>
+                        <span class="nav-text">Sales & Distribution</span>
+                    </div>
+                    <div class="nav-item" data-flow="GF-MM">
+                        <span class="nav-num">02</span>
+                        <span class="nav-text">Materials Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="GF-PP">
+                        <span class="nav-num">03</span>
+                        <span class="nav-text">Production Planning</span>
+                    </div>
+                    <div class="nav-item" data-flow="GF-QM">
+                        <span class="nav-num">04</span>
+                        <span class="nav-text">Quality Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="GF-FICO">
+                        <span class="nav-num">05</span>
+                        <span class="nav-text">Finance & Controlling</span>
+                    </div>
+                </div>
+                <div class="nav-footer">
+                    <div class="nav-stats-summary">
+                        <div class="nav-stat-item">
+                            <span class="nav-stat-count">312</span>
+                            <span class="nav-stat-label">Total</span>
+                        </div>
+                        <div class="nav-stat-item danger">
+                            <span class="nav-stat-count">150</span>
+                            <span class="nav-stat-label">High</span>
+                        </div>
+                        <div class="nav-stat-item warning">
+                            <span class="nav-stat-count">140</span>
+                            <span class="nav-stat-label">Medium</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="entity-main">
+                <div class="slide-content entity-content">
+                    <!-- Process Flows Container -->
+                    <div id="greenfields-flowcharts" class="flowcharts-container">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Panel for Findings -->
+            <aside id="greenfields-flowPanel" class="flow-panel entity-panel">
+                <div class="panel-drag-handle" onclick="closeEntityPanel('greenfields')"></div>
+                <div class="panel-header">
+                    <div class="panel-title-section">
+                        <h3 id="greenfields-panelTitle">Select a Process Step</h3>
+                        <span id="greenfields-panelSubtitle" class="panel-subtitle"></span>
+                    </div>
+                    <button class="panel-close" onclick="closeEntityPanel('greenfields')"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div id="greenfields-panelStats" class="panel-stats"></div>
+                <div id="greenfields-panelContent" class="panel-content">
+                    <div class="panel-placeholder">
+                        <i class="fas fa-hand-pointer"></i>
+                        <p>Click on a process step to view findings</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- TAB 5: AL RAWDAH -->
+    <!-- ============================================= -->
+    <div id="tab-alrawdah" class="tab-content">
+        <div class="entity-layout">
+            <!-- Left Navigation Panel -->
+            <nav class="pres-titles-nav">
+                <div class="nav-header">
+                    <i class="fas fa-bars"></i>
+                    <span>Contents</span>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-item active" data-flow="SL-PP">
+                        <span class="nav-num">01</span>
+                        <span class="nav-text">Production Planning</span>
+                    </div>
+                    <div class="nav-item" data-flow="SL-QM">
+                        <span class="nav-num">02</span>
+                        <span class="nav-text">Quality Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="SL-MM">
+                        <span class="nav-num">03</span>
+                        <span class="nav-text">Materials Management</span>
+                    </div>
+                    <div class="nav-item" data-flow="SL-FICO">
+                        <span class="nav-num">04</span>
+                        <span class="nav-text">Finance & Controlling</span>
+                    </div>
+                    <div class="nav-item" data-flow="SL-SD">
+                        <span class="nav-num">05</span>
+                        <span class="nav-text">Sales & Distribution</span>
+                    </div>
+                </div>
+                <div class="nav-footer">
+                    <div class="nav-stats-summary">
+                        <div class="nav-stat-item">
+                            <span class="nav-stat-count">246</span>
+                            <span class="nav-stat-label">Total</span>
+                        </div>
+                        <div class="nav-stat-item danger">
+                            <span class="nav-stat-count">118</span>
+                            <span class="nav-stat-label">High</span>
+                        </div>
+                        <div class="nav-stat-item warning">
+                            <span class="nav-stat-count">111</span>
+                            <span class="nav-stat-label">Medium</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <div class="entity-main">
+                <div class="slide-content entity-content">
+                    <!-- Process Flows Container -->
+                    <div id="alrawdah-flowcharts" class="flowcharts-container">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Panel for Findings -->
+            <aside id="alrawdah-flowPanel" class="flow-panel entity-panel">
+                <div class="panel-drag-handle" onclick="closeEntityPanel('alrawdah')"></div>
+                <div class="panel-header">
+                    <div class="panel-title-section">
+                        <h3 id="alrawdah-panelTitle">Select a Process Step</h3>
+                        <span id="alrawdah-panelSubtitle" class="panel-subtitle"></span>
+                    </div>
+                    <button class="panel-close" onclick="closeEntityPanel('alrawdah')"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                <div id="alrawdah-panelStats" class="panel-stats"></div>
+                <div id="alrawdah-panelContent" class="panel-content">
+                    <div class="panel-placeholder">
+                        <i class="fas fa-hand-pointer"></i>
+                        <p>Click on a process step to view findings</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Panel Overlay -->
+    <div id="panelOverlay" class="panel-overlay" onclick="closeAllPanels()"></div>
+
+    <!-- App Footer -->
+    <footer class="app-footer">
+        <div class="footer-left">NXSYS Advisory Services</div>
+        <div class="footer-center">Emirates Rawabi Group - SAP & Process Audit Report</div>
+        <div class="footer-right">Confidential</div>
+    </footer>
+
+    <script src="js/app.js?v=26"></script>
+    <script src="js/visual-flowcharts.js?v=26"></script>
+</body>
+</html>
