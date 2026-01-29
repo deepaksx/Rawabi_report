@@ -372,7 +372,7 @@ html, body {
     background: linear-gradient(135deg, rgba(200, 16, 46, 0.15) 0%, rgba(200, 16, 46, 0.08) 100%);
     border: 1px solid rgba(200, 16, 46, 0.3);
     border-radius: 20px;
-    animation: hintPulse 2s ease-in-out infinite, hintBounce 1.5s ease-in-out infinite;
+    animation: hintPulse 2s ease-in-out infinite, hintBounceHorizontal 1.5s ease-in-out infinite;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -385,9 +385,7 @@ html, body {
 .toggle-hint-arrow i {
     font-size: 14px;
     color: #c8102e;
-    animation: pointBounce 1s ease-in-out infinite;
-    transform-origin: center;
-    transform: rotate(180deg);
+    animation: arrowBounce 1s ease-in-out infinite;
 }
 
 .toggle-hint-arrow .hint-text {
@@ -407,24 +405,21 @@ html, body {
     }
 }
 
-@keyframes hintBounce {
+@keyframes hintBounceHorizontal {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-3px);
+        transform: translateY(3px);
     }
 }
 
-@keyframes pointBounce {
+@keyframes arrowBounce {
     0%, 100% {
-        transform: rotate(180deg) scale(1);
+        transform: translateY(0) scale(1);
     }
-    25% {
-        transform: rotate(195deg) scale(1.1);
-    }
-    75% {
-        transform: rotate(175deg) scale(1);
+    50% {
+        transform: translateY(3px) scale(1.1);
     }
 }
 

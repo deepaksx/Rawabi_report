@@ -4730,13 +4730,13 @@ function renderPanelContent(entityId, stepId, stepName, node, content) {
     html += `
                 </div>
 
-                <div class="panel-stacked-sections">
-                    <div class="panel-section-box observations-box">
-                        <div class="panel-section-header">
+                <div class="panel-two-columns">
+                    <div class="panel-column">
+                        <div class="panel-column-header" style="color: #92400e;">
                             <i class="fas fa-building"></i>
                             <span>GENERAL OBSERVATIONS</span>
                         </div>
-                        <div class="panel-section-content current-state">
+                        <div class="panel-column-content current-state">
                             ${Array.isArray(metadata.currentState)
                                 ? metadata.currentState.map(item => `
                                     <div class="panel-bullet-item current">
@@ -4749,12 +4749,12 @@ function renderPanelContent(entityId, stepId, stepName, node, content) {
                         </div>
                     </div>
 
-                    <div class="panel-section-box bestpractice-box">
-                        <div class="panel-section-header">
+                    <div class="panel-column">
+                        <div class="panel-column-header" style="color: #065f46;">
                             <i class="fas fa-lightbulb"></i>
                             <span>INDUSTRY BEST PRACTICE (FOR REFERENCE)</span>
                         </div>
-                        <div class="panel-section-content best-practice">
+                        <div class="panel-column-content best-practice">
                             ${Array.isArray(metadata.bestPractice)
                                 ? metadata.bestPractice.map(item => `
                                     <div class="panel-bullet-item best">
