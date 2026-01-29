@@ -991,11 +991,11 @@ const STEP_METADATA = {
     'PP-01': {
         title: 'Demand Planning & Forecasting',
         currentState: [
-            'Manual, reactive process driven by daily sales requirements',
-            'No strategic system-generated forecasts in SAP',
-            'Hybrid Make-to-Stock / Make-to-Order model without formal planning',
-            'No automation for seasonality (Ramadan +60%) or promotional impacts',
-            'Sales requirements communicated directly to production informally'
+            'Manual, reactive process driven by daily sales requirements rather than strategic demand planning. Production schedules are determined based on immediate orders rather than forecasted demand patterns.',
+            'No statistical forecasting tools or system-generated forecasts utilized in SAP. Demand planning relies entirely on manual judgment and historical intuition without ML-based predictions.',
+            'Hybrid Make-to-Stock / Make-to-Order model operates without formal planning parameters. The lack of defined planning strategies leads to inconsistent production decisions and inventory imbalances.',
+            'Seasonal demand variations (Ramadan +60%, weekend peaks) and promotional impacts are not automated in the system. Manual adjustments are made reactively, often resulting in stockouts or overproduction.',
+            'Sales requirements communicated informally to production via phone calls and emails, bypassing SAP workflow. This creates audit trail gaps and accountability issues for demand changes.'
         ],
         bestPractice: [
             'SAP APO/IBP with ML-based statistical forecasting',
@@ -1015,11 +1015,11 @@ const STEP_METADATA = {
     'PP-02': {
         title: 'Recipe & Formulation Management',
         currentState: [
-            'Formulation managed outside SAP using spreadsheets',
-            'Static, volume-based BOM structure',
-            'Milk treated as fixed input, not dynamic fat/protein/SNF components',
-            'No real-time visibility into recipe modification cost impacts',
-            'Cost variances only visible at month-end'
+            'Product formulations and recipes managed outside SAP using Excel spreadsheets. This creates version control challenges and disconnects R&D formulation from production execution.',
+            'Static, volume-based Bill of Materials structure does not reflect the dynamic nature of dairy manufacturing where component percentages vary based on incoming milk quality.',
+            'Raw milk treated as fixed input material rather than a dynamic multi-component ingredient (fat, protein, SNF). This prevents accurate component-level costing and yield calculations.',
+            'No real-time visibility into cost impacts when recipes are modified. Recipe changes bypass cost simulation, leading to margin surprises discovered only at month-end.',
+            'Cost variances between standard and actual only become visible at month-end close. Production operates without timely feedback on formulation cost performance.'
         ],
         bestPractice: [
             'SAP PP-PI Master Recipes with version control',
@@ -1039,11 +1039,11 @@ const STEP_METADATA = {
     'PP-03': {
         title: 'Material Requirements Planning (MRP)',
         currentState: [
-            'MRP used as administrative tool, not strategic planning engine',
-            'Planned orders frequently overridden manually',
-            'No shelf-life constraints in planning (fresh 7-day vs UHT 180-day)',
-            'Overproduction and spoilage risks without manual oversight',
-            'Component-level planning for fat/protein/SNF not enabled'
+            'MRP functions as an administrative order creation tool rather than a strategic planning engine. System-generated recommendations are routinely bypassed without documented justification.',
+            'Planned orders frequently overridden manually by planners based on informal production decisions. Lack of exception management means valid MRP recommendations are lost in manual noise.',
+            'Shelf-life constraints not incorporated in planning logic. Fresh dairy (7-day shelf life) and UHT (180-day) products planned with same parameters, creating mismatch between plan and physical product requirements.',
+            'Overproduction and spoilage risks exist due to lack of shelf-life aware lot sizing. Without SLED-based planning, production quantities do not align with realistic consumption windows.',
+            'Component-level planning for fat, protein, and SNF not enabled in MRP. This prevents optimization of component utilization and creates hidden yield losses across product mix.'
         ],
         bestPractice: [
             'Finite capacity MRP with resource constraints',
@@ -1063,11 +1063,11 @@ const STEP_METADATA = {
     'PP-04': {
         title: 'Production Scheduling & Capacity Planning',
         currentState: [
-            'Labor-intensive manual scheduling process',
-            'Significant management time spent on daily run organization',
-            'Assumed 70% capacity utilization without real-time data',
-            'No integrated visibility into machine availability',
-            'Maintenance schedules and labor shifts not in planning system'
+            'Labor-intensive manual scheduling process consumes significant management time daily. Scheduling decisions are made outside SAP based on informal capacity assessments.',
+            'Senior management spends considerable time organizing daily production runs. This manual coordination creates bottlenecks and prevents strategic focus on improvement initiatives.',
+            'Capacity utilization assumed at 70% without real-time OEE data from production equipment. Actual capacity availability unknown, leading to either under-scheduling or overtime requirements.',
+            'No integrated visibility into machine availability, maintenance windows, or breakdown status. Schedulers operate with incomplete information about true production capacity.',
+            'Maintenance schedules, CIP cycles, and labor shift patterns not integrated in SAP planning. Production plans created without considering these critical constraints cause frequent rescheduling.'
         ],
         bestPractice: [
             'SAP PP/DS or APO for finite scheduling',
@@ -1087,11 +1087,11 @@ const STEP_METADATA = {
     'PP-05': {
         title: 'Milk Reception & Weighbridge Management',
         currentState: [
-            'Weighbridge not integrated with SAP',
-            'Vehicle entry permitted without PO validation',
-            'Materials received and consumed before system documentation',
-            'Quality verification often completed after consumption',
-            'Inventory discrepancies between physical and system records'
+            'Weighbridge operates independently without SAP integration. Manual weight entry creates data accuracy risks and delays in goods receipt posting.',
+            'Tanker vehicles permitted entry to production area without mandatory PO validation at gate. This bypasses procurement controls and enables unauthorized deliveries.',
+            'Raw milk frequently received into silos and consumed in production before formal system documentation is completed. Physical operations run ahead of SAP records.',
+            'Quality testing and verification often completed after milk has already been combined with existing silo inventory. Non-conforming milk cannot be segregated once mixed.',
+            'Persistent inventory discrepancies between physical silo levels and SAP system records. Reconciliation requires manual adjustments and variance investigations.'
         ],
         bestPractice: [
             'SAP-integrated weighbridge with auto weight capture',
@@ -1111,11 +1111,11 @@ const STEP_METADATA = {
     'PP-06': {
         title: 'Standardization & Component Balancing',
         currentState: [
-            'Milk combined in silos before component analysis complete',
-            'Lab results take 3-4 hours; intake occurs immediately',
-            'In-line standardization vs pre-separation upon receipt',
-            'Limited batch-level traceability',
-            'No precise mass balance tracking for yield loss analysis'
+            'Incoming milk combined in storage silos before laboratory component analysis is completed. This prevents segregation based on fat, protein, or SNF content.',
+            'Laboratory test results take 3-4 hours to complete while milk intake occurs immediately upon arrival. Quality decisions are made retrospectively after milk is already in production stream.',
+            'Standardization performed in-line during processing rather than through controlled pre-separation at receipt. This limits flexibility in component allocation across product portfolio.',
+            'Batch-level traceability limited due to silo commingling practices. Individual supplier lots cannot be traced through processing to finished products.',
+            'No precise mass balance tracking for milk components. Yield losses between reception and finished goods cannot be systematically analyzed or attributed to specific process steps.'
         ],
         bestPractice: [
             'SAP Dairy solution for real-time component tracking',
@@ -1135,11 +1135,11 @@ const STEP_METADATA = {
     'PP-07': {
         title: 'Production Execution & Process Control',
         currentState: [
-            'Using Discrete Manufacturing instead of PP-PI Process Manufacturing',
-            'Critical parameters (pasteurization temp/time) on paper logs',
-            'Machine sensors not integrated with SAP',
-            'Volume-based tracking instead of component mass',
-            'Systematic yield variance analysis not possible'
+            'SAP configured with Discrete Manufacturing (PP) instead of Process Manufacturing (PP-PI). This architecture mismatch means dairy-specific features like batch management, process instructions, and control recipes are not available.',
+            'Critical process parameters including pasteurization temperatures, holding times, and CIP validation recorded on paper logs. No automated capture of food safety critical control points.',
+            'PLC/SCADA machine sensors and process automation not integrated with SAP. Production operates in isolation from ERP, requiring manual data transcription.',
+            'Production tracking based on volume (liters) rather than component mass (kg of fat, protein, SNF). This prevents accurate yield calculations and component-level costing.',
+            'Systematic yield variance analysis not possible without component mass balances. Losses between input milk and finished products cannot be quantified or attributed to process inefficiencies.'
         ],
         bestPractice: [
             'PP-PI Process Orders with phases and control recipes',
@@ -1159,11 +1159,11 @@ const STEP_METADATA = {
     'PP-08': {
         title: 'Quality Management Integration',
         currentState: [
-            'Paper-based quality documentation',
-            'No active LIMS or SAP QM integration',
-            'Fresh products dispatched before micro testing complete (5-day)',
-            'Risk-based manual release decisions',
-            'Quality hold/release workflows not system-enforced'
+            'Quality documentation maintained on paper forms and spreadsheets rather than SAP QM module. This creates audit compliance risks and prevents automated quality trending.',
+            'Laboratory Information Management System (LIMS) not integrated with SAP. Test results manually transcribed, creating data integrity risks and delays in quality decision-making.',
+            'Fresh dairy products with 7-day shelf life dispatched to market before microbiological testing is complete (5-day incubation). Quality release based on risk assessment rather than confirmed results.',
+            'Quality release decisions made manually based on risk assessment and historical performance. No system-enforced hold until quality confirmation workflow.',
+            'Quality hold and release workflows operate outside SAP. Blocked stock can be released without formal QM usage decision, bypassing quality gates.'
         ],
         bestPractice: [
             'Full SAP QM with automatic inspection lot creation',
@@ -1183,11 +1183,11 @@ const STEP_METADATA = {
     'PP-09': {
         title: 'Traceability & Batch Management',
         currentState: [
-            'Fragmented traceability with paper documentation',
-            'Supplier batch numbers frequently incomplete at GR',
-            'Digital chain of custody compromised',
-            'Cannot execute mock recall within 4-hour requirement',
-            'Vendor batch linkage to finished goods incomplete'
+            'Traceability fragmented across paper records, spreadsheets, and partial SAP data. End-to-end batch genealogy from supplier to customer not achievable in single system.',
+            'Supplier batch numbers frequently incomplete or missing at goods receipt. Vendor lot traceability breaks at the point of SAP entry, compromising upstream trace capability.',
+            'Digital chain of custody compromised by gaps between physical operations and system recording. Batch splits, transfers, and transformations not fully documented in SAP.',
+            'Mock recall exercises cannot achieve the 4-hour trace requirement expected for food safety compliance. Manual assembly of records from multiple sources extends trace time significantly.',
+            'Vendor batch linkage to finished goods incomplete due to silo commingling and batch number gaps. Forward trace from supplier lot to affected customers not reliably achievable.'
         ],
         bestPractice: [
             'Automatic batch number assignment with mandatory fields',
@@ -1207,11 +1207,11 @@ const STEP_METADATA = {
     'PP-10': {
         title: 'Inventory & Cold Chain Management',
         currentState: [
-            'Inventory accuracy compromised by informal reception',
-            'Retrospective system recording creates discrepancies',
-            'Materials consumed before formal system receipt',
-            'Backflushing causes lag vs real-time physical operations',
-            'Cold chain monitoring not integrated with batch records'
+            'Inventory accuracy compromised by informal reception practices where physical goods movements precede system documentation. Perpetual inventory reliability affected.',
+            'Retrospective system recording of goods movements creates timing discrepancies between physical stock and SAP inventory records. Daily reconciliation required to maintain accuracy.',
+            'Raw materials and packaging frequently consumed in production before formal goods receipt posting in SAP. Negative inventory situations occur and require correction.',
+            'Backflushing of production consumption creates systematic lag between physical usage and system recording. Real-time inventory visibility not achievable with current posting practices.',
+            'Cold chain temperature monitoring systems not integrated with SAP batch records. Temperature excursions not automatically linked to affected batches for quality decision-making.'
         ],
         bestPractice: [
             'Perpetual inventory accuracy >98% with cycle counting',
@@ -1232,11 +1232,11 @@ const STEP_METADATA = {
     'SD-01': {
         title: 'Van Sales Operations & Route Management',
         currentState: [
-            '95-100% dairy distribution via 300+ van routes',
-            'External system (Ransale/RISA) manages all van operations',
-            'SAP visibility only at Distribution Center level',
-            'Routes not configured as storage locations in SAP',
-            'Mobile devices offline; batch sync only at start/end of day'
+            '95-100% of dairy distribution executed through 300+ dedicated van routes operating daily. This represents the primary revenue channel but operates entirely outside SAP.',
+            'External van sales system (Ransale/RISA) manages all route operations including loading, delivery, returns, and settlement. SAP functions only as back-office accounting system.',
+            'SAP visibility limited to Distribution Center level aggregates. Route-level inventory, sales, and profitability not visible in SAP, preventing detailed performance analysis.',
+            'Individual van routes not configured as storage locations in SAP. In-transit and van inventory not tracked in ERP, creating blind spot for significant working capital.',
+            'Mobile handheld devices operate offline throughout the day. Data synchronization occurs only at journey start and end, preventing real-time visibility into field operations.'
         ],
         bestPractice: [
             'SAP DSD with full route integration and GPS tracking',
@@ -1256,11 +1256,11 @@ const STEP_METADATA = {
     'SD-02': {
         title: 'Order Management & Fulfillment',
         currentState: [
-            'Direct delivery model without pre-order capture',
-            'Orders via informal channels (phone, email, WhatsApp)',
-            'Sales orders recorded in SAP retrospectively after delivery',
-            'Standard delivery document process bypassed',
-            'Direct billing with custom movement types'
+            'Direct delivery model operates without pre-order capture. Drivers determine customer quantities at point of delivery based on shelf check, preventing demand visibility and production planning.',
+            'Customer orders received through informal channels including phone calls, emails, and WhatsApp messages. No centralized order management with audit trail and acknowledgment workflow.',
+            'Sales orders recorded in SAP retrospectively after physical delivery is complete. This post-facto documentation prevents ATP checks and creates compliance gaps.',
+            'Standard SAP Order → Delivery → Billing document flow completely bypassed. Van sales transactions post directly to billing, missing delivery documentation requirements.',
+            'Custom movement types and direct billing workarounds implemented to accommodate van sales model. This deviation from SAP standard creates upgrade and support complications.'
         ],
         bestPractice: [
             'Pre-order capture with ATP check',
@@ -1280,11 +1280,11 @@ const STEP_METADATA = {
     'SD-03': {
         title: 'Pricing & Promotions Management',
         currentState: [
-            'Pricing maintained entirely in external van sales system',
-            'SAP pricing procedure functionality replicated externally',
-            'Promotions (free goods, bundling, discounts) outside SAP',
-            'Final prices transmitted to mobile devices',
-            'Retail vs HoReCa differentiation managed externally'
+            'All pricing maintained in external van sales system rather than SAP condition technique. Price changes require updates in external system, not centralized SAP master data.',
+            'SAP pricing procedure functionality replicated in external system. Dual maintenance required for any pricing logic, creating consistency risks and maintenance overhead.',
+            'Promotional mechanics including free goods, product bundling, volume discounts, and special offers managed outside SAP. Promotion effectiveness analysis not possible from SAP data.',
+            'Final customer prices calculated externally and transmitted to mobile devices. SAP receives only post-calculated values, preventing pricing simulation or margin analysis.',
+            'Customer channel differentiation (Retail vs HoReCa vs Wholesale) and associated pricing tiers managed entirely in external system without SAP customer hierarchy integration.'
         ],
         bestPractice: [
             'SAP condition technique for centralized pricing',
@@ -1304,11 +1304,11 @@ const STEP_METADATA = {
     'SD-04': {
         title: 'Returns & Credit Processing',
         currentState: [
-            'Returns captured in van sales system by type',
-            'Only summarized return data flows to SAP',
-            'Quality inspection integration not active',
-            'No systematic defect analysis capability',
-            'Near-expiry stock management discontinued'
+            'Product returns captured in van sales system with reason codes (expired, damaged, customer rejection). However, detailed return data does not flow to SAP for analysis.',
+            'Only summarized return quantities and values transmitted to SAP. Individual return transactions with reason codes not available for root cause analysis or customer-level trending.',
+            'Quality inspection process for returned goods not integrated with SAP QM. Returned products not systematically evaluated for defect patterns or supplier quality issues.',
+            'No systematic capability to analyze return defects by product, customer, route, or time period. Pattern identification for quality improvement relies on manual investigation.',
+            'Near-expiry stock management program previously implemented but currently discontinued. Short-dated products returned without structured markdown or alternate channel disposition.'
         ],
         bestPractice: [
             'Returns processing in SAP with auto credit memo',
@@ -1328,11 +1328,11 @@ const STEP_METADATA = {
     'SD-05': {
         title: 'Credit Management',
         currentState: [
-            'Credit limits in SAP but validation in external system',
-            'Real-time exposure only visible in back-office app',
-            'SAP receives credit updates via end-of-day batch',
-            'Manual cash collection reconciliation',
-            'Significant finance team involvement for daily closure'
+            'Customer credit limits maintained in SAP but actual credit validation performed in external van sales system. SAP credit management not actively controlling sales transactions.',
+            'Real-time credit exposure visible only in external back-office application. SAP shows stale credit position based on batch updates rather than current outstanding balances.',
+            'Credit position updates flow to SAP via end-of-day batch integration. Throughout the day, SAP credit data does not reflect current sales and collections activity.',
+            'Cash collected by drivers reconciled manually against sales and collection targets. Variance investigation and shortage handling requires manual finance team intervention.',
+            'Significant finance team resources dedicated to daily sales closure and reconciliation process. Bank deposit matching and driver settlement consumes considerable administrative effort.'
         ],
         bestPractice: [
             'SAP credit management with real-time exposure',
@@ -1352,11 +1352,11 @@ const STEP_METADATA = {
     'SD-06': {
         title: 'Shelf-Life & FEFO Management',
         currentState: [
-            'Shelf-life maintained in van sales system only',
-            'FEFO compliance not confirmed as operational',
-            'Fresh dairy requires strict 7-day rotation',
-            'Near-expiry management capabilities not utilized',
-            'Customer minimum shelf-life not validated'
+            'Product shelf-life and expiry dates maintained in external van sales system only. SAP SLED (Shelf Life Expiration Date) management not actively utilized for fresh products.',
+            'FEFO (First Expiry First Out) picking compliance not confirmed as operationally enforced. Warehouse and van loading may not consistently prioritize shortest-dated stock.',
+            'Fresh dairy products with 7-day shelf life require strict rotation discipline. Current systems do not enforce FEFO at loading or delivery, risking customer receipt of short-dated product.',
+            'Near-expiry management capabilities available in systems but not actively utilized. Products approaching expiry not systematically identified for markdown or alternate disposition.',
+            'Customer-specific minimum remaining shelf life requirements not validated at order or delivery. Key accounts may receive products with insufficient shelf life for their operations.'
         ],
         bestPractice: [
             'SAP SLED with batch-level expiry tracking',
@@ -1376,11 +1376,11 @@ const STEP_METADATA = {
     'SD-07': {
         title: 'E-Commerce Integration',
         currentState: [
-            'Magento Cloud operates separately from van sales',
-            'E-commerce orders manually consolidated into van system',
-            'Treated as single internal customer transaction',
-            'Dedicated route for e-commerce fulfillment',
-            'Transactions do not flow directly to SAP'
+            'Magento Cloud e-commerce platform operates as separate channel disconnected from primary van sales operations. No unified commerce view across channels.',
+            'E-commerce orders manually exported and consolidated into van sales system for fulfillment. This manual handoff creates delays and potential order entry errors.',
+            'All e-commerce volume treated as single internal customer transaction in external system. Individual consumer orders not visible, preventing customer-level analysis.',
+            'Dedicated delivery route assigned for e-commerce order fulfillment. However, this operates within van sales system without direct SAP integration.',
+            'E-commerce transactions do not flow directly to SAP. Revenue and fulfillment only visible after consolidation through van sales settlement process.'
         ],
         bestPractice: [
             'Unified commerce with real-time inventory sync',
@@ -1400,11 +1400,11 @@ const STEP_METADATA = {
     'SD-08': {
         title: 'SAP Integration & Data Flow',
         currentState: [
-            'One-way master data flow: SAP → van sales via IDOC',
-            'Direct database connectivity for transactions',
-            'All transactions posted to SAP in batch after daily close',
-            'SAP has DC-level visibility only, not route-level',
-            'In-transit stock tracking gaps in SAP'
+            'Master data flows one-way from SAP to van sales system via IDOC. Customer, material, and pricing updates pushed to external system but no reverse sync capability.',
+            'Transaction integration uses direct database connectivity rather than standard SAP interfaces. This tight coupling creates upgrade risks and makes changes difficult to implement.',
+            'All van sales transactions accumulated and posted to SAP in batch after daily close process completes. Real-time visibility into sales activity not available in SAP.',
+            'SAP visibility limited to Distribution Center level inventory and transactions. Route-level detail including van stock, sales by stop, and driver performance not in SAP.',
+            'In-transit stock between warehouse and customer not tracked in SAP. Goods issued at van loading but delivery confirmation not received, creating inventory blind spot.'
         ],
         bestPractice: [
             'Real-time bidirectional integration with error handling',
@@ -1424,11 +1424,11 @@ const STEP_METADATA = {
     'SD-09': {
         title: 'Multi-Channel Revenue & Profitability',
         currentState: [
-            'Multiple channels: B2B van (95%+), e-commerce, POS, agricultural',
-            'SAP receives only summarized data',
-            'Route-level profitability not available in SAP',
-            'POS posts as consolidated entries (compliance risk)',
-            'Channel/customer profitability analysis not possible in SAP'
+            'Revenue generated through multiple channels including B2B van sales (95%+), e-commerce, retail POS outlets, and agricultural/farm sales. Each channel has different margin profiles.',
+            'SAP receives only summarized revenue and cost data without channel, route, or customer-level detail. Management reporting requires extraction and manual analysis outside SAP.',
+            'Route-level profitability including sales revenue, product costs, delivery costs, and returns not calculable in SAP. Investment decisions for route expansion lack data foundation.',
+            'Retail POS transactions post to SAP as consolidated daily entries rather than individual sales. This aggregation creates tax compliance risks and prevents basket analysis.',
+            'Channel and customer profitability analysis not achievable from SAP data alone. True cost-to-serve and margin contribution require manual data assembly from multiple systems.'
         ],
         bestPractice: [
             'Multi-dimensional profitability by channel/route/customer',
@@ -1448,11 +1448,11 @@ const STEP_METADATA = {
     'SD-10': {
         title: 'Crate & Returnable Management',
         currentState: [
-            'Mandatory checkpoint controls at journey start/end',
-            'All crate tracking in external back-office system',
-            'Crate shortages reconciled through driver accountability',
-            'Customer equipment (fridges, displays) minimally tracked',
-            'No crate management in SAP'
+            'Mandatory security checkpoint controls verify crate counts at journey start and end. However, this tracking exists only in external system without SAP integration.',
+            'All returnable crate and pallet tracking managed in external back-office system. SAP has no visibility into crate inventory, movements, or customer balances.',
+            'Crate shortages and losses reconciled through driver accountability and payroll deductions. No systematic analysis of loss patterns by route, customer, or time period.',
+            'Customer equipment including refrigerators, display coolers, and promotional materials minimally tracked. Asset placement and condition not systematically managed.',
+            'No crate or returnable packaging management configured in SAP. Deposit and refund accounting handled outside standard SAP returnable packaging functionality.'
         ],
         bestPractice: [
             'Returnable packaging in SAP with deposit/refund',
@@ -1472,11 +1472,11 @@ const STEP_METADATA = {
     'SD-11': {
         title: 'Delivery & Cold Chain Management',
         currentState: [
-            'Refrigerated vehicles for dairy delivery',
-            'End-of-day settlement with supervisor approval',
-            'Route optimization (RoadNet) suspended – MDM issues',
-            '6,000-7,000 daily deliveries managed',
-            'Cold chain monitoring not integrated with SAP'
+            'Fleet of refrigerated vehicles maintains cold chain during delivery. However, temperature monitoring data not systematically recorded or linked to batch records for compliance.',
+            'End-of-day settlement process requires supervisor approval of driver reconciliation. Manual verification of sales, returns, collections, and crates extends daily close time.',
+            'Route optimization software (RoadNet) implementation suspended due to master data management issues. Routes planned manually without systematic optimization.',
+            'Operation manages 6,000-7,000 individual customer deliveries daily across 300+ routes. Scale of operation highlights need for systematic management tools.',
+            'Cold chain temperature monitoring during transport and delivery not integrated with SAP or batch management. Excursion events not linked to affected product batches.'
         ],
         bestPractice: [
             'Temperature monitoring integration with batch records',
@@ -1500,11 +1500,11 @@ const STEP_METADATA = {
     'ARDC-FI-01': {
         title: 'Group Structure & Organization',
         currentState: [
-            '7 company codes currently, expanding to 8 with Kizad',
-            'Two divisions: Dairy/Juice (4 entities) and Poultry (3 entities)',
-            'Emirates Al Rawabi as holding company (100% ownership)',
-            'Company code numbering not standardized (2xxx, 1000, 7xxx, 5000)',
-            'Foreign entities: Oman (OMR), Sudan (USD) with different accounting'
+            'Current SAP landscape includes 7 company codes with expansion to 8 planned for new Kizad facility. Each entity operates with varying degrees of process standardization.',
+            'Group organized into two main divisions: Dairy/Juice operations (4 legal entities) and Poultry operations (3 legal entities). Divisional boundaries not fully reflected in SAP organizational structure.',
+            'Emirates Al Rawabi functions as holding company with 100% ownership of subsidiaries. However, holding company accounting and management reporting structures require enhancement.',
+            'Company code numbering follows inconsistent convention (2xxx, 1000, 7xxx, 5000) creating confusion in reporting and making cross-entity analysis more difficult.',
+            'Foreign operations in Oman (OMR currency) and Sudan (USD functional currency) have different accounting requirements and local compliance needs not fully addressed in current SAP configuration.'
         ],
         bestPractice: [
             'Standardized company code naming convention',
@@ -1524,11 +1524,11 @@ const STEP_METADATA = {
     'ARDC-FI-02': {
         title: 'Chart of Accounts',
         currentState: [
-            'Two separate charts of accounts - Greenfield separate from others',
-            'Different account numbering conventions across entities',
-            'Same material may have different codes across companies',
-            'IFRS-based financial reporting with legal ledger 0L',
-            'Goal to consolidate and standardize across group'
+            'Two separate charts of accounts in use - Greenfields for Feeds operates with different COA than other group entities. This prevents unified financial reporting without manual mapping.',
+            'Account numbering conventions vary across entities with no standardized structure. Same economic transactions may post to differently numbered accounts across companies.',
+            'Same materials and products may have different G/L account assignments across company codes. This inconsistency complicates inventory valuation analysis and cost comparisons.',
+            'Financial reporting follows IFRS standards using legal ledger 0L. However, group reporting requires manual consolidation adjustments due to COA inconsistencies.',
+            'Strategic goal exists to consolidate and standardize chart of accounts across group, but current system configuration and historical data create migration complexity.'
         ],
         bestPractice: [
             'Single operational COA for all entities',
@@ -1548,11 +1548,11 @@ const STEP_METADATA = {
     'ARDC-FI-03': {
         title: 'Consolidation',
         currentState: [
-            'Excel-based consolidation - manual and error-prone',
-            'Trial balances aggregated from entities monthly',
-            'Manual intercompany elimination process',
-            'No dedicated consolidation software',
-            'All reports generated in AED'
+            'Group consolidation performed using Excel spreadsheets outside SAP. This manual process is labor-intensive, error-prone, and delays month-end reporting.',
+            'Trial balances extracted from individual entities and aggregated monthly in Excel. No automated data collection or validation against SAP source records.',
+            'Intercompany transaction elimination performed manually requiring significant effort to identify, match, and eliminate IC balances across 7+ entities.',
+            'No dedicated consolidation software deployed. SAP Group Reporting or similar tools not implemented, limiting automation and audit trail capabilities.',
+            'All consolidated reporting generated in AED. Foreign currency entities require manual translation with exchange rate management outside of automated processes.'
         ],
         bestPractice: [
             'SAP Group Reporting for automation',
@@ -1572,11 +1572,11 @@ const STEP_METADATA = {
     'ARDC-FI-04': {
         title: 'Intercompany Transactions',
         currentState: [
-            'Processed as regular buyer-supplier transactions',
-            'Not automated in SAP - manual coordination',
-            'Invoices generated manually for VAT compliance',
-            'No formal transfer pricing policy',
-            'IC loans exist with interest charged'
+            'Intercompany transactions processed as regular buyer-supplier transactions without IC-specific SAP configuration. Trading partner relationships not systematically identified.',
+            'IC transaction processing not automated in SAP. Manual coordination required between entities to ensure matching postings and timely reconciliation.',
+            'Intercompany invoices generated manually to satisfy UAE VAT compliance requirements. No automated IC billing process creates delays and potential compliance gaps.',
+            'No formal documented transfer pricing policy for intercompany transactions. Arm\'s length pricing not systematically validated, creating potential tax authority scrutiny risk.',
+            'Intercompany loans exist between group entities with interest charged. However, loan documentation and interest calculations may not meet regulatory requirements for related party transactions.'
         ],
         bestPractice: [
             'Automated IC orders with STO billing',
@@ -1596,11 +1596,11 @@ const STEP_METADATA = {
     'ARDC-FI-05': {
         title: 'Cost Center Accounting',
         currentState: [
-            'Single hierarchy with holding company at top',
-            'Cost centers are company code-specific',
-            'Internal allocation within cost centers only',
-            'Statistical key figures not utilized',
-            'No cross-company allocation needed'
+            'Single cost center hierarchy exists with holding company at top level. However, hierarchy structure does not fully support required management reporting dimensions.',
+            'Cost centers configured as company code-specific without cross-entity standardization. Same functional areas have different cost center structures across entities.',
+            'Internal cost allocation limited to transfers within cost centers of same entity. Activity-based allocation and assessment cycles not fully utilized for overhead distribution.',
+            'Statistical key figures for allocation bases (headcount, square meters, machine hours) not systematically maintained in SAP. Allocation drivers managed manually.',
+            'Cross-company cost allocation not currently required but shared service cost distribution would benefit from systematic allocation methodology.'
         ],
         bestPractice: [
             'Standard hierarchy structure',
@@ -1620,11 +1620,11 @@ const STEP_METADATA = {
     'ARDC-FI-06': {
         title: 'Profit Center Accounting',
         currentState: [
-            '35 profit centers total across group',
-            'Categorized by segments: Dairy, Juice, Bakery, Trading',
-            'Further divided by Distribution Centers (Sharjah, Abu Dhabi, Dubai)',
-            'Profit centers can span multiple company codes',
-            'Access control based on profit center assignments'
+            '35 profit centers configured across the group entities. However, profit center structure may not optimally align with current management reporting requirements.',
+            'Profit centers categorized by business segments (Dairy, Juice, Bakery, Trading) but segment definitions may need refinement for IFRS 8 operating segment reporting.',
+            'Geographic dimension captured through Distribution Center profit centers (Sharjah, Abu Dhabi, Dubai). Route-level profitability not achievable with current structure.',
+            'Profit centers span multiple company codes enabling cross-entity analysis. However, intercompany eliminations at profit center level require manual processing.',
+            'User access control partially based on profit center assignments. However, authorization concept may not fully restrict users to their responsible profit centers.'
         ],
         bestPractice: [
             'Segment alignment for IFRS 8 compliance',
@@ -1644,11 +1644,11 @@ const STEP_METADATA = {
     'ARDC-FI-07': {
         title: 'Product Costing',
         currentState: [
-            'Standard costing with actual costing run monthly',
-            'Material ledger active and running actual costing',
-            '5 activity types: Material, Labor, Depreciation, Maintenance, Utilities',
-            'Direct costs and overhead costs included in product cost',
-            'Fixed rates applied to activities consumed'
+            'Standard costing methodology in use with actual costing run executed monthly. Time lag between standard and actual cost visibility limits timely cost management decisions.',
+            'Material ledger active and processing actual costing for inventory valuation. However, actual cost component split analysis may not be fully leveraged for margin visibility.',
+            'Five activity types defined (Material, Labor, Depreciation, Maintenance, Utilities) for cost absorption. Activity rates may not reflect current operational realities.',
+            'Product costs include both direct costs and overhead allocations. However, overhead absorption methodology may not accurately reflect cost drivers and consumption patterns.',
+            'Fixed activity rates applied to production consumption regardless of actual spending. Variance analysis between planned and actual rates not systematically reviewed.'
         ],
         bestPractice: [
             'Standard cost planning with variance analysis',
@@ -1668,11 +1668,11 @@ const STEP_METADATA = {
     'ARDC-FI-08': {
         title: 'Profitability Analysis (CO-PA)',
         currentState: [
-            'CO-PA live and active - costing-based approach',
-            'One operating concern assigned to controlling area',
-            'Characteristics: Product type (Fresh/Frozen), segments, DCs',
-            'Actual costing feeds into CO-PA',
-            'Management reporting for profitability by segment/product/region'
+            'CO-PA module live and active using costing-based approach. However, costing-based CO-PA will require migration to account-based approach for S/4HANA upgrade.',
+            'Single operating concern assigned to controlling area covering all entities. Configuration supports group-wide profitability analysis but may have characteristic limitations.',
+            'CO-PA characteristics include Product type (Fresh/Frozen), business segments, and Distribution Centers. Route-level and customer-level profitability characteristics not fully available.',
+            'Actual costing results flow into CO-PA for margin analysis. However, timing of actual cost updates creates lag between sales posting and accurate margin visibility.',
+            'Management reporting leverages CO-PA for profitability by segment, product, and region. However, drill-down capabilities and real-time analysis limited by current configuration.'
         ],
         bestPractice: [
             'Account-based CO-PA in S/4HANA',
@@ -1696,11 +1696,11 @@ const STEP_METADATA = {
     'ARDC-MM-01': {
         title: 'Demand Planning & Forecasting',
         currentState: [
-            '16-week rolling forecast recently implemented',
-            'IBP for data gathering, Resa tool for processing before SAP upload',
-            'Heavy reliance on Excel for planning calculations',
-            'Forecast data manually uploaded to SAP as PIRs',
-            'Sales-based planning for all raw materials'
+            '16-week rolling forecast process recently implemented but not yet mature. Forecast accuracy metrics not systematically tracked or used for continuous improvement.',
+            'IBP used for data gathering with Resa tool processing before manual SAP upload. Multiple system handoffs create data latency and potential transcription errors.',
+            'Heavy reliance on Excel spreadsheets for planning calculations outside SAP. Complex formulas maintained by key individuals create knowledge concentration risk.',
+            'Forecast data manually uploaded to SAP as Planned Independent Requirements (PIRs). Manual entry process is time-consuming and delays planning cycle completion.',
+            'Sales-based planning approach applied to all raw materials without differentiation. No consumption-based or forecast-based planning strategies configured for different material types.'
         ],
         bestPractice: [
             'SAP IBP or S/4 Demand Management',
@@ -1720,11 +1720,11 @@ const STEP_METADATA = {
     'ARDC-MM-02': {
         title: 'Material Requirements Planning (MRP)',
         currentState: [
-            'MRP concept in place but not fully operational in SAP',
-            'Manual calculations using Excel for requirements',
-            'Only initial data extraction from SAP automated',
-            'Reorder point planning used for some materials',
-            'Feed requirements calculated in Excel by farm personnel'
+            'MRP concept configured in SAP but not fully operational for automated planning. System runs but output not trusted or used for procurement decisions.',
+            'Material requirements calculated manually using Excel spreadsheets rather than SAP MRP output. Planners maintain parallel planning process outside the system.',
+            'Only initial data extraction from SAP automated; all subsequent planning calculations performed manually. MRP results not driving procurement requisitions.',
+            'Reorder point planning used for some materials but safety stock levels may not be optimally calculated. Min/max parameters set based on historical judgment rather than statistical analysis.',
+            'Feed requirements for poultry operations calculated in Excel by farm personnel independently. Farm planning disconnected from central MRP creating coordination gaps.'
         ],
         bestPractice: [
             'Fully automated MRP with daily/weekly runs',
@@ -1744,11 +1744,11 @@ const STEP_METADATA = {
     'ARDC-MM-03': {
         title: 'Milk & Cream Balancing',
         currentState: [
-            'Complex Excel sheet for balancing with daily formulas',
-            'Monthly requirements with daily adjustments needed',
-            'Balancing at milk level, not component level (fat/protein/SNF)',
-            'Cream supply critical - shortages must be prevented',
-            'Seasonal variations (Ramadan, Eid) considered manually'
+            'Complex Excel spreadsheet maintained for daily milk balancing with intricate formulas. Spreadsheet complexity creates maintenance burden and single-point-of-failure risk.',
+            'Monthly production requirements established but require daily manual adjustments based on actual intake and component variations. Adjustment process is reactive rather than predictive.',
+            'Balancing performed at aggregate milk volume level rather than component level (fat, protein, SNF). Component optimization for product mix not systematically achievable.',
+            'Cream supply identified as critical constraint where shortages must be prevented. However, cream forecasting and allocation managed manually without system support.',
+            'Seasonal demand variations (Ramadan +60%, Eid peaks) factored into planning through manual adjustments. No automated seasonal profiles or calendar-based planning in SAP.'
         ],
         bestPractice: [
             'SAP PP-PI batch balancing',
@@ -1768,11 +1768,11 @@ const STEP_METADATA = {
     'ARDC-MM-04': {
         title: 'Procurement Process',
         currentState: [
-            'Manual PR-to-PO process entirely',
-            'PRs required for all materials before POs (max 4 approval levels)',
-            'POs have max 5 levels of approval',
-            'Vendor selection manual based on buyer experience',
-            'Emergency purchases via petty cash (AED 7,000 limit)'
+            'Purchase requisition to purchase order conversion entirely manual. No automatic PO creation from approved PRs or MRP-generated requirements.',
+            'Purchase requisitions required for all materials before PO creation with up to 4 approval levels. Multi-level approval extends procurement cycle time significantly.',
+            'Purchase orders require up to 5 levels of approval depending on value thresholds. Extended approval chains create delays particularly for time-sensitive procurement.',
+            'Vendor selection performed manually based on buyer experience and relationships. No systematic source determination, vendor scorecards, or automated RFQ process.',
+            'Emergency purchases handled through petty cash with AED 7,000 limit. Workaround process bypasses procurement controls and creates reconciliation burden.'
         ],
         bestPractice: [
             'Source determination and automatic PO creation',
@@ -1792,11 +1792,11 @@ const STEP_METADATA = {
     'ARDC-MM-05': {
         title: 'Goods Receipt Process',
         currentState: [
-            'Physical receiving at designated locations',
-            'Barcode scanning for palletization with HU capture',
-            'Handling units critical - barcode identifies contents',
-            'GR for emergency purchases followed by petty cash request',
-            'Batch information captured (SCA code, DC, batch, dates)'
+            'Physical receiving performed at designated dock locations. However, integration between gate entry, weighbridge, and SAP goods receipt may have timing gaps.',
+            'Barcode scanning deployed for palletization with Handling Unit capture. However, HU creation may not always align with physical pallet configuration.',
+            'Handling units critical for warehouse operations as barcode identifies pallet contents. HU integrity issues can cascade into picking and shipping errors.',
+            'Goods receipt for emergency purchases posted followed by separate petty cash request process. Dual documentation creates reconciliation complexity.',
+            'Batch information captured at goods receipt including SCA code, DC assignment, batch number, and dates. However, vendor batch linkage may be incomplete.'
         ],
         bestPractice: [
             'RF scanning with automatic batch assignment',
@@ -1816,11 +1816,11 @@ const STEP_METADATA = {
     'ARDC-MM-06': {
         title: 'Inventory Management',
         currentState: [
-            'Stock Transport Orders (STOs) between DCs',
-            'Both plant-based and SLOC-based STOs used',
-            'Biosecurity restrictions for Kizad (no inbound transfers)',
-            'Materials valued consistently across plants',
-            'Dead stock issue requiring attention'
+            'Stock Transport Orders (STOs) used for inter-DC transfers. However, in-transit visibility and transfer documentation may not be consistently maintained.',
+            'Both plant-based and storage location-based STOs used creating inconsistent transfer patterns. Lack of standardization complicates inventory tracking and reporting.',
+            'Biosecurity restrictions for Kizad facility require no inbound transfers of certain materials. System enforcement of these rules may not be fully configured.',
+            'Materials valued consistently across plants using standard costing. However, transfer pricing between entities may not reflect arm\'s length principles.',
+            'Dead stock and slow-moving inventory identified as issue requiring attention. No systematic aging analysis or write-off procedures in place.'
         ],
         bestPractice: [
             'One-step/two-step STO with in-transit visibility',
@@ -1840,11 +1840,11 @@ const STEP_METADATA = {
     'ARDC-MM-07': {
         title: 'Warehouse Management',
         currentState: [
-            'WMS in use for storage and transfers',
-            'No dedicated warehouse manager - items stored anywhere',
-            'Transfer orders and confirmations handled by system',
-            'Barcode-based HU identification',
-            'Some complexities may be overlooked'
+            'Warehouse Management System (WMS) deployed for storage and transfer operations. However, full WMS functionality may not be leveraged for optimization.',
+            'No dedicated warehouse manager role with items stored in available locations without systematic putaway rules. Random storage creates picking inefficiency.',
+            'Transfer orders and confirmations processed through system. However, real-time task management and performance monitoring may not be fully utilized.',
+            'Barcode-based Handling Unit identification enables tracking. However, HU lifecycle management from creation through consumption may have gaps.',
+            'Warehouse operation complexities including wave picking, task interleaving, and capacity management may be overlooked in current simple configuration.'
         ],
         bestPractice: [
             'Full WM/EWM deployment',
@@ -1864,11 +1864,11 @@ const STEP_METADATA = {
     'ARDC-MM-08': {
         title: 'Master Data Management',
         currentState: [
-            'Duplicate material codes for same items across entities',
-            'Vendor master separate per company code',
-            'Custom material types defined (e.g., ZROH)',
-            'Master data quality issues prevalent',
-            'Different codes for same materials from different vendors'
+            'Duplicate material codes exist for identical items across different entities. Same physical material may have 2-3 different SAP codes creating confusion and reporting issues.',
+            'Vendor master records maintained separately per company code without central governance. Same supplier may have different vendor numbers and payment terms across entities.',
+            'Custom material types defined (e.g., ZROH) rather than using SAP standard types. Custom configurations complicate upgrades and limit use of standard functionality.',
+            'Master data quality issues prevalent across material, vendor, and customer masters. Incomplete fields, inconsistent naming, and duplicate records impact process efficiency.',
+            'Same materials from different vendors assigned different material codes. This prevents accurate spend analysis and volume consolidation for procurement leverage.'
         ],
         bestPractice: [
             'Global material master with single code per material',
@@ -1890,11 +1890,11 @@ const STEP_METADATA = {
     'PF-09': {
         title: 'Live Bird Collection & Receipt',
         currentState: [
-            'Birds received from farms (50,000-60,000 daily processing)',
-            'No SAP Livestock Management module implemented',
-            'Flock data managed outside SAP in spreadsheets',
-            'Multi-source DOCs mixed in same houses – traceability lost',
-            'Live bird inventory not properly valued in SAP'
+            'Processing plant receives 50,000-60,000 birds daily from company farms. High volume operation requires systematic live receiving and staging management not currently in SAP.',
+            'SAP Livestock Management module not implemented. Flock lifecycle from DOC placement through processing not tracked in integrated ERP system.',
+            'Flock performance data including feed conversion, mortality, and growth rates managed in spreadsheets outside SAP. Farm-to-processing integration missing.',
+            'Day-old chicks (DOCs) from multiple sources mixed in same grow-out houses. This commingling breaks traceability from hatchery source through finished products.',
+            'Live bird inventory not properly valued in SAP using biological asset accounting. Growing flock investment and fair value adjustments not systematically captured.'
         ],
         bestPractice: [
             'SAP Livestock Management for flock lifecycle tracking',
@@ -1914,11 +1914,11 @@ const STEP_METADATA = {
     'PF-10': {
         title: 'Slaughter Processing',
         currentState: [
-            'Five production orders in chain (Egg→DOC→Broiler→Carcass→Portions→FG)',
-            'Fresh (PPE) and frozen (FPPE) are separate facilities',
-            '70% fresh, 30% frozen production ratio',
-            'No SAP MSG module – catch-weight not handled',
-            'Production order created AFTER actual output known'
+            'Five sequential production orders in processing chain (Egg→DOC→Broiler→Carcass→Portions→FG). Complex chain creates yield variance accumulation and costing challenges.',
+            'Fresh processing (PPE) and frozen processing (FPPE) operate as separate production facilities. Facility allocation decisions impact product availability and cost.',
+            'Production split approximately 70% fresh, 30% frozen based on market demand. However, allocation flexibility limited and not optimized for profitability.',
+            'SAP Meat, Seafood & Game (MSG) industry solution not implemented. Catch-weight management critical for poultry not available, forcing workarounds.',
+            'Production orders created retrospectively AFTER actual output weights known. This post-production documentation prevents real-time cost tracking and variance analysis.'
         ],
         bestPractice: [
             'SAP MSG integrated production chain',
@@ -1938,11 +1938,11 @@ const STEP_METADATA = {
     'PF-11': {
         title: 'Portioning & Packing',
         currentState: [
-            '65-70% whole chicken, 30-35% portions output',
-            'Variable yield challenge – plan differs from actual significantly',
-            'Multiple SKU sizes from same input (1kg, 1.2kg, etc.)',
-            'SKU determined at packing based on actual weight',
-            'No value-based splitting for portion costing'
+            'Output mix typically 65-70% whole chicken and 30-35% portioned products. Product mix variability creates planning challenges for sales demand fulfillment.',
+            'Variable yield is significant operational challenge where planned output differs substantially from actual. Yield unpredictability impacts inventory planning and customer commitments.',
+            'Multiple SKU sizes (1kg, 1.2kg, 1.4kg, etc.) produced from same input birds based on natural weight distribution. Cannot control SKU mix output from given input.',
+            'Final SKU determination occurs at packing station based on actual piece weight. This late determination prevents forward sales allocation and ATP functionality.',
+            'No value-based splitting methodology for allocating carcass cost to individual portions. Portion-level profitability analysis not achievable with current costing approach.'
         ],
         bestPractice: [
             'MSG carcass breakdown BOM',
@@ -1962,11 +1962,11 @@ const STEP_METADATA = {
     'PF-12': {
         title: 'Further Processing & Private Label',
         currentState: [
-            'Key accounts (Nandos) have dedicated marinated products',
-            'Customer provides marination free of charge',
-            'White-label production for customers like Viva',
-            'No formal contract management in SAP',
-            'Recipe and pricing in informal arrangements'
+            'Key accounts like Nandos have dedicated marinated product specifications. Customer-specific production requirements managed informally without SAP specification master.',
+            'Customers provide marination ingredients free of charge for processing. Customer-furnished materials not formally tracked in SAP creating inventory and costing gaps.',
+            'White-label/private label production performed for customers like Viva. However, contract terms, specifications, and pricing not managed in SAP contract structures.',
+            'No formal contract management configuration in SAP for customer manufacturing agreements. Contract validity, volumes, and pricing maintained outside system.',
+            'Customer recipes and pricing arrangements documented informally rather than in SAP master data. Specification changes and version control not systematically managed.'
         ],
         bestPractice: [
             'Contract management in SAP SD',
@@ -1986,11 +1986,11 @@ const STEP_METADATA = {
     'PF-13': {
         title: 'Quality Management',
         currentState: [
-            'Quality checks performed but not recorded in SAP',
-            'No LIMS integration – manual documentation',
-            'DOC quality specs only recently implemented (one month)',
-            'Hatching egg testing done 20-22 days into cycle – too late',
-            'Disease traceability limited when batches mixed'
+            'Quality checks performed at multiple points in processing but results not recorded in SAP QM module. Quality data maintained in separate spreadsheets and documents.',
+            'No Laboratory Information Management System (LIMS) integration with SAP. Test results manually documented creating data transcription delays and potential errors.',
+            'Day-old chick (DOC) quality specifications only recently implemented within past month. Limited history for quality trend analysis and supplier performance evaluation.',
+            'Hatching egg testing performed 20-22 days into incubation cycle. Late testing timing means quality issues discovered after significant investment in incubation resources.',
+            'Disease traceability severely limited when birds from multiple sources mixed in grow-out houses. Cannot trace disease outbreaks back to specific DOC sources.'
         ],
         bestPractice: [
             'SAP QM with automatic inspection lot creation',
@@ -2010,11 +2010,11 @@ const STEP_METADATA = {
     'PF-14': {
         title: 'Inventory & Traceability',
         currentState: [
-            'Fresh (0-4°C, 24-72hr shelf life), Frozen (-18°C, 1yr)',
-            '13% average returns (target 10-12%)',
-            'Good returns repacked as frozen under Salwa brand',
-            'Batch numbers by production date – same-day batches',
-            'FEFO claimed but system enforcement unclear'
+            'Dual temperature regimes: Fresh products at 0-4°C with 24-72 hour shelf life, Frozen at -18°C with 1-year shelf life. Temperature zone management critical but not SAP-integrated.',
+            'Return rate averages 13% against target of 10-12%. Above-target returns indicate shelf-life, quality, or demand forecasting issues requiring root cause analysis.',
+            'Good-condition returns repacked as frozen products under Salwa brand. However, returns processing workflow and inventory segregation not systematically managed in SAP.',
+            'Batch numbers assigned by production date meaning all same-day production shares batch identity. Single batch number prevents granular traceability to specific processing lots.',
+            'FEFO (First Expiry First Out) claimed as operational practice but system enforcement unclear. Fresh product rotation critical with 24-72 hour shelf life.'
         ],
         bestPractice: [
             'Temperature-zone warehouse management',
@@ -2034,11 +2034,11 @@ const STEP_METADATA = {
     'PF-15': {
         title: 'Sales & Distribution',
         currentState: [
-            'Van sales via 32 routes – routes ARE locations in SAP',
-            'SONIC app (Android) manages field operations',
-            'Fully offline operation with end-of-day sync',
-            'No route profitability analysis in SAP',
-            'Export sales (~3%) managed directly in SAP'
+            'Van sales distribution through 32 routes with routes configured as storage locations in SAP. Better route visibility than dairy but still limited real-time tracking.',
+            'SONIC mobile application (Android) manages field sales operations including orders, deliveries, and collections. Integration with SAP limited to batch synchronization.',
+            'Mobile devices operate fully offline throughout delivery day with end-of-day data synchronization. No real-time visibility into van inventory or sales activity.',
+            'Route-level profitability analysis not available in SAP. Cannot determine which routes are profitable or identify optimization opportunities for route rationalization.',
+            'Export sales representing approximately 3% of revenue managed directly in SAP using standard order-to-cash. Domestic van sales remain in external system.'
         ],
         bestPractice: [
             'SAP DSD with real-time route visibility',
@@ -2059,11 +2059,11 @@ const STEP_METADATA = {
     'ENF-SD-01': {
         title: 'Van Sales & Routes',
         currentState: [
-            '32 van routes configured as locations in SAP',
-            'SONIC Android app manages field operations',
-            'Fully offline – morning stock load, evening sync',
-            'Reconciliation at van level, not depot level',
-            'No real-time visibility during the day'
+            '32 van sales routes configured as storage locations in SAP providing route-level inventory visibility. However, real-time stock movements not captured during delivery operations.',
+            'SONIC Android mobile application manages field sales operations including customer orders, deliveries, returns, and cash collection. App operates independently from SAP.',
+            'Mobile devices operate fully offline with morning stock load and evening data synchronization. Full day of transactions accumulated before SAP visibility.',
+            'End-of-day reconciliation performed at individual van level rather than central depot. Decentralized process extends settlement time and delays issue identification.',
+            'No real-time visibility into van inventory, sales progress, or driver location during operating day. Management operates without intra-day performance insights.'
         ],
         bestPractice: [
             'SAP DSD with real-time route integration',
@@ -2083,11 +2083,11 @@ const STEP_METADATA = {
     'ENF-SD-02': {
         title: 'Order Management',
         currentState: [
-            'Daily sync with SAP for master data and transactions',
-            'End-of-day transaction upload',
-            'Manual reconciliation between SONIC and SAP',
-            'No real-time ATP check during offline operation',
-            'Price and master data updated next day only'
+            'Daily synchronization with SAP for master data download and transaction upload. One-day data latency between field operations and SAP records.',
+            'End-of-day transaction upload batches all daily sales, returns, and collections into single integration run. No continuous transaction flow to SAP.',
+            'Manual reconciliation required between SONIC mobile system and SAP posted transactions. Discrepancy investigation and correction consumes administrative resources.',
+            'No real-time Available-to-Promise (ATP) check possible during offline operation. Drivers may commit to orders that cannot be fulfilled from available inventory.',
+            'Price changes and master data updates only take effect on next business day. Pricing discrepancies possible when changes occur during active selling day.'
         ],
         bestPractice: [
             'Real-time order integration with SAP',
@@ -2107,11 +2107,11 @@ const STEP_METADATA = {
     'ENF-SD-03': {
         title: 'Route Profitability',
         currentState: [
-            'No route profitability analysis in SAP CO-PA',
-            'Weekly supervisor meetings with external reports',
-            'No customer-level profitability tracking',
-            'Manual Excel-based analysis',
-            'Cannot identify profitable vs loss-making routes'
+            'Route-level profitability analysis not configured in SAP CO-PA. Cannot determine contribution margin by route for investment and rationalization decisions.',
+            'Weekly supervisor meetings review performance using reports generated outside SAP. Analysis prepared manually without systematic data foundation.',
+            'Customer-level profitability tracking not available in SAP. Cannot identify which customers within routes are profitable or determine cost-to-serve.',
+            'Performance analysis performed manually in Excel spreadsheets. Data extraction, compilation, and analysis time-consuming and potentially inconsistent.',
+            'Cannot systematically identify profitable versus loss-making routes. Route optimization and territory rebalancing decisions made without financial data support.'
         ],
         bestPractice: [
             'Route profitability in SAP CO-PA',
@@ -2131,11 +2131,11 @@ const STEP_METADATA = {
     'ENF-SD-04': {
         title: 'Export Sales',
         currentState: [
-            'Only ~3% of frozen sales exported',
-            'Manual sales order creation in SAP',
-            'Customer picks up – no delivery responsibility',
-            'Export documentation generated manually',
-            'Halal certificates managed outside system'
+            'Export channel represents only approximately 3% of frozen product sales. Small volume handled manually without systematic export management processes.',
+            'Export sales orders created manually in SAP without standardized document templates or compliance checklists. Order entry process varies by customer.',
+            'Export customers arrange their own pickup from facility. No delivery logistics or shipping coordination managed by ENF for export orders.',
+            'Export documentation including commercial invoice, packing list, and certificates of origin generated manually outside SAP. Document preparation is labor-intensive.',
+            'Halal certification documents managed outside SAP system. Certificate tracking, expiry management, and customer-specific requirements handled manually.'
         ],
         bestPractice: [
             'Export documentation automation',
@@ -2155,11 +2155,11 @@ const STEP_METADATA = {
     'ENF-SD-05': {
         title: 'B2B Key Accounts',
         currentState: [
-            'Key accounts like Nandos with dedicated handling',
-            'Customer-provided marination formulas',
-            'No formal contract management in SAP',
-            'Recipe and pricing in separate arrangements',
-            'Manual specification management'
+            'Key accounts like Nandos receive dedicated handling with customer-specific products and service levels. Special handling requirements managed informally.',
+            'Customers provide proprietary marination formulas for their specific products. Recipe confidentiality and version control managed outside SAP system.',
+            'No formal contract management configured in SAP for key account agreements. Contract terms, volumes, pricing, and validity tracked manually.',
+            'Recipe specifications and pricing arrangements documented in separate files outside SAP. Changes require manual coordination across multiple documents.',
+            'Customer product specifications managed manually without SAP specification master data. Specification changes communicated informally rather than through system workflow.'
         ],
         bestPractice: [
             'SAP SD contract management',
@@ -2179,11 +2179,11 @@ const STEP_METADATA = {
     'ENF-SD-06': {
         title: 'Private Labeling',
         currentState: [
-            'White-label production for customers like Viva',
-            'Customer provides artwork and specifications',
-            'Recipe and pricing included in arrangement',
-            'Packaging managed outside SAP BOM',
-            'Manual coordination for label changes'
+            'White-label/private label production performed for customers like Viva. Contract manufacturing arrangements managed informally rather than in SAP.',
+            'Customers provide packaging artwork and product specifications for their brands. Customer-furnished materials not tracked in SAP material management.',
+            'Recipe formulations and pricing included in private label arrangements. However, separate margin tracking for private label versus own-brand not configured.',
+            'Customer-specific packaging materials managed outside SAP Bill of Materials structure. BOM variants for private label products not systematically maintained.',
+            'Label and artwork changes coordinated manually with customers. No formal change management workflow or version control for customer packaging specifications.'
         ],
         bestPractice: [
             'Subcontracting integration in SAP',
@@ -2203,11 +2203,11 @@ const STEP_METADATA = {
     'ENF-SD-07': {
         title: 'Returns & Credits',
         currentState: [
-            '13% average returns (target 10-12%)',
-            'Good returns repacked as frozen (Salwa brand)',
-            'Bad returns sent to rendering',
-            '80% classified as good for reprocessing',
-            'Quality lot created for decision-making'
+            'Product returns average 13% of sales against target of 10-12%. Above-target return rate indicates opportunities for quality improvement or demand forecasting accuracy.',
+            'Good-condition returns (approximately 80%) repacked as frozen products under Salwa brand. Reprocessing economics and margin impact not systematically tracked.',
+            'Bad-quality returns sent to rendering for by-product recovery. Rendering yield and by-product revenue tracking may not be fully integrated with return costing.',
+            'Quality classification determines return disposition with 80% graded as suitable for reprocessing. However, classification criteria and consistency may vary.',
+            'Quality inspection lot created for return disposition decision-making. However, SAP QM integration for returns may not be fully configured for automated workflow.'
         ],
         bestPractice: [
             'Returns inspection workflow',
@@ -2228,11 +2228,11 @@ const STEP_METADATA = {
     'ENF-PP-01': {
         title: 'Egg Procurement & Grading',
         currentState: [
-            'Hatching eggs from Liwa/Salwa (internal entity)',
-            'Manual delivery notes – not in SAP',
-            'Graded into A (hatchable) and B (reject) at ENF',
-            'B-grade returned to Salwa for sale',
-            'No batch genealogy for egg traceability'
+            'Hatching eggs sourced from Liwa/Salwa breeding operations (internal group entity). Intercompany transfer process not formalized in SAP with proper documentation.',
+            'Egg deliveries documented with manual delivery notes outside SAP system. Receipt quantities and quality not captured in real-time ERP records.',
+            'Eggs graded at ENF receiving into A-grade (suitable for hatching) and B-grade (rejected for incubation). Grading results recorded manually rather than in SAP QM.',
+            'B-grade eggs returned to Salwa for sale as table eggs. Return logistics and intercompany billing managed informally without SAP STO process.',
+            'No batch genealogy maintained linking hatching eggs through DOC production to finished products. Source flock traceability broken at multiple points.'
         ],
         bestPractice: [
             'SAP Livestock Management integration',
@@ -2252,11 +2252,11 @@ const STEP_METADATA = {
     'ENF-PP-02': {
         title: 'Hatchery Operations',
         currentState: [
-            'Single production order for 21-day incubation cycle',
-            'Scrapping recorded during cycle for mortality',
-            'Historical hatchability estimates 85-86% vs actual 90-92%',
-            'Good production receives all accumulated costs',
-            'GRM based on number of viable DOCs'
+            'Single production order covers entire 21-day incubation cycle without intermediate checkpoints. In-process visibility limited until final hatch output.',
+            'Mortality and scrapping recorded during incubation cycle. However, root cause analysis and trending by batch/source not systematically captured in SAP.',
+            'Standard hatchability rates estimated at 85-86% while actual performance achieves 90-92%. Standard cost variance favorable but not driving standard updates.',
+            'All accumulated production costs assigned to good DOC output. Scrap and mortality costs not separately analyzed for process improvement opportunities.',
+            'Goods receipt from manufacturing (GRM) based on count of viable day-old chicks produced. Catch-weight costing for variable DOC weights not applied.'
         ],
         bestPractice: [
             'MSG incubation management',
@@ -2276,11 +2276,11 @@ const STEP_METADATA = {
     'ENF-PP-03': {
         title: 'Farm & Flock Management',
         currentState: [
-            'No SAP Livestock Management – flock data outside system',
-            'One production order per house',
-            'Feed delivered bulk to silos without measurement',
-            'FCR 1.7-1.8 vs industry benchmark 1.4',
-            'Multi-source DOC mixing loses traceability'
+            'SAP Livestock Management module not implemented. Flock lifecycle data including placement, growth, mortality, and processing managed in spreadsheets outside SAP.',
+            'Single production order created per poultry house for entire grow-out cycle. Limited granularity prevents daily tracking and performance comparison.',
+            'Feed delivered in bulk to farm silos without precise measurement at consumption point. Actual feed usage per house estimated rather than directly measured.',
+            'Feed Conversion Ratio (FCR) of 1.7-1.8 significantly exceeds industry benchmark of 1.4. Performance gap represents substantial cost and efficiency improvement opportunity.',
+            'Day-old chicks from multiple sources mixed in same grow-out houses. Multi-source mixing eliminates ability to trace performance and quality issues to specific DOC suppliers.'
         ],
         bestPractice: [
             'SAP Livestock Management flock master',
@@ -2300,11 +2300,11 @@ const STEP_METADATA = {
     'ENF-PP-04': {
         title: 'Live Bird Receipt',
         currentState: [
-            'Birds received from farms – 50-60K daily',
-            'Platform weighing not integrated with SAP',
-            'Ante-mortem inspection performed manually',
-            'No system recording of health inspection',
-            'Cannot establish yield baseline'
+            'Processing plant receives 50,000-60,000 live birds daily from company farms. High volume requires systematic receiving process not currently integrated with SAP.',
+            'Platform weighing at live receiving not integrated with SAP. Manual weight entry creates delays and potential accuracy issues for yield calculations.',
+            'Ante-mortem inspection performed manually by qualified personnel. Inspection results documented on paper forms rather than SAP Quality Management.',
+            'Health inspection findings not recorded in SAP system. Cannot analyze inspection trends or link rejections to source farms for performance feedback.',
+            'Cannot establish accurate yield baseline without integrated live weight capture. Processing yield calculations start from estimated rather than actual input weights.'
         ],
         bestPractice: [
             'MSG live receiving integration',
@@ -2324,11 +2324,11 @@ const STEP_METADATA = {
     'ENF-PP-05': {
         title: 'Slaughter Processing',
         currentState: [
-            'Fresh (PPE) and frozen (FPPE) separate facilities',
-            '70% fresh, 30% frozen ratio',
-            'Line speed not captured in SAP',
-            'Yield variances not linked to line performance',
-            'Five production orders in chain'
+            'Fresh processing (PPE) and frozen processing (FPPE) operate as separate production facilities with different equipment and workflows. Allocation between facilities affects product availability.',
+            'Production split approximately 70% fresh and 30% frozen based on market demand. However, real-time demand signals do not drive facility allocation decisions.',
+            'Processing line speed and throughput not captured in SAP. Cannot analyze line efficiency or optimize scheduling based on actual equipment performance.',
+            'Yield variances from standard cannot be linked to specific production lines, shifts, or operators. Root cause analysis for yield losses requires manual investigation.',
+            'Five sequential production orders in processing chain creates complexity for cost tracking and variance analysis. Each order accumulates variances passed to next stage.'
         ],
         bestPractice: [
             'MSG slaughter planning',
@@ -2348,11 +2348,11 @@ const STEP_METADATA = {
     'ENF-PP-06': {
         title: 'Carcass to Portions',
         currentState: [
-            'Variable yield – order created AFTER output known',
-            '65-70% whole chicken, 30-35% portions',
-            'No value-based carcass splitting',
-            'By-products not systematically valued',
-            'Plan differs from actual significantly'
+            'Variable yield challenge with production orders created AFTER actual output quantities known. Retrospective order creation prevents forward planning and cost control.',
+            'Output mix approximately 65-70% whole chickens and 30-35% portioned products. Natural weight distribution determines product mix rather than demand-driven allocation.',
+            'No value-based carcass splitting methodology for allocating joint costs to portions. All portions receive equal cost per kg regardless of market value.',
+            'By-products from processing (offal, feathers, blood) not systematically valued in SAP. Rendering revenue not properly offset against processing costs.',
+            'Planned production quantities differ significantly from actual output due to natural yield variability. Planning accuracy compromised by unpredictable yield patterns.'
         ],
         bestPractice: [
             'MSG variable yield handling',
@@ -2372,11 +2372,11 @@ const STEP_METADATA = {
     'ENF-PP-07': {
         title: 'SKU & Packing',
         currentState: [
-            'Multiple SKU sizes from same input',
-            'SKU determined at packing by actual weight',
-            'No catch-weight inventory in SAP',
-            'Weight-range classification manual',
-            'Automatic SKU assignment not implemented'
+            'Multiple SKU sizes (1kg, 1.2kg, 1.4kg, etc.) produced from same input birds based on natural weight distribution. Cannot control SKU mix to meet specific demand patterns.',
+            'Final SKU assignment determined at packing station based on actual piece weight. Late determination prevents forward inventory planning and customer commitment.',
+            'Catch-weight inventory management not configured in SAP. Poultry inventory tracked by pieces without capturing actual weight variability.',
+            'Weight-range classification for SKU assignment performed manually by packing operators. Classification consistency may vary between operators and shifts.',
+            'Automatic SKU assignment based on scale integration not implemented. Manual SKU selection creates potential for misclassification and inventory accuracy issues.'
         ],
         bestPractice: [
             'Catch-weight inventory management',
@@ -2397,11 +2397,11 @@ const STEP_METADATA = {
     'ENF-MM-01': {
         title: 'DOC Procurement',
         currentState: [
-            'DOCs imported entirely from Saudi Arabia',
-            'Delivered to doorstep – no inbound logistics',
-            'No supplier quality management in SAP',
-            'Import documentation manual',
-            'Arrival inspection not in system'
+            'Day-old chicks (DOCs) imported entirely from Saudi Arabia with complete reliance on international suppliers. Supply chain vulnerability from single source region.',
+            'Suppliers deliver DOCs to farm doorstep with no ENF involvement in inbound logistics. Transport conditions and timing not monitored or controlled.',
+            'No supplier quality management program configured in SAP. Vendor performance history, quality trends, and compliance tracking maintained informally.',
+            'Import documentation including veterinary certificates, CITES permits, and customs clearance managed manually outside SAP. Document tracking labor-intensive.',
+            'Arrival inspection results not recorded in SAP Quality Management. Cannot systematically analyze DOC quality trends by supplier or shipment.'
         ],
         bestPractice: [
             'Supplier quality management program',
@@ -2421,11 +2421,11 @@ const STEP_METADATA = {
     'ENF-MM-02': {
         title: 'DOC Quality Specifications',
         currentState: [
-            'Quality specs only implemented one month ago',
-            'Previously no specs in purchase orders',
-            'Vendor compliance not tracked systematically',
-            'Manual review of specifications',
-            'No vendor performance scoring'
+            'DOC quality specifications only formalized and implemented within past month. Limited history for trending or baseline establishment.',
+            'Prior to recent implementation, purchase orders issued without formal quality specifications. Acceptance criteria were informal verbal agreements.',
+            'Vendor compliance against specifications not tracked systematically in SAP. Non-conformance history and trends not available for vendor evaluation.',
+            'Specification review and compliance assessment performed manually by quality personnel. No automated comparison against purchase order requirements.',
+            'No formal vendor performance scoring or rating system implemented. Supplier selection based on availability and relationship rather than quality metrics.'
         ],
         bestPractice: [
             'Specification management in SAP',
@@ -2445,11 +2445,11 @@ const STEP_METADATA = {
     'ENF-MM-03': {
         title: 'Feed Procurement',
         currentState: [
-            '90% feed under government subsidy (ADS)',
-            'Quota punched in government portal manually',
-            'Greenfields main internal supplier',
-            'Limited to approved suppliers',
-            'External purchases when quota exceeded'
+            'Approximately 90% of feed procurement under Abu Dhabi government subsidy program (ADS). Subsidy compliance and documentation critical for cost structure.',
+            'Subsidy quota registration performed manually in government portal. No integration between SAP procurement and government subsidy system.',
+            'Greenfields for Feeds (internal group company) serves as primary feed supplier for subsidized volumes. Intercompany pricing and transfer documentation manual.',
+            'Procurement limited to government-approved suppliers for subsidized feed. Supplier selection constrained by regulatory requirements rather than performance.',
+            'External market purchases required when government quota exceeded. Price differential between subsidized and market feed creates significant cost impact.'
         ],
         bestPractice: [
             'Subsidy tracking in SAP',
@@ -2469,11 +2469,11 @@ const STEP_METADATA = {
     'ENF-MM-04': {
         title: 'Vaccine & Medication Inventory',
         currentState: [
-            'Managed by farm manager and lab',
-            'PR created based on requirements',
-            'Cold chain management not in SAP',
-            'Temperature excursions not tracked',
-            'Withdrawal periods tracked manually'
+            'Vaccine and medication inventory managed locally by farm manager and laboratory staff. Decentralized management without central visibility or control.',
+            'Purchase requisitions created based on farm requirements and vaccination schedules. However, consumption tracking and reorder point automation not configured.',
+            'Cold chain requirements for vaccines not managed in SAP. Temperature-controlled storage not tracked or linked to batch validity in the system.',
+            'Temperature excursion events not tracked in SAP or linked to affected vaccine batches. Potentially compromised vaccines cannot be systematically identified.',
+            'Withdrawal periods before slaughter tracked manually outside SAP. No system enforcement to prevent processing of birds within withdrawal window.'
         ],
         bestPractice: [
             'Cold chain tracking in SAP',
@@ -2493,11 +2493,11 @@ const STEP_METADATA = {
     'ENF-MM-05': {
         title: 'Live Bird Inventory Valuation',
         currentState: [
-            'No daily valuation of growing birds',
-            'Valued through production order at cycle end',
-            'Millions in inventory not properly valued',
-            'Weight gain not recognized per IAS 41',
-            'Mortality deduction at cycle end only'
+            'No daily or periodic valuation of growing bird inventory during grow-out cycle. Flock value only recognized at cycle completion when birds are processed.',
+            'Growing birds valued through production order confirmation at cycle end. Accumulated costs recognized only when birds transferred to processing.',
+            'Millions of AED in growing bird inventory not properly reflected on balance sheet. Biological asset value significantly understated during grow-out period.',
+            'Weight gain and biological transformation not recognized per IAS 41 requirements. Daily value increase from growth not captured in financial records.',
+            'Mortality losses deducted only at cycle end rather than as they occur. Daily mortality not reflected in inventory value or cost of production.'
         ],
         bestPractice: [
             'SAP Livestock daily valuation',
@@ -2517,11 +2517,11 @@ const STEP_METADATA = {
     'ENF-MM-06': {
         title: 'Packaging Materials',
         currentState: [
-            'Separate packaging for Rauda, Salwa, private labels',
-            'Customer artwork managed outside SAP',
-            'Version control manual',
-            'BOM management complex',
-            'Label specification not in system'
+            'Separate packaging materials maintained for own brands (Rauda, Salwa) and private label customers. Multiple SKUs of similar packaging create inventory complexity.',
+            'Customer-specific artwork and brand packaging managed outside SAP material master. No linkage between packaging specifications and materials in system.',
+            'Artwork version control performed manually with risk of obsolete packaging being used in production. No automated version validation against production orders.',
+            'Bill of Materials management complex due to multiple packaging variants for similar products. BOM proliferation creates maintenance burden and potential errors.',
+            'Label regulatory specifications including nutritional information, allergen declarations, and country requirements not maintained in SAP. Compliance verification manual.'
         ],
         bestPractice: [
             'Packaging BOM integration',
@@ -2542,11 +2542,11 @@ const STEP_METADATA = {
     'ENF-QM-01': {
         title: 'DOC Quality at Receipt',
         currentState: [
-            'Quality checks performed but recently formalized',
-            'Specifications only implemented one month ago',
-            'Swab tests conducted but results outside SAP',
-            'No vendor performance scoring',
-            'Cannot enforce quality-based selection'
+            'Quality checks performed at DOC receipt but process only recently formalized. Historical quality data limited for trend analysis and supplier evaluation.',
+            'DOC quality specifications only implemented within past month. Prior receipts accepted without formal quality criteria or systematic inspection.',
+            'Swab tests for disease screening conducted at receipt. However, test results documented outside SAP without linkage to receiving batches.',
+            'No vendor performance scoring based on quality metrics. Supplier evaluation relies on subjective assessment rather than quantitative quality data.',
+            'Cannot enforce quality-based supplier selection without systematic quality tracking. All approved suppliers treated equally regardless of quality performance.'
         ],
         bestPractice: [
             'Incoming inspection automation',
@@ -2566,11 +2566,11 @@ const STEP_METADATA = {
     'ENF-QM-02': {
         title: 'Egg & Incubation Testing',
         currentState: [
-            'Testing done 20-22 days into cycle (too late)',
-            'Results received after hatch – cannot intervene',
-            'No pre-incubation testing capability',
-            'Cannot trace disease to source when mixed',
-            'Pseudomonas example – 18 days to identify'
+            'Quality testing performed 20-22 days into 21-day incubation cycle, essentially too late for intervention. Test results available only after hatch is complete.',
+            'Test results received after eggs have hatched into DOCs. By this point, no corrective action possible for affected batch; can only inform future decisions.',
+            'No pre-incubation testing capability or protocols established. Cannot identify and remove infected eggs before incubation investment is made.',
+            'Disease outbreaks cannot be traced to specific egg sources when eggs from multiple suppliers are mixed. Source identification requires separate batch processing.',
+            'Pseudomonas contamination example required 18 days from symptom detection to source identification. Extended investigation time due to traceability gaps.'
         ],
         bestPractice: [
             'Pre-incubation testing protocols',
@@ -2590,11 +2590,11 @@ const STEP_METADATA = {
     'ENF-QM-03': {
         title: 'In-Process Quality Control',
         currentState: [
-            'Quality function exists but not in SAP',
-            'HACCP CCP monitoring on paper',
-            'Records retained shelf-life + 1 year',
-            'Mix of cloud storage and physical files',
-            'No automatic batch holds for OOS'
+            'In-process quality control function exists and operates but completely outside SAP QM module. Quality checks performed without system-enforced workflows.',
+            'HACCP Critical Control Point monitoring performed but documented on paper forms. No real-time CCP data capture or automatic deviation alerts in system.',
+            'Quality records retained for product shelf life plus one year as regulatory requirement. However, retrieval for audits requires manual search of archives.',
+            'Quality documentation stored in mix of cloud-based file storage and physical paper files. Fragmented storage complicates document retrieval for audits or investigations.',
+            'No automatic batch hold triggered when results are out of specification. Quality holds applied manually after results reviewed, creating potential release of non-conforming product.'
         ],
         bestPractice: [
             'SAP QM inspection lots',
@@ -2614,11 +2614,11 @@ const STEP_METADATA = {
     'ENF-QM-04': {
         title: 'Microbiological Testing',
         currentState: [
-            'No LIMS integration',
-            'Results not linked to production batches',
-            'Products can ship before micro results',
-            'Salmonella/Campylobacter testing manual',
-            'Antibiotic residue testing gaps'
+            'No Laboratory Information Management System (LIMS) integration with SAP. Test results managed in separate laboratory systems without automatic data transfer.',
+            'Microbiological test results not linked to production batches in SAP. Cannot query batch status or view test history from production order records.',
+            'Fresh products with 24-72 hour shelf life can ship to customers before microbiological results available. Testing timeline incompatible with product shelf life.',
+            'Salmonella and Campylobacter testing performed but documented manually. Pathogen testing records not systematically linked to batches for regulatory compliance.',
+            'Antibiotic residue testing may have coverage gaps. Withdrawal period compliance relies on manual tracking rather than system-enforced controls.'
         ],
         bestPractice: [
             'LIMS integration with SAP QM',
@@ -2638,11 +2638,11 @@ const STEP_METADATA = {
     'ENF-QM-05': {
         title: 'Returns Quality Handling',
         currentState: [
-            'Returns classified as good or bad',
-            'Good returns repacked as frozen',
-            'Quality lot created for decision',
-            'Routing to reprocess or rendering manual',
-            'Root cause not systematically tracked'
+            'Returned products classified into good condition (suitable for reprocessing) or bad condition (rendering only). Classification criteria may vary by inspector.',
+            'Good-condition returns repacked as frozen products under alternate brand (Salwa). Reprocessing decisions made without systematic cost-benefit analysis.',
+            'Quality inspection lot created in system for disposition decision. However, inspection results and decisions may not be fully documented in SAP QM.',
+            'Routing of returns to reprocessing line or rendering facility determined manually by quality personnel. No automatic routing rules based on inspection results.',
+            'Root cause of returns not systematically tracked by reason code, customer, route, or product. Pattern analysis for quality improvement relies on manual investigation.'
         ],
         bestPractice: [
             'QM-SD integration',
@@ -2662,11 +2662,11 @@ const STEP_METADATA = {
     'ENF-QM-06': {
         title: 'Traceability & Recall',
         currentState: [
-            'Batch genealogy incomplete',
-            'Cannot trace forward or backward completely',
-            'Mock recall never tested',
-            'Farm-to-fork traceability broken by mixing',
-            'Full recall required vs targeted'
+            'Batch genealogy incomplete with gaps at multiple points in the processing chain. Cannot reliably trace finished products back to source flocks or DOC suppliers.',
+            'Forward traceability (supplier to customer) and backward traceability (customer to supplier) cannot be completed end-to-end due to batch data gaps.',
+            'Mock recall exercise has never been formally tested. Actual recall response time and completeness unknown, representing regulatory and food safety risk.',
+            'Farm-to-fork traceability fundamentally broken by practice of mixing DOCs from multiple sources in same grow-out houses. Source identification impossible after mixing.',
+            'Without targeted traceability, any recall would require full market withdrawal of all potentially affected products. Recall scope far broader than necessary.'
         ],
         bestPractice: [
             'Complete batch genealogy',
@@ -2687,11 +2687,11 @@ const STEP_METADATA = {
     'ENF-FI-01': {
         title: 'Biological Asset Accounting',
         currentState: [
-            'Breeding flock capitalized for 24 weeks',
-            'Amortization weeks 25-65 per IAS 41',
-            'All calculations in Excel',
-            'Posted via manual journal vouchers',
-            'Not charged to production orders'
+            'Breeding flock costs capitalized during first 24-week maturation period. Asset value accumulated but daily fair value adjustments not applied per IAS 41.',
+            'Amortization applied during production weeks 25-65 as breeding flock produces eggs. However, amortization calculation performed outside SAP.',
+            'All biological asset calculations including capitalization, fair value, and amortization performed in Excel spreadsheets. No SAP biological asset accounting.',
+            'Biological asset journal entries posted via manual journal vouchers in SAP. Manual posting creates audit trail gaps and potential for entry errors.',
+            'Biological asset amortization not charged to production orders or included in egg/DOC product costs. COGS incomplete without biological asset cost allocation.'
         ],
         bestPractice: [
             'SAP biological asset module',
@@ -2711,11 +2711,11 @@ const STEP_METADATA = {
     'ENF-FI-02': {
         title: 'Amortization Processing',
         currentState: [
-            'Excel-based calculations',
-            'Posted through manual JVs',
-            'Not linked to production orders',
-            'Not included in COGS',
-            'Audit trail weak for JV postings'
+            'Breeding flock amortization calculations performed in Excel spreadsheets. Complex formulas maintained outside SAP create verification and audit challenges.',
+            'Amortization amounts posted to SAP through manual journal vouchers rather than automated asset accounting. Monthly manual entry required.',
+            'Amortization expense not linked to production orders or allocated to products produced during the period. Cost-product relationship not established.',
+            'Amortization excluded from Cost of Goods Sold calculation. Product profitability and gross margin calculations incomplete without this cost element.',
+            'Audit trail for manual journal voucher postings weaker than automated postings. Supporting calculations maintained separately from SAP posting.'
         ],
         bestPractice: [
             'Automated amortization calculation',
@@ -2735,11 +2735,11 @@ const STEP_METADATA = {
     'ENF-FI-03': {
         title: 'Production Costing',
         currentState: [
-            'Period-level costing only',
-            'No production order costing',
-            'No standard cost variance analysis',
-            'WIP valued at accumulated cost',
-            'Cannot identify variances by batch'
+            'Costing performed at period level only (monthly) rather than production order level. Cannot determine cost of specific production runs or batches.',
+            'Production order costing and settlement not configured. Orders used for quantity tracking but not for cost collection and variance analysis.',
+            'No standard cost versus actual cost variance analysis available. Cost performance deviations not identified, quantified, or investigated systematically.',
+            'Work-in-process inventory valued at accumulated actual costs without analysis of cost elements. WIP aging and valuation methodology may not meet audit requirements.',
+            'Cannot identify cost variances at batch, shift, line, or operator level. Cost improvement opportunities hidden in aggregate period data.'
         ],
         bestPractice: [
             'Production order costing with settlement',
@@ -2759,11 +2759,11 @@ const STEP_METADATA = {
     'ENF-FI-04': {
         title: 'Labor Cost Allocation',
         currentState: [
-            'All labor charged to P&L',
-            'Not allocated to production orders',
-            'Not part of product cost',
-            'No activity-based costing',
-            'Direct costs only partially captured'
+            'All production labor costs expensed directly to P&L cost centers. Labor not treated as manufacturing cost that should be allocated to products produced.',
+            'Labor costs not allocated to production orders. Products receive no labor cost component, significantly understating true manufacturing cost.',
+            'Product cost excludes labor, showing only material costs. Product profitability and pricing decisions made without complete cost visibility.',
+            'No activity-based costing for labor allocation. Different processing activities (slaughter, portioning, packing) not costed at different rates.',
+            'Direct labor costs only partially identified and captured. Indirect labor and supervision costs completely excluded from product cost calculations.'
         ],
         bestPractice: [
             'Activity-based labor allocation',
@@ -2783,11 +2783,11 @@ const STEP_METADATA = {
     'ENF-FI-05': {
         title: 'COGS Accuracy',
         currentState: [
-            'COGS excludes amortization',
-            'COGS excludes labor',
-            'Gross margin overstated',
-            'CO-PA profitability incomplete',
-            'Product margins appear higher than reality'
+            'Cost of Goods Sold excludes breeding flock amortization expense. Significant production cost element missing from COGS calculation.',
+            'COGS excludes production labor costs which are expensed as period costs. Material-only COGS significantly understates true manufacturing cost.',
+            'Gross margin systematically overstated due to incomplete COGS. Management makes decisions based on artificially favorable margin data.',
+            'CO-PA profitability analysis incomplete without full product costs. Profitability rankings by product, customer, and channel potentially incorrect.',
+            'Product margins appear significantly higher than actual economic reality. Pricing decisions and product portfolio strategy based on misleading cost data.'
         ],
         bestPractice: [
             'Complete COGS calculation',
@@ -2807,11 +2807,11 @@ const STEP_METADATA = {
     'ENF-FI-06': {
         title: 'Profitability Analysis',
         currentState: [
-            'No route-level profitability',
-            'No customer-level profitability',
-            'Weekly manual analysis from external reports',
-            'No real-time dashboards',
-            'Cannot identify profitable routes/customers'
+            'Route-level profitability not configured in SAP CO-PA. Cannot determine which of 32 van routes generate profit versus loss for resource allocation decisions.',
+            'Customer-level profitability analysis not available. Cannot identify high-value customers for retention focus or loss-making customers for pricing action.',
+            'Performance analysis conducted weekly using manually prepared reports from external van sales data. Analysis is backward-looking and resource-intensive.',
+            'No real-time profitability dashboards or executive reporting. Management waits for periodic manual reports rather than having continuous visibility.',
+            'Cannot systematically identify profitable versus unprofitable routes or customers. Portfolio optimization decisions made without financial foundation.'
         ],
         bestPractice: [
             'CO-PA multi-dimensional analysis',
@@ -2832,11 +2832,11 @@ const STEP_METADATA = {
     'GF-SD-01': {
         title: 'Sales Channels',
         currentState: [
-            'Primarily intercompany sales to ENF (chicken feed)',
-            'External cattle feed sales minimal',
-            'Sales handled by finance team due to low volumes',
-            'Walk-in customers with simplified process',
-            'Limited market diversification'
+            'Sales predominantly intercompany to Emirates National Foods for subsidized chicken feed. Heavy reliance on single internal customer creates business concentration risk.',
+            'External sales of cattle feed represent minimal portion of revenue. Limited market presence outside government-subsidized poultry feed segment.',
+            'Sales function handled by finance team rather than dedicated sales personnel due to low external transaction volumes. No sales development focus.',
+            'Walk-in customers served with simplified order-to-cash process. Limited customer relationship management or proactive sales engagement.',
+            'Market diversification limited with heavy dependence on government subsidy program. External commercial opportunities not systematically pursued.'
         ],
         bestPractice: [
             'Multiple channel management',
@@ -2856,11 +2856,11 @@ const STEP_METADATA = {
     'GF-SD-02': {
         title: 'Gate Pass System',
         currentState: [
-            'Custom program creates gate pass',
-            'Auto-generates sales order from gate pass',
-            'Customer code, material, quantity captured',
-            'Non-standard SAP process',
-            'Gate pass as primary sales trigger'
+            'Custom program outside SAP creates gate pass documentation for outbound shipments. Non-standard process deviates from SAP best practices.',
+            'Gate pass automatically generates corresponding sales order in SAP. Sales order created as result of shipment rather than triggering shipment.',
+            'Customer code, material, and quantity captured in gate pass system. Data subsequently transmitted to SAP rather than originating in ERP.',
+            'Non-standard SAP order-to-cash process creates integration complexity. Custom development required for gate pass-SAP synchronization.',
+            'Gate pass serves as primary sales trigger rather than customer order. Reactive documentation rather than proactive order management.'
         ],
         bestPractice: [
             'Standard SAP SD process',
@@ -2880,11 +2880,11 @@ const STEP_METADATA = {
     'GF-SD-03': {
         title: 'Intercompany Sales',
         currentState: [
-            'Feed supplied to ENF via intercompany process',
-            'Fixed transfer pricing maintained manually',
-            'No formal contracts or scheduling agreements',
-            'No demand commitment from ENF',
-            'Planning uncertainty from lack of orders'
+            'Feed supplied to Emirates National Foods through intercompany transactions. However, IC process not fully configured with proper SAP trading partner setup.',
+            'Fixed transfer pricing for intercompany feed sales maintained manually in spreadsheets. Transfer pricing documentation may not meet regulatory requirements.',
+            'No formal scheduling agreements or contracts configured in SAP for intercompany feed supply. Arrangement operates on informal basis without system controls.',
+            'No formal demand commitment or forecast visibility from ENF as customer. GF production planning operates without reliable forward demand signal.',
+            'Significant planning uncertainty due to lack of committed orders. Production decisions made without firm customer requirements, risking excess or shortage.'
         ],
         bestPractice: [
             'Scheduling agreements in SAP',
@@ -2904,11 +2904,11 @@ const STEP_METADATA = {
     'GF-SD-04': {
         title: 'Direct Delivery',
         currentState: [
-            'Feed delivered directly to ENF farms',
-            'Bypasses GF stores – bulk tanker delivery',
-            'Central weighbridge only – no farm measurement',
-            'Tanker capacity 32.5 tons, minimum 24-28 tons',
-            'Cannot deliver precise quantities'
+            'Feed delivered directly from mill to ENF farm silos without intermediate storage. Direct delivery model efficient but lacks delivery verification.',
+            'Bulk tanker delivery bypasses stores and warehouse operations. No staging or quality inspection point between production and farm delivery.',
+            'Weighbridge measurement only at central Greenfields facility. No weighing or verification capability at receiving farm silos.',
+            'Bulk tanker capacity of 32.5 tons with operational minimum of 24-28 tons. Delivery quantities constrained by tanker economics, not farm requirements.',
+            'Cannot deliver precise quantities to match farm consumption needs. Over or under-delivery common, creating waste or shortage situations.'
         ],
         bestPractice: [
             'Delivery scheduling system',
@@ -2928,11 +2928,11 @@ const STEP_METADATA = {
     'GF-SD-05': {
         title: 'Co-Packer Sales',
         currentState: [
-            '80% of processed products through co-packers',
-            'Previously no contracts – produced on forecasts',
-            'Co-packer inventory at GF risk and cost',
-            'No advance payments from co-packers',
-            'Export without LC or contract – 60-day credit'
+            'Approximately 80% of processed products sold through co-packer arrangements. Heavy reliance on third-party packers creates quality and margin control challenges.',
+            'Previously operated without formal contracts, producing based on co-packer forecasts. Demand uncertainty led to inventory buildup and potential write-offs.',
+            'Finished product inventory held at GF premises remains at GF risk and cost until co-packer collection. Working capital tied up without customer commitment.',
+            'No advance payment requirements historically enforced with co-packers. Full payment terms extended without deposit security.',
+            'Export sales made without Letter of Credit or formal contract protection on 60-day credit terms. Significant credit exposure on international transactions.'
         ],
         bestPractice: [
             'Binding contracts for all co-packers',
@@ -2953,11 +2953,11 @@ const STEP_METADATA = {
     'GF-MM-01': {
         title: 'Import Procurement',
         currentState: [
-            '95% imports are frozen meat from Brazil/China',
-            'Less than 5% spare parts',
-            'Lead times and container logistics managed manually',
-            'Import documentation outside integrated process',
-            'Limited supplier diversification'
+            'Import procurement dominated by frozen meat (95% of imports) sourced from Brazil and China. Commodity nature requires sophisticated price risk management.',
+            'Spare parts represent less than 5% of import volume. Critical maintenance items may have long lead times without systematic planning.',
+            'Container logistics and international lead times managed manually outside SAP. Shipment tracking and ETA management not integrated with planning.',
+            'Import documentation including LC, customs clearance, and certificates managed outside integrated SAP process. Document tracking labor-intensive.',
+            'Limited supplier diversification for key feed ingredients. Concentration risk from reliance on limited number of international sources.'
         ],
         bestPractice: [
             'Import documentation automation',
@@ -2977,11 +2977,11 @@ const STEP_METADATA = {
     'GF-MM-02': {
         title: 'Planning Method',
         currentState: [
-            'MRP does not run in SAP',
-            'Excel-based planning generates MRP manually',
-            'PR generated based on Excel forecasts',
-            '1-month planning horizon only',
-            'Working toward 6-month planning'
+            'SAP MRP not activated for automated requirements planning. Material planning relies entirely on manual processes outside the system.',
+            'Excel-based planning spreadsheets serve as manual MRP. Complex formulas maintained outside SAP with associated version control and calculation risks.',
+            'Purchase requisitions generated manually based on Excel forecast calculations. No automated PR generation from SAP planning output.',
+            'Planning horizon limited to only 1 month forward visibility. Short horizon insufficient for long lead time imported materials.',
+            'Target to extend planning horizon to 6 months but requires process and data foundation improvements before achievable.'
         ],
         bestPractice: [
             'SAP MRP automation',
@@ -3001,11 +3001,11 @@ const STEP_METADATA = {
     'GF-MM-03': {
         title: 'PR/PO Process',
         currentState: [
-            'Manual PR creation based on monitoring',
-            'PRs raised during month as needed',
-            'Workflow approvals in place',
-            'No automatic generation from MRP',
-            'Ad-hoc procurement timing'
+            'Purchase requisitions created manually based on inventory monitoring and manual requirements calculations. No system-generated procurement recommendations.',
+            'PRs raised reactively during month when stock levels trigger concern. Procurement timing driven by observation rather than systematic planning.',
+            'Workflow-based approval process configured in SAP for PR and PO authorization. However, approvals applied to manually initiated requests.',
+            'No automatic PR generation from MRP planning run. Each procurement requirement identified and entered manually by procurement team.',
+            'Ad-hoc procurement timing creates rush orders and potential stockouts. Systematic planning cycle not established for procurement execution.'
         ],
         bestPractice: [
             'MRP-driven PR generation',
@@ -3025,11 +3025,11 @@ const STEP_METADATA = {
     'GF-MM-04': {
         title: 'Commodity Hedging',
         currentState: [
-            'No hedging concept in place',
-            'Fully exposed to feed ingredient price volatility',
-            'No fixed-price contracts with suppliers',
-            'No futures or options for commodities',
-            'No price escalation clauses in customer contracts'
+            'No commodity hedging strategy or risk management framework in place. Feed mill fully exposed to market price volatility for key ingredients.',
+            'Complete exposure to feed ingredient price volatility including corn, soybean meal, and other components. Price swings directly impact margins.',
+            'No fixed-price forward contracts negotiated with suppliers for key commodities. All purchases at prevailing spot market prices.',
+            'No use of futures, options, or other derivative instruments for commodity price protection. Financial hedging tools not considered.',
+            'Customer contracts lack price escalation clauses to pass through raw material cost increases. Margin squeeze when input costs rise.'
         ],
         bestPractice: [
             'Futures/options hedging strategy',
@@ -3049,11 +3049,11 @@ const STEP_METADATA = {
     'GF-MM-05': {
         title: 'Warehouse & Storage',
         currentState: [
-            'Central warehouse for spare parts (< 3M value)',
-            'Feed not stored – direct delivery to farms',
-            'Raw materials stored at mill',
-            'No buffer stock capability for feed',
-            'Bulk delivery chosen over bags despite control issues'
+            'Central warehouse maintained for spare parts and maintenance items with inventory value under 3 million AED. Limited warehousing complexity.',
+            'Finished feed products not stored at Greenfields facility. Direct delivery model from production to farm silos eliminates buffer capability.',
+            'Raw materials for feed production stored at mill in bulk silos and bag storage. Storage conditions and FIFO management may need improvement.',
+            'No buffer stock capability for finished feed between production and farm consumption. Production must closely match demand without inventory cushion.',
+            'Bulk tanker delivery chosen over bagged feed despite control and measurement challenges. Economic benefits outweigh control considerations.'
         ],
         bestPractice: [
             'Raw material storage optimization',
@@ -3074,11 +3074,11 @@ const STEP_METADATA = {
     'GF-PP-01': {
         title: 'Feed Formulation',
         currentState: [
-            'Recipes created based on ENF requirements',
-            'External formulation software used',
-            'Integration with SAP unclear',
-            'Recipe management outside SAP',
-            'No real-time cost calculation'
+            'Feed recipes created based on nutritional requirements specified by ENF for different growth stages. Formulation driven by customer specification rather than optimization.',
+            'External feed formulation software used for least-cost recipe optimization. Software operates independently without integration to SAP master data.',
+            'Integration between formulation software and SAP unclear and potentially manual. Recipe changes may not automatically update SAP Bills of Materials.',
+            'Recipe management and version control maintained outside SAP in formulation software. No single source of truth for current production recipes.',
+            'No real-time cost calculation when formulating recipes. Cost impact of ingredient substitutions not visible during formulation decisions.'
         ],
         bestPractice: [
             'SAP Recipe Management',
@@ -3098,11 +3098,11 @@ const STEP_METADATA = {
     'GF-PP-02': {
         title: 'Feed Types',
         currentState: [
-            'Multiple feed types: Pre-starter, Starter, Grower, Finisher',
-            'Different formulations per growth stage',
-            'Manual management of feed type changes',
-            'No automatic stage switchover',
-            'Manual coordination with farms'
+            'Multiple feed types produced for different growth stages: Pre-starter, Starter, Grower, and Finisher formulations. Each requires different nutritional specifications.',
+            'Different formulations maintained for each growth stage with specific protein, energy, and nutrient profiles. Recipe complexity increases inventory and planning burden.',
+            'Feed type transitions at farms managed manually without system-based triggers. Stage changeover timing relies on farm manager judgment and communication.',
+            'No automatic stage switchover notifications or delivery scheduling based on flock age. Feed deliveries not automatically aligned with growth stage transitions.',
+            'Manual coordination required between Greenfields and farm managers for feed type changes. Communication gaps can result in wrong feed type delivery.'
         ],
         bestPractice: [
             'Stage-based recipes in SAP',
@@ -3122,11 +3122,11 @@ const STEP_METADATA = {
     'GF-PP-03': {
         title: 'Production Planning',
         currentState: [
-            'No integrated planning with ENF demand',
-            'Farm capacity drives production, not forecast',
-            'No S&OP process across division',
-            'Capacity utilization 35-60%',
-            'Production reduced pending confirmed contracts'
+            'No integrated demand planning between Greenfields production and ENF consumption requirements. Feed production operates without visibility to downstream demand.',
+            'Farm bird capacity drives production volumes rather than formal demand forecast. Production reactive to farm requirements rather than proactively planned.',
+            'No Sales & Operations Planning (S&OP) process established across Greenfields-ENF division. Lack of cross-functional planning creates coordination gaps.',
+            'Mill capacity utilization ranges between 35-60%, well below optimal efficiency levels. Underutilization driven by demand uncertainty and lack of external sales.',
+            'Production volumes reduced pending confirmed customer contracts and orders. Conservative production approach to avoid inventory buildup without firm commitments.'
         ],
         bestPractice: [
             'Demand-driven production',
@@ -3146,11 +3146,11 @@ const STEP_METADATA = {
     'GF-PP-04': {
         title: 'Bulk Delivery',
         currentState: [
-            'Bulk tanker delivery to farm silos',
-            'Central weighbridge only – no farm measurement',
-            'Tanker capacity 32.5 tons, minimum 24-28 tons',
-            'Cannot deliver precise quantities needed',
-            'No silo-level measurement'
+            'Feed delivered via bulk tanker trucks directly to farm storage silos. Bulk delivery efficient but creates measurement and control challenges at receiving end.',
+            'Weighbridge measurement available only at central Greenfields facility. No weighing capability at farm receiving point to verify delivered quantities.',
+            'Tanker capacity of 32.5 tons with practical minimum load of 24-28 tons for efficiency. Delivery quantities constrained by vehicle economics rather than farm needs.',
+            'Cannot deliver precise quantities to match farm consumption requirements. Farms receive full or near-full tanker loads regardless of actual need.',
+            'No silo-level measurement sensors installed at farms. Actual inventory levels in farm silos estimated manually rather than precisely measured.'
         ],
         bestPractice: [
             'Bag-based delivery for control',
@@ -3170,11 +3170,11 @@ const STEP_METADATA = {
     'GF-PP-05': {
         title: 'Consumption Tracking',
         currentState: [
-            'No measurement of actual consumption per house',
-            'Consumption estimated, not measured',
-            'Manual estimation using stick and thread',
-            'Cannot correlate FCR to feed source',
-            'Feed quality impact unmeasurable'
+            'No measurement of actual feed consumption at individual poultry house level. Consumption calculated by difference rather than directly measured.',
+            'Feed consumption estimated rather than precisely measured. Estimates based on delivery records and ending silo levels without intermediate tracking.',
+            'Silo level estimation performed manually using primitive stick and thread method. Measurement accuracy poor, affecting consumption and FCR calculations.',
+            'Cannot correlate Feed Conversion Ratio (FCR) performance to specific feed sources or batches. Quality variation impact on bird performance not traceable.',
+            'Impact of feed quality variations on bird growth performance cannot be measured. No linkage between feed batch characteristics and flock performance outcomes.'
         ],
         bestPractice: [
             'House-level consumption tracking',
@@ -3194,11 +3194,11 @@ const STEP_METADATA = {
     'GF-PP-06': {
         title: 'Excess Feed Handling',
         currentState: [
-            'Cannot transfer excess feed between farms',
-            'Excess feed becomes waste/manure',
-            'No returnable feed policy',
-            'No mechanism for overdelivery credit',
-            'All risk on receiving farm'
+            'No capability to transfer excess feed from one farm to another. Feed remaining in silos at cycle end cannot be redeployed to other locations.',
+            'Excess feed in silos at flock completion typically becomes waste mixed with manure. Significant feed value lost due to inability to recover or transfer.',
+            'No returnable feed policy established between Greenfields and farms. Overdelivered quantities cannot be credited back or returned to mill.',
+            'No mechanism for overdelivery credit when farm receives more feed than consumed. Receiving farm bears cost of all delivered quantities.',
+            'All risk of overdelivery and excess feed rests with receiving farm operation. Greenfields has no accountability for delivery quantity accuracy.'
         ],
         bestPractice: [
             'Returnable feed policy',
@@ -3219,11 +3219,11 @@ const STEP_METADATA = {
     'GF-QM-01': {
         title: 'Feed Quality Control',
         currentState: [
-            'Quality issues caused supply stoppage to ENF',
-            'Now implementing new recipes with quality focus',
-            'Testing regimen being established',
-            'Quality testing not integrated with SAP QM',
-            'Lab team manages testing'
+            'Historical feed quality issues caused supply stoppage to ENF, highlighting critical nature of quality management. Quality failures have direct impact on poultry performance.',
+            'New recipe formulations being implemented with enhanced focus on quality specifications and consistency. Quality improvement initiative underway but not yet mature.',
+            'Feed testing regimen being established with defined test parameters and frequencies. Quality control program in development stage with procedures being formalized.',
+            'Quality testing performed by laboratory but not integrated with SAP QM module. Test results maintained in separate systems without batch linkage in ERP.',
+            'Laboratory team manages all quality testing independently. Quality data not systematically shared with production or procurement for real-time decision making.'
         ],
         bestPractice: [
             'Raw material testing in SAP QM',
@@ -3243,11 +3243,11 @@ const STEP_METADATA = {
     'GF-QM-02': {
         title: 'FCR Performance',
         currentState: [
-            'Current FCR 1.7-1.8 vs benchmark 1.4',
-            'Gap of 0.3-0.4 represents significant cost',
-            'Planning to trial on 2-3 farms',
-            'Cannot validate improvement due to control gaps',
-            'Performance-based qualification not yet done'
+            'Current Feed Conversion Ratio of 1.7-1.8 significantly exceeds industry benchmark of 1.4. Performance gap represents major cost inefficiency in poultry operations.',
+            'FCR gap of 0.3-0.4 represents substantial additional feed cost per bird produced. At current volumes, gap translates to millions of AED in excess feed expense annually.',
+            'Planning to conduct controlled trials on 2-3 farms to validate feed quality improvements. Trial protocols being developed but not yet executed.',
+            'Cannot validate feed quality improvements due to measurement and control gaps at farm level. Consumption tracking limitations prevent accurate FCR calculation.',
+            'Performance-based feed supplier qualification not yet implemented. Suppliers not evaluated based on demonstrated FCR results with their products.'
         ],
         bestPractice: [
             'Controlled FCR trials',
@@ -3267,11 +3267,11 @@ const STEP_METADATA = {
     'GF-QM-03': {
         title: 'Vendor Quality',
         currentState: [
-            'Attempting to track FCR by feed source',
-            'Cannot validate due to control gaps',
-            'No formal supplier scorecards',
-            'No quality agreements with vendors',
-            'Cannot correlate quality with cost'
+            'Attempting to track bird FCR performance by feed ingredient source. Goal is to identify which suppliers provide ingredients that result in better conversion.',
+            'Cannot validate vendor quality impact due to control gaps in consumption measurement. Lack of precise data prevents meaningful supplier performance comparison.',
+            'No formal supplier scorecards or performance evaluation system implemented. Vendor assessment relies on subjective judgment rather than quantitative metrics.',
+            'No quality agreements or specifications formally contracted with ingredient suppliers. Acceptance criteria and quality standards not contractually enforced.',
+            'Cannot correlate ingredient quality with total cost of ownership. Lower-price ingredients with poor FCR impact may actually cost more than premium alternatives.'
         ],
         bestPractice: [
             'Supplier scorecards',
@@ -3291,11 +3291,11 @@ const STEP_METADATA = {
     'GF-QM-04': {
         title: 'Nutritional Specifications',
         currentState: [
-            'New specifications developed for ENF requirements',
-            'Testing regimen being established',
-            'Lab team manages vaccines and quality testing',
-            'Certificate of analysis not tracked in SAP',
-            'Compliance documentation gaps'
+            'New nutritional specifications developed to meet ENF poultry requirements for each growth stage. Specification formalization recently initiated.',
+            'Testing regimen to verify nutritional compliance being established. Test parameters, frequencies, and acceptance criteria under development.',
+            'Laboratory team manages both vaccine storage/handling and feed quality testing. Dual responsibility may create resource conflicts and priority issues.',
+            'Certificate of Analysis from ingredient suppliers not tracked in SAP. COA documents maintained in separate files without batch linkage in ERP system.',
+            'Compliance documentation gaps exist for regulatory and customer quality requirements. Quality records may not meet audit requirements for food safety traceability.'
         ],
         bestPractice: [
             'Specification management in SAP',
@@ -3316,11 +3316,11 @@ const STEP_METADATA = {
     'GF-FI-01': {
         title: 'Intercompany Pricing',
         currentState: [
-            'Fixed transfer prices to ENF with margin',
-            'Separate budgets for each entity',
-            'Manual price maintenance',
-            'No automatic cost-plus calculation',
-            'No arm\'s length documentation'
+            'Fixed transfer prices established for feed sales from Greenfields to ENF with built-in margin. Prices not dynamically adjusted based on actual costs.',
+            'Separate budgets maintained for each legal entity without integrated planning. Budget disconnect between related entities creates coordination challenges.',
+            'Transfer prices maintained manually in SAP pricing conditions. Price updates require manual entry without systematic review or approval workflow.',
+            'No automatic cost-plus calculation for transfer pricing. Target margin not dynamically applied to current production costs for price determination.',
+            'No formal arm\'s length documentation maintained for intercompany transactions. Transfer pricing may not meet tax authority requirements for related party pricing.'
         ],
         bestPractice: [
             'Transfer pricing policy',
@@ -3340,11 +3340,11 @@ const STEP_METADATA = {
     'GF-FI-02': {
         title: 'Division Consolidation',
         currentState: [
-            'Elimination at poultry division level',
-            'Single finance team manages ENF, GF, Liwa/Salwa',
-            'Manual intercompany reconciliation',
-            'No automatic matching in SAP',
-            'Consolidation complexity'
+            'Intercompany eliminations performed at poultry division level aggregating ENF, Greenfields, and Liwa/Salwa entities. Elimination process manual and time-consuming.',
+            'Single finance team manages accounting for ENF, Greenfields, and Liwa/Salwa entities. Shared resources efficient but creates capacity constraints at period-end.',
+            'Intercompany reconciliation performed manually using Excel. Balance matching and discrepancy investigation requires significant effort each month.',
+            'No automatic intercompany matching or reconciliation functionality configured in SAP. System does not identify or flag intercompany balance differences.',
+            'Consolidation complexity increased by different chart of accounts, timing differences, and manual processes. Month-end close extended by consolidation activities.'
         ],
         bestPractice: [
             'Intercompany elimination automation',
@@ -3364,11 +3364,11 @@ const STEP_METADATA = {
     'GF-FI-03': {
         title: 'Production Costing',
         currentState: [
-            'Standard costing methodology',
-            'Feed cost represents 95-98% of chicken cost',
-            'Variance analysis limited',
-            'Cannot analyze variance by feed source',
-            'Cost accuracy depends on standards'
+            'Standard costing methodology used for feed production. Standard costs set periodically but may not reflect current market prices for volatile commodities.',
+            'Feed cost represents 95-98% of total chicken production cost, making feed cost accuracy critical for profitability analysis and pricing decisions.',
+            'Variance analysis between standard and actual costs limited in scope and frequency. Cost performance deviations not systematically investigated.',
+            'Cannot analyze cost variance by feed ingredient source or supplier. Unable to identify which suppliers provide best value considering quality impact.',
+            'Product cost accuracy entirely dependent on standard cost maintenance. Outdated standards produce misleading cost and margin information.'
         ],
         bestPractice: [
             'Actual costing capability',
@@ -3388,11 +3388,11 @@ const STEP_METADATA = {
     'GF-FI-04': {
         title: 'Profitability Analysis',
         currentState: [
-            'Limited visibility into true profitability',
-            'Commodity business with thin margins (±5%)',
-            'Budget vs actual disconnect',
-            'No protection against cost increases',
-            'Product and customer profitability unknown'
+            'Limited visibility into true profitability of feed operations. Cost allocations and transfer pricing obscure actual economic performance.',
+            'Commodity business operates with thin margins of approximately ±5%. Small cost changes or pricing errors can swing operations between profit and loss.',
+            'Budget versus actual performance disconnected without systematic analysis. Variance drivers not identified, quantified, or addressed.',
+            'No protection mechanisms against raw material cost increases. Fixed customer prices absorb cost increases, squeezing already thin margins.',
+            'Product-level and customer-level profitability unknown. Cannot identify which products or customers contribute positive versus negative margin.'
         ],
         bestPractice: [
             'Product profitability analysis',
@@ -3412,11 +3412,11 @@ const STEP_METADATA = {
     'GF-FI-05': {
         title: 'FCR Financial Impact',
         currentState: [
-            '0.1 FCR improvement = ~0.5M AED savings',
-            'Current gap 0.3-0.4 vs benchmark = 1.5-2.0M opportunity',
-            'No FCR-linked costing',
-            'Cannot measure true cost by flock',
-            'No performance incentives for FCR improvement'
+            'Each 0.1 improvement in Feed Conversion Ratio represents approximately 0.5 million AED in annual savings. FCR improvement is highest-impact cost lever available.',
+            'Current FCR gap of 0.3-0.4 versus industry benchmark represents 1.5-2.0 million AED annual improvement opportunity. Significant value at stake from FCR improvement.',
+            'No FCR-linked costing methodology to connect feed consumption efficiency with product costs. True cost impact of FCR performance not visible in financial statements.',
+            'Cannot measure true production cost by individual flock due to consumption tracking gaps. Flock-level profitability analysis not achievable with current data.',
+            'No performance incentive programs linked to FCR improvement. Farm and feed mill teams not rewarded for efficiency gains, reducing improvement motivation.'
         ],
         bestPractice: [
             'FCR-linked costing',
@@ -3440,11 +3440,11 @@ const STEP_METADATA = {
     'ENF-H-01': {
         title: 'Egg Procurement',
         currentState: [
-            'Primary source: Al Salwa (Liwa) - intercompany',
-            'Secondary: Open market imports from Oman (15-16%)',
-            'No supplier diversification strategy',
-            'Limited quality-based sourcing protocols',
-            'Biosecurity protocols not integrated with SAP'
+            'Primary hatching egg source is Al Salwa (Liwa) as intercompany supply. Heavy reliance on single internal source creates supply concentration risk.',
+            'Secondary sourcing from open market imports from Oman represents 15-16% of requirements. External purchases fill gaps when internal supply insufficient.',
+            'No formal supplier diversification strategy to reduce single-source dependency. Alternative supplier qualification not systematically pursued.',
+            'Limited quality-based sourcing protocols for hatching egg procurement. Supplier selection based on availability rather than quality performance.',
+            'Biosecurity protocols for egg receipt and handling not integrated with SAP. Compliance documentation maintained separately from procurement records.'
         ],
         bestPractice: [
             'Multiple supplier qualification',
@@ -3464,11 +3464,11 @@ const STEP_METADATA = {
     'ENF-H-02': {
         title: 'Egg Receipt & Grading',
         currentState: [
-            'Eggs received from Salwa, graded at ENF',
-            'Grade A (hatchable) vs Grade B (reject) classification',
-            'B-grade returned to Salwa for sale as table eggs',
-            'Physical inspection process, manual recording',
-            'Recently implementing formal specifications'
+            'Hatching eggs received from Salwa breeding operations and graded at ENF hatchery. Grading process determines egg suitability for incubation.',
+            'Eggs classified as Grade A (suitable for hatching) or Grade B (rejected for incubation). Classification criteria applied but may lack consistency.',
+            'B-grade rejected eggs returned to Salwa for sale as table eggs. Return logistics and intercompany accounting process managed informally.',
+            'Physical inspection and grading process with results recorded manually. No integration with SAP Quality Management for inspection lot creation.',
+            'Recently began implementing formal quality specifications for hatching eggs. Specification criteria and acceptance limits being formalized.'
         ],
         bestPractice: [
             'Automated grading equipment',
@@ -3488,11 +3488,11 @@ const STEP_METADATA = {
     'ENF-H-03': {
         title: 'Egg Storage',
         currentState: [
-            'Storage at ENF before setting in incubators',
-            'Extended storage (20+ days) reduces hatchability',
-            'Optimal storage is 7-8 days',
-            'No system-enforced FIFO by receipt date',
-            'Temperature monitoring not integrated'
+            'Hatching eggs stored at ENF facility before setting in incubators. Storage conditions critical for maintaining egg quality and hatchability.',
+            'Extended storage beyond 20 days significantly reduces hatchability rates. Egg quality degrades with storage time, impacting DOC yield.',
+            'Optimal storage period is 7-8 days before setting. Longer storage accepted when supply exceeds incubator capacity, reducing hatch performance.',
+            'No system-enforced FIFO by receipt date for egg storage. Oldest eggs not systematically set first, potentially extending storage beyond optimal.',
+            'Temperature and humidity monitoring for storage rooms not integrated with SAP. Storage condition compliance documented manually.'
         ],
         bestPractice: [
             'FIFO enforcement by receipt date',
@@ -3512,11 +3512,11 @@ const STEP_METADATA = {
     'ENF-H-04': {
         title: 'Hatchery Cycle',
         currentState: [
-            '21-day incubation cycle',
-            'Setting every 4 days aligned with Salwa collection',
-            '~200,000 eggs per 4-day setting',
-            'No SAP MSG incubation management',
-            'Manual setting schedule, no optimization'
+            'Standard 21-day incubation cycle from setting to hatch. Cycle timing fixed by biological requirements but capacity planning needed for machine utilization.',
+            'Egg setting performed every 4 days aligned with collection schedule from Salwa breeding farms. Setting frequency driven by supply rather than optimized schedule.',
+            'Approximately 200,000 eggs set per 4-day setting cycle. Volume represents full hatchery capacity utilization during peak periods.',
+            'No SAP MSG (Meat, Seafood, Game) incubation management functionality deployed. Hatchery operations managed manually outside ERP system.',
+            'Setting schedule managed manually without optimization tools. No systematic analysis of incubator capacity utilization or setting sequence efficiency.'
         ],
         bestPractice: [
             'SAP MSG incubation management',
@@ -3536,11 +3536,11 @@ const STEP_METADATA = {
     'ENF-H-05': {
         title: 'Hatchability Performance',
         currentState: [
-            'Historical estimation issues: 85-86% estimate vs 90-92% actual',
-            'Recently corrected after discovery',
-            'Estimation errors caused DOC oversupply',
-            'No statistical hatchability models',
-            'No breed-specific performance tracking'
+            'Historical hatchability estimates of 85-86% significantly understated actual performance of 90-92%. Estimation error persisted undetected for extended period.',
+            'Estimation methodology recently corrected after discovery of systematic underestimation. Process improvement implemented but root cause analysis incomplete.',
+            'Hatchability estimation errors caused DOC oversupply to farms. More chicks produced than planned, stressing farm capacity and feed supply planning.',
+            'No statistical hatchability models developed from historical data. Hatch rate expectations based on simple averages without seasonal or source adjustments.',
+            'No breed-specific performance tracking for hatchability metrics. Different genetic lines not evaluated separately for hatch performance comparison.'
         ],
         bestPractice: [
             'Statistical hatchability models',
@@ -3560,11 +3560,11 @@ const STEP_METADATA = {
     'ENF-H-06': {
         title: 'DOC Output',
         currentState: [
-            'Hatchery produces DOCs for own farms only',
-            '150,000 DOC capacity per cycle',
-            'Production order for egg-to-DOC conversion',
-            'No hatch yield variance analysis',
-            'Quality grading not formalized'
+            'Hatchery produces day-old chicks exclusively for own farm operations. No external DOC sales, limiting revenue diversification opportunities.',
+            'Hatchery capacity of 150,000 DOCs per 4-day setting cycle. Capacity sized for internal farm requirements without commercial surplus.',
+            'Production order created for egg-to-DOC conversion process. However, order costing and variance analysis not fully utilized for performance management.',
+            'No systematic hatch yield variance analysis comparing actual to expected DOC output. Yield losses not quantified or investigated for improvement.',
+            'DOC quality grading not formalized in SAP. Chick quality assessment performed but results not recorded in system for supplier feedback.'
         ],
         bestPractice: [
             'Production order costing with variance',
@@ -3588,11 +3588,11 @@ const STEP_METADATA = {
     'ENF-F-01': {
         title: 'Farm Capacity',
         currentState: [
-            '13 farms with 6 houses each',
-            '25,000 birds per house = 150,000 total capacity',
-            'No SAP Livestock Management',
-            'House-level tracking manual only',
-            'Capacity optimization not system-driven'
+            'Broiler operations span 13 farms with 6 poultry houses each. Distributed farm network requires coordinated management and logistics.',
+            'Each house capacity of 25,000 birds provides total placement capacity of approximately 150,000 birds per cycle. Capacity constrains growth potential.',
+            'No SAP Livestock Management module deployed for farm operations. Flock lifecycle completely managed outside ERP system.',
+            'House-level tracking for bird counts, mortality, and performance maintained manually in spreadsheets. No system-based flock management.',
+            'Capacity utilization optimization not system-driven. Placement scheduling and house allocation based on manual coordination rather than analytics.'
         ],
         bestPractice: [
             'SAP Livestock Management deployment',
@@ -3612,11 +3612,11 @@ const STEP_METADATA = {
     'ENF-F-02': {
         title: 'DOC Placement',
         currentState: [
-            'DOCs from hatchery placed in farm houses',
-            'One production order per house',
-            'PO stays open during 35-42 day growing cycle',
-            'No flock master data in SAP',
-            'Placement scheduling manual'
+            'Day-old chicks from hatchery transported and placed in prepared farm houses. Placement logistics coordinated manually between hatchery and farms.',
+            'Single production order created per house covering entire grow-out cycle. Limited granularity prevents detailed daily tracking within cycle.',
+            'Production order remains open throughout 35-42 day growing cycle until birds sent to processing. Extended open order duration complicates cost tracking.',
+            'No flock master data configured in SAP. Flock attributes including source, placement date, and bird count not maintained as master records.',
+            'Placement scheduling performed manually by farm management. No system-based coordination of hatchery output with house availability.'
         ],
         bestPractice: [
             'Flock master data with attributes',
@@ -3636,11 +3636,11 @@ const STEP_METADATA = {
     'ENF-F-03': {
         title: 'Growing Cycle',
         currentState: [
-            '35-42 days to slaughter weight',
-            'Three feed stages: Pre-starter (1-10), Grower (11-23), Finisher',
-            'No growth curve monitoring in SAP',
-            'Stage-based management manual only',
-            'Performance KPIs tracked externally'
+            'Broiler grow-out cycle of 35-42 days from DOC placement to target slaughter weight. Cycle length varies based on target weight and market requirements.',
+            'Three nutritional stages during growth: Pre-starter (days 1-10), Grower (days 11-23), and Finisher until processing. Each stage requires different feed formulation.',
+            'No growth curve monitoring capability in SAP. Expected versus actual bird weights not tracked in system for early detection of performance issues.',
+            'Feed stage transitions managed manually based on bird age. No system triggers or alerts for stage changeover timing.',
+            'Key performance indicators including daily gain, feed consumption, and mortality tracked in external spreadsheets. Performance data not in ERP for integrated analysis.'
         ],
         bestPractice: [
             'Growth curve monitoring with alerts',
@@ -3660,11 +3660,11 @@ const STEP_METADATA = {
     'ENF-F-04': {
         title: 'Feed Consumption Control',
         currentState: [
-            'CRITICAL GAP: Bulk feed to silos without measurement',
-            'No measuring at truck nor in silos',
-            'Feed consumption estimated, not tracked',
-            'Cannot verify delivered vs consumed',
-            'FCR calculation unreliable'
+            'CRITICAL GAP: Feed delivered in bulk tankers to farm silos without precise measurement at either end. Significant control weakness for major cost component.',
+            'No weighing capability at delivery point or silo level sensors installed. Delivered quantities based on dispatch weight only without receipt verification.',
+            'Feed consumption estimated by difference rather than directly measured at house level. Estimation methodology introduces significant uncertainty.',
+            'Cannot verify or reconcile delivered quantities versus actual consumption. Discrepancies between delivery and usage cannot be identified or investigated.',
+            'Feed Conversion Ratio calculations unreliable due to consumption measurement gaps. FCR performance metrics based on estimates rather than actual data.'
         ],
         bestPractice: [
             'Silo-level sensors for measurement',
@@ -3684,11 +3684,11 @@ const STEP_METADATA = {
     'ENF-F-05': {
         title: 'FCR Performance',
         currentState: [
-            'FCR 1.7-1.8 actual vs 1.4 industry benchmark',
-            '0.3-0.4 gap represents millions in potential losses',
-            'No real-time FCR by house',
-            'Cannot trace to feed vendor performance',
-            'Continuous improvement limited'
+            'Feed Conversion Ratio of 1.7-1.8 significantly exceeds industry benchmark of 1.4. This performance gap represents a critical competitive disadvantage.',
+            'FCR gap of 0.3-0.4 translates to millions of AED in excess feed cost annually. Improvement to benchmark levels would substantially improve profitability.',
+            'No real-time FCR visibility at individual house level. Performance variations between houses cannot be detected during grow-out cycle.',
+            'Cannot trace FCR performance to specific feed batches or vendors. Unable to identify whether poor FCR results from feed quality or farm management.',
+            'Continuous improvement initiatives limited by lack of reliable data. Cannot measure impact of changes due to consumption tracking gaps.'
         ],
         bestPractice: [
             'Real-time FCR by house',
@@ -3708,11 +3708,11 @@ const STEP_METADATA = {
     'ENF-F-06': {
         title: 'Mortality Tracking',
         currentState: [
-            'Mortality recorded as scrap at cycle end only',
-            'Root cause analysis limited',
-            'Cannot trace to feed source when mixed',
-            'Daily mortality not tracked in SAP',
-            'Disease outbreak correlation difficult'
+            'Mortality is only recorded as scrap at the end of the grow-out cycle. Daily deaths are not captured in SAP, losing valuable data for trend analysis and early warning detection.',
+            'Root cause analysis for mortality events is severely limited. Without daily recording and reason codes, patterns indicating disease onset or environmental issues cannot be identified.',
+            'When feed batches are mixed in silos, correlation between mortality spikes and specific feed sources becomes impossible. Feed quality issues may go undetected as a mortality driver.',
+            'Daily mortality counts are maintained externally but not entered into SAP. This disconnect means financial impact of mortality is not visible until cycle completion.',
+            'Disease outbreak correlation requires manual cross-referencing of paper records. Early indicators of health issues cannot be detected through system analytics.'
         ],
         bestPractice: [
             'Daily mortality recording with reason codes',
@@ -3736,11 +3736,11 @@ const STEP_METADATA = {
     'ENF-P-01': {
         title: 'Processing Facilities',
         currentState: [
-            'Two plants: PPE (fresh) and FPPE (frozen/further processing)',
-            'PPE handles fresh chicken for Al Rawdah brand',
-            'FPPE handles frozen and further processed products',
-            'No integrated plant planning',
-            'Line capacity optimization manual'
+            'Two processing plants operate independently: PPE (Primary Processing Establishment) for fresh products and FPPE (Further Processing Poultry Establishment) for frozen and value-added items.',
+            'PPE facility handles fresh chicken production for the Al Rawdah brand. The plant focuses on whole birds and fresh portions for immediate distribution to retail and foodservice.',
+            'FPPE facility manages frozen products and further processed items including marinated products, formed items, and ready-to-cook offerings. Different production characteristics from fresh operations.',
+            'No integrated planning system coordinates the two plants. Production scheduling, capacity balancing, and product mix optimization are managed manually without visibility across facilities.',
+            'Line capacity optimization relies on manual calculations and experience. Dynamic reallocation of products between lines based on demand changes is not system-supported.'
         ],
         bestPractice: [
             'Integrated plant planning',
@@ -3760,11 +3760,11 @@ const STEP_METADATA = {
     'ENF-P-02': {
         title: 'Daily Volume',
         currentState: [
-            '50,000-60,000 birds per day slaughtered',
-            'Farm-to-plant coordination manual',
-            'No slaughter planning optimization',
-            'Capacity matching ad-hoc',
-            'Volume forecasting basic'
+            'Processing capacity of 50,000-60,000 birds per day represents significant throughput requiring precise coordination. Volume variations impact labor scheduling, utilities, and packaging material requirements.',
+            'Farm-to-plant coordination is managed manually via phone calls and spreadsheets. No system integration provides real-time visibility of bird availability, transport scheduling, or arrival timing.',
+            'Slaughter planning lacks optimization algorithms. Sequence of farm pickups, bird weights, and plant line allocation are determined by experience rather than data-driven optimization.',
+            'Capacity matching between live bird supply and processing demand is handled ad-hoc. Mismatches result in either idle capacity costs or overtime when supply exceeds normal capacity.',
+            'Volume forecasting uses basic historical averages. Seasonal demand patterns, promotional impacts, and customer requirement changes are not systematically incorporated into planning.'
         ],
         bestPractice: [
             'Slaughter planning optimization',
@@ -3784,11 +3784,11 @@ const STEP_METADATA = {
     'ENF-P-03': {
         title: 'Production Order Chain',
         currentState: [
-            'Five production orders in chain',
-            'Egg→DOC, DOC→Broiler, Live→Carcass, Carcass→Portions, Portions→Packed FG',
-            'No SAP MSG integrated chain',
-            'Disassembly BOM not standard',
-            'Catch-weight not enabled'
+            'Production follows a five-stage transformation chain: Egg→DOC, DOC→Broiler, Live→Carcass, Carcass→Portions, Portions→Packed Finished Goods. Each stage creates value and tracking requirements.',
+            'The complete chain from egg to finished goods is not managed through SAP MSG (Meat, Seafood, Game) functionality. Stages are tracked independently without integrated cost flow visibility.',
+            'Disassembly BOM (Bill of Materials) functionality is not implemented using standard SAP approaches. The transformation from whole bird to multiple portion types requires special handling.',
+            'Joint product costing for disassembly processes uses workarounds rather than standard configurations. This impacts cost allocation accuracy and profitability analysis by portion type.',
+            'Catch-weight functionality is not enabled throughout the chain. Variable weights at each processing stage cannot be properly captured for inventory valuation and customer invoicing.'
         ],
         bestPractice: [
             'SAP MSG integrated production chain',
@@ -3808,11 +3808,11 @@ const STEP_METADATA = {
     'ENF-P-04': {
         title: 'Carcass Split Ratio',
         currentState: [
-            '65-70% whole chicken, 30-35% portions',
-            'Portions: breast, thigh, drumstick, wings',
-            'No value-based splitting for joint product costing',
-            'Breast appears artificially cheap',
-            'Wings show accounting losses'
+            'Current production mix runs 65-70% whole chickens with 30-35% going to portion cutting. This ratio varies based on customer demand and market conditions but lacks dynamic optimization.',
+            'Portion categories include breast (premium), thigh, drumstick, and wings. Each portion has different market values but similar processing costs, creating allocation challenges.',
+            'No value-based splitting methodology for joint product costing. All portions receive equal cost allocation regardless of market value, distorting true profitability by product.',
+            'Breast meat appears artificially cheap under equal allocation since it receives same cost per kg as lower-value portions. Premium pricing does not reflect actual economics.',
+            'Wings show accounting losses despite strong market demand. Equal cost allocation burdens wings with same cost as breast while selling at lower prices, creating false margin picture.'
         ],
         bestPractice: [
             'MSG value-based allocation',
@@ -3832,11 +3832,11 @@ const STEP_METADATA = {
     'ENF-P-05': {
         title: 'Variable Yield Challenge',
         currentState: [
-            'Production order created AFTER output known',
-            'Variable SKU sizes from processing',
-            'Cannot predict exact portion quantities',
-            'Yield varies by bird size and quality',
-            'Manual adjustment of outputs'
+            'Production orders are created retroactively after output quantities are known. This back-flush approach means planning cannot anticipate finished goods availability.',
+            'Variable SKU sizes emerge from processing as bird weights differ. A single production run yields different quantities of each weight grade, complicating inventory management.',
+            'Exact portion quantities cannot be predicted before processing. Customer orders for specific portions may not match actual yield, requiring substitution or short shipments.',
+            'Yield varies significantly based on input bird size and quality. Larger birds yield proportionally more breast meat while smaller birds have higher bone-to-meat ratios.',
+            'Manual adjustment of production outputs is required to match actual yield. System records must be corrected after processing completion, introducing timing delays and potential errors.'
         ],
         bestPractice: [
             'MSG variable yield handling',
@@ -3856,11 +3856,11 @@ const STEP_METADATA = {
     'ENF-P-06': {
         title: 'Catch Weight Gap',
         currentState: [
-            'No catch-weight management implemented',
-            'Products sold by piece but vary in weight',
-            'Weight ranges from 9g to 18g per piece',
-            'SAP MSG catch-weight not enabled',
-            'Inventory accuracy issues'
+            'Catch-weight management is not implemented despite product characteristics requiring it. Products vary significantly in weight but system cannot track both piece count and weight simultaneously.',
+            'Products are sold by piece but actual weights vary substantially. Customer invoicing by piece ignores weight differences, potentially impacting margin when selling heavier pieces.',
+            'Individual piece weights can range from 9g to 18g for the same product type - a 100% variation. Without catch-weight tracking, inventory value calculations use averages that may not reflect reality.',
+            'SAP MSG catch-weight functionality remains disabled. This standard meat industry capability would allow dual unit of measure tracking (pieces and kg) essential for proper valuation.',
+            'Inventory accuracy issues arise from weight variability. Physical inventory counts by weight may not reconcile with system quantities tracked in pieces, complicating period-end processes.'
         ],
         bestPractice: [
             'Catch-weight inventory management',
@@ -3884,11 +3884,11 @@ const STEP_METADATA = {
     'SL-PP-01': {
         title: 'DOC Sourcing',
         currentState: [
-            '100% imported from Saudi Arabia',
-            'Single source country dependency',
-            'Limited supplier options (competitor Ajman will not sell)',
-            '3 batches per year, 30,600 DOCs each',
-            'No demand-driven planning'
+            'All Day-Old Chicks (DOCs) for breeder operations are imported 100% from Saudi Arabia. This single-country dependency creates significant supply chain risk for the breeding operation.',
+            'Single source country creates vulnerability to border closures, disease outbreaks in Saudi Arabia, or diplomatic issues. No contingency sources have been qualified.',
+            'Supplier options are severely limited as the main competitor in Ajman will not sell to Emirates National Foods. This competitive dynamic restricts market access for breeding stock.',
+            'Only 3 batches per year are imported with approximately 30,600 DOCs per batch. This infrequent cadence requires careful planning and provides limited flexibility for demand changes.',
+            'Procurement is not driven by downstream demand forecasting. DOC orders are placed based on capacity rather than anticipated egg requirements from the hatchery operation.'
         ],
         bestPractice: [
             'Multiple source countries',
@@ -3908,11 +3908,11 @@ const STEP_METADATA = {
     'SL-PP-02': {
         title: 'Rearing Cycle',
         currentState: [
-            '0-24 weeks in rearing houses',
-            '4 houses in one rearing farm',
-            '10% male birds in flock',
-            'No SAP Livestock flock tracking',
-            'Growth curve monitoring manual'
+            'Breeder birds undergo a 24-week rearing period from day-old chick to laying maturity. This significant investment period requires careful monitoring of growth, feed consumption, and health.',
+            'The rearing operation uses 4 houses within a single farm facility. This concentration creates all-in-all-out management requirements and biosecurity considerations.',
+            'Flock composition maintains 10% male birds for breeding purposes. Male-to-female ratio management is critical for optimal fertility and requires ongoing monitoring.',
+            'SAP Livestock module is not implemented for flock tracking. Bird counts, mortality, vaccinations, and growth parameters are managed outside the ERP system.',
+            'Growth curve monitoring against breed standards is performed manually using spreadsheets. Deviations from expected growth rates may not be detected promptly for corrective action.'
         ],
         bestPractice: [
             'SAP Livestock Management',
@@ -3932,11 +3932,11 @@ const STEP_METADATA = {
     'SL-PP-03': {
         title: 'Laying Houses',
         currentState: [
-            '2 farms with 4 houses each = 8 laying houses',
-            '~26,000 birds per flock in production',
-            'No house capacity optimization',
-            'Flock density management manual',
-            'Climate control not integrated'
+            'Laying operations span 2 farms with 4 houses each, totaling 8 laying houses. This facility footprint represents significant fixed asset investment requiring optimization.',
+            'Each flock in production contains approximately 26,000 birds. At full capacity with 2 flocks producing, this represents over 50,000 laying birds requiring daily management.',
+            'House capacity optimization is not system-supported. Decisions on flock placement, timing of house turnovers, and capacity utilization rely on manual planning.',
+            'Flock density management follows manual calculations and visual inspection. Density impacts bird welfare, production performance, and regulatory compliance.',
+            'Climate control systems operate independently without integration to production systems. Environmental conditions critical to laying performance are not correlated with production data.'
         ],
         bestPractice: [
             'House capacity optimization',
@@ -3956,11 +3956,11 @@ const STEP_METADATA = {
     'SL-PP-04': {
         title: 'Production Cycle',
         currentState: [
-            'Laying from week 25 to week 65 (41 weeks)',
-            'Production varies by flock age',
-            'No production curve tracking in SAP',
-            'Peak production management manual',
-            'End-of-lay decisions ad-hoc'
+            'Active laying period spans 41 weeks from week 25 to week 65. This extended production cycle requires sustained performance management and health monitoring throughout.',
+            'Egg production follows a biological curve that varies significantly by flock age. Peak production occurs around weeks 30-35 before gradually declining toward end of lay.',
+            'Production curve tracking is not maintained in SAP. Standard breed curves for comparison and deviation analysis are managed externally, limiting integrated performance analysis.',
+            'Peak production management relies on manual observation and experience. Maximizing production during peak weeks through nutrition and environment requires data-driven decisions.',
+            'End-of-lay decisions about when to depopulate flocks are made ad-hoc. Economic modeling of continued production vs. new flock placement is not system-supported.'
         ],
         bestPractice: [
             'Production curve tracking',
@@ -3980,11 +3980,11 @@ const STEP_METADATA = {
     'SL-PP-05': {
         title: 'Daily Egg Production',
         currentState: [
-            '~52,000 eggs per day at peak from 2 flocks',
-            'Production varies by flock age',
-            'No daily production recording in SAP',
-            'Yield analysis manual',
-            'Flock performance KPIs external'
+            'Peak daily production reaches approximately 52,000 hatching eggs from 2 flocks operating simultaneously. This volume represents critical supply for downstream hatchery operations.',
+            'Daily production varies substantially based on flock age and stage of laying cycle. Understanding production patterns is essential for supply coordination with ENF hatchery.',
+            'Daily production quantities are not recorded in SAP. Egg counts are maintained in farm-level records but not integrated into ERP for planning and financial visibility.',
+            'Yield analysis comparing actual vs. expected production based on flock size and age is performed manually. Deviations indicating health or management issues may not be promptly identified.',
+            'Key flock performance KPIs including hen-day production percentage, egg quality metrics, and feed conversion are tracked externally rather than in integrated business systems.'
         ],
         bestPractice: [
             'Daily production recording',
@@ -4004,11 +4004,11 @@ const STEP_METADATA = {
     'SL-PP-06': {
         title: 'ENF Collection',
         currentState: [
-            'Eggs collected by ENF every 4 days',
-            'Storage at Salwa between collections',
-            'Collection schedule manual coordination',
-            'No real-time visibility for ENF',
-            'Paper-based delivery notes'
+            'ENF trucks collect hatching eggs from Salwa every 4 days. This collection frequency balances transport efficiency against egg storage duration and hatchability concerns.',
+            'Eggs are stored at Salwa farm between collections, requiring proper temperature and humidity control. Extended storage affects hatchability, making collection timing critical.',
+            'Collection scheduling is coordinated manually via phone calls. No system-based scheduling optimizes collection timing based on production volumes and hatchery requirements.',
+            'ENF hatchery has no real-time visibility into egg availability at Salwa. Planning for setter loading relies on historical patterns rather than actual inventory data.',
+            'Delivery documentation uses paper-based delivery notes created manually. No SAP delivery documents provide system traceability for the egg transfer.'
         ],
         bestPractice: [
             'Integrated collection scheduling',
@@ -4032,11 +4032,11 @@ const STEP_METADATA = {
     'SL-QM-01': {
         title: 'Egg Grading Process',
         currentState: [
-            'Physical grading at collection',
-            'Grade A (≥50g, hatchable) vs Grade B (undersized, defects)',
-            'Only Grade A sent for hatching',
-            'Manual grading process',
-            'No automated grading equipment'
+            'Physical grading is performed at ENF upon egg collection from Salwa. This downstream grading approach means quality determination happens at destination rather than origin.',
+            'Grade A classification requires minimum 50g weight and no defects suitable for hatching. Grade B includes undersized eggs, shell defects, and floor eggs unsuitable for incubation.',
+            'Only Grade A eggs proceed to the hatchery for incubation. Grade B eggs are returned to Salwa books for sale as table eggs in external market.',
+            'Grading process is entirely manual, relying on visual inspection and hand weighing. Consistency depends on individual grader judgment without standardized measurement.',
+            'No automated grading equipment exists to provide consistent, objective classification. Modern egg graders could improve accuracy and reduce labor costs.'
         ],
         bestPractice: [
             'Automated grading equipment',
@@ -4056,11 +4056,11 @@ const STEP_METADATA = {
     'SL-QM-02': {
         title: 'B-Grade Reasons',
         currentState: [
-            'Undersized eggs (early laying period)',
-            'Double yolk, shell defects, floor eggs',
-            'Primarily in first 1-2 weeks of laying cycle',
-            '3 occurrences per year (new flock starts)',
-            'No root cause analysis in system'
+            'Undersized eggs occur primarily at start of each laying cycle when pullets begin production. These early eggs do not meet minimum weight requirements for successful hatching.',
+            'Defect categories include double yolk (oversize), shell abnormalities (thin, rough, or cracked), and floor eggs (laid outside nest boxes with contamination risk).',
+            'B-grade volumes concentrate in the first 1-2 weeks of each laying cycle as birds establish regular production. This predictable pattern creates temporary quality dips.',
+            'With 3 batches per year starting new flocks, B-grade spikes occur 3 times annually. These occurrences are predictable but not formally planned in production forecasting.',
+            'Root cause analysis for B-grade eggs is not systematically tracked. Defect codes and trend analysis that could identify correctable issues are not maintained in any system.'
         ],
         bestPractice: [
             'Defect categorization with codes',
@@ -4080,11 +4080,11 @@ const STEP_METADATA = {
     'SL-QM-03': {
         title: 'Grading Location',
         currentState: [
-            'Grading done at ENF upon receipt, not at Salwa',
-            'Salwa ships all eggs without pre-grading',
-            'Hatchery decides A vs B classification',
-            'Quality determination at destination',
-            'Transport of B-grade eggs inefficient'
+            'All grading occurs at ENF hatchery upon receipt rather than at Salwa origin. This approach means Salwa has no quality feedback until after transport completion.',
+            'Salwa ships all eggs without pre-grading, mixing Grade A and Grade B in the same transport. No segregation at source maximizes transport volume but includes non-hatchable eggs.',
+            'ENF hatchery makes all Grade A vs. Grade B classification decisions. Salwa relies entirely on ENF quality assessment with limited ability to dispute classifications.',
+            'Quality determination at destination creates a disconnect between production and quality feedback. Farm managers cannot make real-time adjustments based on quality trends.',
+            'Transporting B-grade eggs that will not be used for hatching is inherently inefficient. Fuel, labor, and vehicle capacity are consumed for eggs that return to Salwa.'
         ],
         bestPractice: [
             'Source grading at Salwa preferred',
@@ -4104,11 +4104,11 @@ const STEP_METADATA = {
     'SL-QM-04': {
         title: 'B-Grade Sales',
         currentState: [
-            'B-grade eggs returned to Salwa books',
-            'Sold externally as table eggs',
-            'Separate sales process from intercompany',
-            'Small volume, manual management',
-            'No integrated by-product tracking'
+            'B-grade eggs are returned to Salwa\'s inventory and financial books after ENF grading. This reverse transfer requires accounting entries and physical handling back to origin.',
+            'Table egg sales to external customers represent a secondary revenue stream. These sales require different customer relationships, pricing, and distribution from the core intercompany business.',
+            'The B-grade sales process operates separately from the intercompany egg transfer to ENF. Different pricing structures, customers, and terms apply to external sales.',
+            'Volume of B-grade sales is relatively small and managed manually. The limited scale does not justify dedicated sales infrastructure or system automation.',
+            'No integrated by-product tracking connects B-grade occurrences to sales outcomes. Profitability of B-grade recovery cannot be analyzed against the cost of producing those eggs.'
         ],
         bestPractice: [
             'By-product revenue optimization',
@@ -4132,11 +4132,11 @@ const STEP_METADATA = {
     'SL-MM-01': {
         title: 'DOC Import',
         currentState: [
-            'Import from Saudi Arabia',
-            'Delivered to Liwa location',
-            'No inbound logistics management',
-            'Delivered to door, no SAP tracking',
-            'Import documentation manual'
+            'Day-Old Chick imports from Saudi Arabia require careful coordination for live animal transport. Temperature control, transit time, and border clearance are critical to chick survival.',
+            'Delivery to the Liwa location involves cross-border logistics with specialized transport vehicles. The remote location adds complexity to supplier coordination.',
+            'No inbound logistics management system tracks shipment status, expected arrival times, or transport conditions. Visibility into in-transit shipments is limited to phone calls.',
+            'Supplier delivers to the farm door with no SAP tracking of the receipt process. Goods receipt is recorded manually after physical verification of chick counts and condition.',
+            'Import documentation including health certificates, customs declarations, and veterinary approvals is managed through manual paper-based processes outside SAP.'
         ],
         bestPractice: [
             'Import documentation automation',
@@ -4156,11 +4156,11 @@ const STEP_METADATA = {
     'SL-MM-02': {
         title: 'Feed Supply',
         currentState: [
-            'Feed supplied by GF (Greenfields) via ENF',
-            'Subsidized feed from government quota via ADS',
-            '90% should be subsidized',
-            'Manual quota tracking in government portal',
-            'No SAP integration for subsidies'
+            'Feed is supplied by Greenfields (GF) through ENF\'s coordination. This multi-company supply chain requires intercompany agreements and pricing arrangements.',
+            'Government subsidized feed through ADS (Abu Dhabi Subsidy) program provides significant cost reduction. Proper utilization of subsidy quota is critical to farm profitability.',
+            'Approximately 90% of feed requirements should qualify for government subsidy. Ensuring maximum utilization of available quota directly impacts operating costs.',
+            'Quota tracking and compliance reporting is managed manually through the government portal. No automated alerts warn of approaching limits or expiring entitlements.',
+            'SAP has no integration with subsidy management. Subsidy utilization cannot be correlated with actual feed consumption or financial benefits captured in the ERP.'
         ],
         bestPractice: [
             'Feed scheduling automation',
@@ -4180,11 +4180,11 @@ const STEP_METADATA = {
     'SL-MM-03': {
         title: 'Feed Delivery',
         currentState: [
-            'Bulk tanker delivery to silos',
-            'Same control issues as ENF farms',
-            'No measurement at silo level',
-            'Consumption estimated, not measured',
-            'Cannot verify delivered vs consumed'
+            'Feed arrives via bulk tanker delivery directly into farm silos. This delivery method optimizes transport costs but creates inventory measurement challenges.',
+            'The same control issues observed at ENF broiler farms exist at Salwa breeding operations. Bulk delivery without silo sensors leaves feed quantities unverified.',
+            'No measurement systems exist at silo level to verify delivered quantities. Farms rely on delivery tickets from the supplier without independent confirmation.',
+            'Daily feed consumption is estimated based on bird counts and standard feeding rates rather than measured from silo levels. Actual usage cannot be verified.',
+            'Without beginning and ending inventory measurements, delivered quantities cannot be reconciled against consumption. Feed losses or delivery shortages go undetected.'
         ],
         bestPractice: [
             'Bag-based delivery for control',
@@ -4204,11 +4204,11 @@ const STEP_METADATA = {
     'SL-MM-04': {
         title: 'Vaccine/Medication',
         currentState: [
-            'Managed by farm manager and veterinarian',
-            'Vaccination schedule based on bird age',
-            'Cold chain requirements manual',
-            'Withdrawal period tracking manual',
-            'Batch traceability limited'
+            'Vaccine and medication management is handled directly by the farm manager and veterinarian. No system oversight ensures protocol compliance or tracks administration.',
+            'Vaccination schedules are determined by bird age following breed-specific protocols. Multiple vaccinations at different ages require careful timing and documentation.',
+            'Cold chain requirements for vaccine storage are managed manually. Temperature monitoring of vaccine refrigerators and handling protocols are not system-enforced.',
+            'Withdrawal periods after medication administration are tracked manually. No system alerts prevent premature processing of birds that have received treatments.',
+            'Batch traceability for vaccines and medications is limited. Connecting specific vaccine lots to administered flocks for recall purposes requires manual record searches.'
         ],
         bestPractice: [
             'Cold chain management system',
@@ -4228,11 +4228,11 @@ const STEP_METADATA = {
     'SL-MM-05': {
         title: 'Bird Valuation',
         currentState: [
-            'Birds valued through capitalization model',
-            'No daily valuation of growing flock',
-            'Static inventory approach',
-            'Valuation only at PO completion',
-            'No IAS 41 daily fair value'
+            'Breeder birds are valued using a capitalization model that accumulates costs during rearing. All costs flow into inventory value without daily fair value adjustments.',
+            'No daily valuation of the growing flock occurs during the 24-week rearing period. Bird value remains static at cost accumulation rather than reflecting biological growth.',
+            'The static inventory approach treats birds as conventional inventory rather than biological assets. This simplification may not comply with IAS 41 requirements.',
+            'Valuation updates occur only at production order completion when birds transfer from rearing to laying. Interim financial reporting relies on accumulated costs.',
+            'IAS 41 Agricultural standard requires fair value measurement of biological assets. Daily fair value adjustments based on growth and market conditions are not performed.'
         ],
         bestPractice: [
             'SAP Livestock valuation',
@@ -4256,11 +4256,11 @@ const STEP_METADATA = {
     'SL-FI-01': {
         title: 'Biological Asset Capitalization',
         currentState: [
-            'Capitalization for 24 weeks during rearing',
-            'DOC cost + feed + vaccination + overhead accumulated',
-            'Creates asset value at week 24',
-            'Manual calculation and posting',
-            'IAS 41 approach attempted'
+            'Cost capitalization runs throughout the 24-week rearing period. All costs incurred during this phase accumulate into the bird inventory value rather than expensing.',
+            'Capitalized costs include DOC purchase price, feed consumption, vaccination and medication, and allocated overhead costs. This builds substantial work-in-progress inventory.',
+            'Asset value crystallizes at week 24 when birds transfer to laying status. The accumulated cost becomes the basis for subsequent depreciation/amortization.',
+            'Calculation of accumulated costs and posting of capitalization entries is performed manually via spreadsheets. No automated accumulation exists in SAP.',
+            'The approach attempts IAS 41 compliance but uses cost accumulation rather than fair value. True IAS 41 treatment would require fair value adjustments.'
         ],
         bestPractice: [
             'SAP biological asset module',
@@ -4280,11 +4280,11 @@ const STEP_METADATA = {
     'SL-FI-02': {
         title: 'Amortization',
         currentState: [
-            'Amortization from week 25 to 65 (41 weeks laying)',
-            'Excel-based calculation',
-            'Posted via journal vouchers',
-            'Manual depreciation spread',
-            'Not automated in SAP'
+            'Amortization of capitalized bird value occurs over the 41-week laying period from week 25 to week 65. This spreads the rearing investment against egg production.',
+            'All amortization calculations are performed in Excel spreadsheets outside of SAP. Depreciation schedules are maintained manually for each flock.',
+            'Posting to SAP occurs through manual journal vouchers at period end. No automated depreciation run calculates and posts amortization expense.',
+            'Depreciation spread methodology uses straight-line approach over the laying period. Production-based amortization matching expense to output is not implemented.',
+            'SAP Asset Accounting or biological asset functionality is not utilized for breeder bird amortization. This manual approach increases period-end workload and error risk.'
         ],
         bestPractice: [
             'Automated amortization in SAP',
@@ -4304,11 +4304,11 @@ const STEP_METADATA = {
     'SL-FI-03': {
         title: 'Production Orders',
         currentState: [
-            'Two production orders structure',
-            'Rearing PO: DOC to laying-ready bird',
-            'Laying PO: For cost capture during production',
-            'Costs accumulated on orders',
-            'No variance analysis vs standard'
+            'Two production order structure manages the breeder lifecycle: one for rearing phase and one for laying phase. Each captures costs during its respective period.',
+            'The rearing production order transforms DOC input into laying-ready birds at week 24. All rearing costs flow through this order for capitalization.',
+            'The laying production order runs during the 41-week production period. Ongoing feed, vaccination, and overhead costs during laying are captured here.',
+            'Costs accumulate on production orders but settlement processes move costs to appropriate accounts. Manual intervention is required for proper cost flow.',
+            'No variance analysis compares actual costs against standard costs. Without standards, performance measurement against benchmarks is not possible.'
         ],
         bestPractice: [
             'Integrated production costing',
@@ -4328,11 +4328,11 @@ const STEP_METADATA = {
     'SL-FI-04': {
         title: 'Egg Costing',
         currentState: [
-            'Period costing approach',
-            'Whatever produced is considered sold',
-            'Feed and vaccination costs allocated to eggs',
-            'No cost per egg visibility',
-            'True production cost not calculated'
+            'Period costing approach treats all costs in a period as cost of goods sold. No actual production costing calculates cost per egg based on inputs and yields.',
+            'Production is assumed equal to sales - whatever is produced is considered sold. No inventory buildup or work-in-progress tracking exists for eggs.',
+            'Feed and vaccination costs during laying are allocated entirely to egg production. No allocation methodology distinguishes costs between egg grades or production periods.',
+            'Cost per egg is not calculated or visible. Management cannot assess whether egg production is profitable or compare costs to market prices.',
+            'True production cost including bird amortization, feed, medication, labor, and overhead is not calculated on a per-unit basis. Profitability analysis is limited.'
         ],
         bestPractice: [
             'Actual production costing',
@@ -4352,11 +4352,11 @@ const STEP_METADATA = {
     'SL-FI-05': {
         title: 'Transfer Pricing',
         currentState: [
-            'Fixed transfer price for eggs to ENF',
-            'ENF truck collects - no transport cost to Salwa',
-            'No regular price reviews',
-            'Arm\'s length documentation limited',
-            'Manual intercompany reconciliation'
+            'A fixed transfer price governs all egg sales from Salwa to ENF. This intercompany price determines profit allocation between the breeding and hatching operations.',
+            'ENF bears all transport costs by collecting eggs using their trucks. Salwa\'s transfer price is effectively ex-works with no logistics component.',
+            'Transfer prices are not regularly reviewed against market conditions or cost changes. The fixed price may not reflect current economics of egg production.',
+            'Arm\'s length documentation for transfer pricing compliance is limited. Supporting documentation for tax authority review may be insufficient.',
+            'Intercompany reconciliation between Salwa sales and ENF purchases is performed manually. Matching of intercompany transactions requires period-end effort.'
         ],
         bestPractice: [
             'Market-based transfer pricing',
@@ -4380,11 +4380,11 @@ const STEP_METADATA = {
     'SL-SD-01': {
         title: 'Customer Base',
         currentState: [
-            'Single customer - ENF (100% intercompany)',
-            '100% of Grade A eggs to ENF',
-            'B-grade sold externally',
-            'No external hatching egg sales',
-            'Complete dependency on ENF'
+            'Salwa operates with a single customer: Emirates National Foods (ENF). This 100% intercompany model simplifies sales operations but creates complete revenue dependency.',
+            'All Grade A hatching eggs (100%) are transferred to ENF for incubation. Salwa has no alternative customers for its primary product.',
+            'B-grade eggs unsuitable for hatching are sold externally as table eggs. This represents the only external customer relationship for the breeding operation.',
+            'No external hatching egg sales to other hatcheries occur. Even if market opportunities existed, production is committed entirely to internal ENF requirements.',
+            'Complete dependency on ENF means any change in ENF requirements directly impacts Salwa operations. No diversification buffer exists against demand fluctuations.'
         ],
         bestPractice: [
             'Scheduling agreements with ENF',
@@ -4404,11 +4404,11 @@ const STEP_METADATA = {
     'SL-SD-02': {
         title: 'Order Process',
         currentState: [
-            'No formal sales orders in SAP',
-            'Production-driven supply model',
-            'ENF collects every 4 days based on production',
-            'Manual delivery notes only',
-            'No order management in system'
+            'No formal sales orders exist in SAP for egg transfers to ENF. The intercompany transaction operates without standard order-to-cash documentation.',
+            'Supply follows a production-driven model rather than demand-driven. Whatever Salwa produces is taken by ENF regardless of actual hatchery requirements.',
+            'ENF collection every 4 days is based on production accumulation rather than order requirements. No order communication defines expected quantities or timing.',
+            'Delivery documentation consists only of manual delivery notes created at the time of collection. No SAP sales order or delivery note drives the process.',
+            'Without system-based order management, there is no visibility into planned vs. actual deliveries, no acknowledgment workflow, and no exception management.'
         ],
         bestPractice: [
             'Automatic order generation',
@@ -4428,11 +4428,11 @@ const STEP_METADATA = {
     'SL-SD-03': {
         title: 'Delivery Process',
         currentState: [
-            'ENF truck collects eggs from Salwa',
-            'Transport cost borne by ENF',
-            'No Incoterms documentation',
-            'Quality handover not formalized',
-            'Delivery confirmation manual'
+            'ENF trucks travel to Salwa to collect eggs rather than Salwa delivering to ENF. This ex-works arrangement shifts transport responsibility to the buyer.',
+            'All transport costs including vehicle, fuel, and driver are borne by ENF. Salwa\'s transfer price does not include any logistics component.',
+            'No formal Incoterms designation documents the delivery arrangement. Terms like EXW (Ex Works) or FCA should be specified in intercompany agreements.',
+            'Quality handover at collection point is not formalized. Responsibility for egg condition during transport and acceptable rejection criteria are not documented.',
+            'Delivery confirmation relies on manual paperwork signed at collection. No electronic proof of delivery or system update confirms successful transfer.'
         ],
         bestPractice: [
             'Incoterms documentation',
@@ -4452,11 +4452,11 @@ const STEP_METADATA = {
     'SL-SD-04': {
         title: 'Documentation Gap',
         currentState: [
-            'Delivery notes are manual/paper-based',
-            'Not from SAP system',
-            'No system traceability for egg transfers',
-            'Audit trail gaps',
-            'Reconciliation manual'
+            'All delivery notes for egg transfers are created manually using paper forms. No system-generated documentation provides controlled document numbering or format.',
+            'Delivery documentation does not originate from SAP. Manual notes are created outside the system and may not match SAP transaction records.',
+            'No system traceability connects physical egg shipments to SAP inventory movements. Tracking specific batches from production to hatchery requires manual record searches.',
+            'Audit trail gaps exist where paper documentation may be incomplete, illegible, or lost. Meeting audit requirements for intercompany transactions may be challenging.',
+            'Month-end reconciliation between Salwa delivery records and ENF receipt records is performed manually. Discrepancies require investigation through paper files.'
         ],
         bestPractice: [
             'SAP delivery documents',
@@ -4476,11 +4476,11 @@ const STEP_METADATA = {
     'SL-SD-05': {
         title: 'Invoice Process',
         currentState: [
-            'Invoice created after grading at ENF',
-            'Only Grade A invoiced to ENF',
-            'B-grade returned to Salwa books',
-            'Manual invoicing process',
-            'Intercompany matching manual'
+            'Invoicing occurs only after ENF completes grading and determines Grade A quantities. This delay means Salwa cannot invoice at time of delivery.',
+            'Only Grade A eggs are invoiced to ENF at the agreed transfer price. Invoice quantities depend on ENF\'s grading results rather than Salwa\'s shipped quantities.',
+            'B-grade eggs are returned to Salwa\'s inventory books for separate sale. This requires credit notes or adjustments to reconcile the original delivery.',
+            'Invoice creation is a manual process performed outside standard SAP billing workflows. Invoice numbers, pricing, and quantities are entered manually.',
+            'Intercompany matching of Salwa invoices to ENF payables is performed manually each period. Automated intercompany elimination processes are not utilized.'
         ],
         bestPractice: [
             'Automatic invoicing based on graded quantities',
@@ -4500,11 +4500,11 @@ const STEP_METADATA = {
     'SL-SD-06': {
         title: 'B-Grade External Sales',
         currentState: [
-            'Sold as table eggs in external market',
-            'Separate sales process from intercompany',
-            'Small volume, managed from Salwa books',
-            'No integrated by-product tracking',
-            'Pricing and customer management basic'
+            'B-grade eggs rejected for hatching are sold as table eggs in the external retail market. This represents Salwa\'s only direct customer sales activity.',
+            'The external sales process operates completely separately from intercompany egg transfers. Different customers, pricing, and terms apply to table egg sales.',
+            'Volume of B-grade sales is relatively small and managed entirely within Salwa\'s books. The limited scale does not justify dedicated sales infrastructure.',
+            'No integrated tracking connects B-grade occurrences at ENF grading to subsequent sale as table eggs. Traceability from production through final sale is fragmented.',
+            'Customer management and pricing for external table egg sales is basic. No formal price lists, customer hierarchy, or credit management processes are established.'
         ],
         bestPractice: [
             'By-product sales channel management',
@@ -4661,67 +4661,7 @@ function renderPanelContent(entityId, stepId, stepName, node, content) {
     // Build panel HTML
     let html = `
         <div class="panel-card">
-            <div class="panel-card-header" style="background: ${stepColor}">
-                <div class="panel-step-number" style="color: ${stepColor}; border-color: ${stepColor}">${String(stepNumber).padStart(2, '0')}</div>
-                <h3 class="panel-step-title">${escapeHtml(metadata.title)}</h3>
-                <div class="panel-findings-badges">${findingsSummary}</div>
-                <span class="panel-nav-hint">Click any process above to view details</span>
-            </div>
-
             <div class="panel-card-body">
-                <div class="panel-three-columns">
-                    <div class="panel-column panel-column-large">
-                        <div class="panel-column-header">
-                            <i class="fas fa-building"></i>
-                            <span>CURRENT STATE AT ${getEntityName(entityId)}</span>
-                        </div>
-                        <div class="panel-column-content current-state">
-                            ${Array.isArray(metadata.currentState)
-                                ? metadata.currentState.map(item => `
-                                    <div class="panel-bullet-item current">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                        <span>${escapeHtml(item)}</span>
-                                    </div>
-                                `).join('')
-                                : `<p>${escapeHtml(metadata.currentState || 'Current state assessment not available.')}</p>`
-                            }
-                        </div>
-                    </div>
-
-                    <div class="panel-column">
-                        <div class="panel-column-header">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>INDUSTRY BEST PRACTICE</span>
-                        </div>
-                        <div class="panel-column-content best-practice">
-                            ${Array.isArray(metadata.bestPractice)
-                                ? metadata.bestPractice.map(item => `
-                                    <div class="panel-bullet-item best">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>${escapeHtml(item)}</span>
-                                    </div>
-                                `).join('')
-                                : `<p>${escapeHtml(metadata.bestPractice)}</p>`
-                            }
-                        </div>
-                    </div>
-
-                    <div class="panel-column">
-                        <div class="panel-column-header">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>KEY CONTROLS EXPECTED</span>
-                        </div>
-                        <div class="panel-column-content controls">
-                            ${metadata.controls.map(ctrl => `
-                                <div class="panel-control-item">
-                                    <i class="fas fa-check"></i>
-                                    <span>${escapeHtml(ctrl)}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-
                 <div class="panel-section findings-section">
     `;
 
@@ -4788,6 +4728,44 @@ function renderPanelContent(entityId, stepId, stepName, node, content) {
     }
 
     html += `
+                </div>
+
+                <div class="panel-stacked-sections">
+                    <div class="panel-section-box observations-box">
+                        <div class="panel-section-header">
+                            <i class="fas fa-building"></i>
+                            <span>GENERAL OBSERVATIONS</span>
+                        </div>
+                        <div class="panel-section-content current-state">
+                            ${Array.isArray(metadata.currentState)
+                                ? metadata.currentState.map(item => `
+                                    <div class="panel-bullet-item current">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>${escapeHtml(item)}</span>
+                                    </div>
+                                `).join('')
+                                : `<p>${escapeHtml(metadata.currentState || 'Current state assessment not available.')}</p>`
+                            }
+                        </div>
+                    </div>
+
+                    <div class="panel-section-box bestpractice-box">
+                        <div class="panel-section-header">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>INDUSTRY BEST PRACTICE (FOR REFERENCE)</span>
+                        </div>
+                        <div class="panel-section-content best-practice">
+                            ${Array.isArray(metadata.bestPractice)
+                                ? metadata.bestPractice.map(item => `
+                                    <div class="panel-bullet-item best">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>${escapeHtml(item)}</span>
+                                    </div>
+                                `).join('')
+                                : `<p>${escapeHtml(metadata.bestPractice)}</p>`
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
