@@ -13,16 +13,22 @@
 // =====================================================
 // TAB MANAGEMENT
 // =====================================================
+// Track current view
+let currentView = 'executive';
+
 function switchTab(tabId) {
-    // Update tab buttons
-    document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.tab === tabId);
-    });
+    currentView = tabId;
 
     // Update tab content
     document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.toggle('active', content.id === `tab-${tabId}`);
     });
+
+    // Update toggle button
+    updateToggleButton();
+
+    // Update page title
+    updatePageTitle(tabId);
 
     // Trigger animations when switching to executive tab
     if (tabId === 'executive') {
@@ -45,6 +51,62 @@ function switchTab(tabId) {
             }
         }, 100);
     }
+}
+
+function updatePageTitle(tabId) {
+    const centerTitle = document.getElementById('pageTitleCenter');
+    if (tabId === 'executive') {
+        document.title = 'Executive Summary | Emirates Rawabi Group';
+        if (centerTitle) centerTitle.textContent = 'Executive Summary';
+    } else {
+        document.title = 'Process Flow Deep-Dive | Emirates Rawabi Group';
+        if (centerTitle) centerTitle.textContent = 'Process Flow Deep-Dive';
+    }
+}
+
+function toggleView() {
+    if (currentView === 'executive') {
+        switchTab('deepdive');
+    } else {
+        switchTab('executive');
+    }
+}
+
+function updateToggleButton() {
+    // Update both TOC toggle switches
+    const summaryToggle = document.getElementById('tocToggleSummary');
+    const deepDiveToggle = document.getElementById('tocToggleDeepDive');
+
+    if (currentView === 'executive') {
+        if (summaryToggle) {
+            summaryToggle.classList.remove('right');
+            updateToggleLabels(summaryToggle, true);
+        }
+        if (deepDiveToggle) {
+            deepDiveToggle.classList.remove('right');
+            updateToggleLabels(deepDiveToggle, true);
+        }
+    } else {
+        if (summaryToggle) {
+            summaryToggle.classList.add('right');
+            updateToggleLabels(summaryToggle, false);
+        }
+        if (deepDiveToggle) {
+            deepDiveToggle.classList.add('right');
+            updateToggleLabels(deepDiveToggle, false);
+        }
+    }
+}
+
+function updateToggleLabels(toggle, isSummary) {
+    const labels = toggle.querySelectorAll('.toggle-label');
+    labels.forEach(label => {
+        if (label.dataset.view === 'executive') {
+            label.classList.toggle('active', isSummary);
+        } else {
+            label.classList.toggle('active', !isSummary);
+        }
+    });
 }
 
 /**
@@ -220,10 +282,15 @@ function prevSlide() {
 }
 
 function updatePresentationUI() {
+    // Ensure currentSlide is valid
+    if (typeof currentSlide !== 'number' || isNaN(currentSlide)) {
+        currentSlide = 0;
+    }
+
     // Update progress bar
     const progress = ((currentSlide + 1) / totalSlides) * 100;
     const progressBar = document.getElementById('presProgressBar');
-    if (progressBar) progressBar.style.width = `${progress}%`;
+    if (progressBar) progressBar.style.setProperty('--progress', `${progress}%`);
 
     // Update slide counter
     const counter = document.getElementById('presSlideCounter');
@@ -346,7 +413,7 @@ const ENTITY_CONFIG = {
         color: '#0066b3'
     },
     enf: {
-        name: 'Emirates National Factory',
+        name: 'Emirates National Foods',
         flows: ['ENF-SD', 'ENF-HATCH', 'ENF-FARM', 'ENF-PROC', 'ENF-MM', 'ENF-QM', 'ENF-FICO'],
         icon: 'fa-industry',
         color: '#dc2626'
@@ -4493,25 +4560,20 @@ function selectEntityFlowStep(entityId, stepId, stepName) {
     const content = document.getElementById(`${entityId}-panelContent`);
     const overlay = document.getElementById('panelOverlay');
 
-    // If panel is already open, animate transition
+    // If panel is already open, slide down then slide up with new content
     if (panel && panel.classList.contains('open')) {
-        // Swipe out current content
-        content.classList.add('swipe-out');
+        // Slide panel down first
+        panel.classList.remove('open');
 
         setTimeout(() => {
-            // Update content
+            // Update content while panel is closed
             currentEntity = entityId;
             currentEntityStep = stepId;
             renderPanelContent(entityId, stepId, stepName, node, content);
 
-            // Swipe in new content
-            content.classList.remove('swipe-out');
-            content.classList.add('swipe-in');
-
-            setTimeout(() => {
-                content.classList.remove('swipe-in');
-            }, 300);
-        }, 200);
+            // Slide panel back up with new content
+            panel.classList.add('open');
+        }, 350);
 
         return;
     }
@@ -4523,6 +4585,10 @@ function selectEntityFlowStep(entityId, stepId, stepName) {
     // Open panel
     if (panel) panel.classList.add('open');
     if (overlay) overlay.classList.add('active');
+
+    // Hide the hint when panel opens
+    const hint = document.getElementById(`${entityId}-hint`);
+    if (hint) hint.classList.add('hidden');
 
     // Render content
     renderPanelContent(entityId, stepId, stepName, node, content);
@@ -4640,38 +4706,68 @@ function renderPanelContent(entityId, stepId, stepName, node, content) {
                 </div>
 
                 <div class="panel-section findings-section">
-                    <div class="panel-section-header">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>FINDINGS</span>
-                        <span class="findings-count-badge">${findings.length}</span>
-                    </div>
     `;
 
     if (findings.length === 0) {
         html += `
                         <div class="panel-success-box">
-                            <i class="fas fa-check-square"></i>
+                            <i class="fas fa-check-circle"></i>
                             <span>No findings identified. Controls operating effectively.</span>
                         </div>
         `;
     } else {
-        html += `
-                        <div class="panel-findings-list" id="${entityId}-findingsList">
-                            ${findings.map((f, index) => `
-                                <div class="finding-accordion ${f.risk}" data-finding-index="${index}">
-                                    <div class="finding-accordion-header">
-                                        <span class="panel-finding-id">${f.id}</span>
-                                        <span class="panel-finding-title">${escapeHtml(f.topic)}${f.impact ? ` <span class="finding-impact-inline">| Business Impact: ${escapeHtml(f.impact)}</span>` : ''}</span>
-                                        <span class="panel-finding-risk-tag ${f.risk}">${f.risk.toUpperCase()}</span>
-                                        <i class="fas fa-chevron-down finding-chevron"></i>
+        // Separate high risk findings for executive focus
+        const highRisk = findings.filter(f => f.risk === 'high');
+        const otherRisk = findings.filter(f => f.risk !== 'high');
+
+        // Critical findings callout
+        if (highRisk.length > 0) {
+            html += `
+                        <div class="exec-critical-section">
+                            <div class="exec-critical-header">
+                                <span class="critical-icon"><i class="fas fa-exclamation-circle"></i></span>
+                                <span class="critical-label">${highRisk.length} Critical Issue${highRisk.length > 1 ? 's' : ''} Requiring Immediate Attention</span>
+                            </div>
+                            <div class="exec-findings-list" id="${entityId}-findingsList">
+                                ${highRisk.map((f, index) => `
+                                    <div class="exec-finding-card high" data-finding-index="${index}">
+                                        <div class="exec-finding-main">
+                                            <div class="exec-finding-ref">${f.id}</div>
+                                            <div class="exec-finding-content">
+                                                <div class="exec-finding-title">${escapeHtml(f.topic)}</div>
+                                                ${f.impact ? `<div class="exec-finding-impact"><i class="fas fa-arrow-right"></i> ${escapeHtml(f.impact)}</div>` : ''}
+                                            </div>
+                                            <div class="exec-finding-risk">
+                                                <span class="risk-badge high">HIGH</span>
+                                            </div>
+                                        </div>
+                                        <div class="exec-finding-details">
+                                            <p>${escapeHtml(f.details)}</p>
+                                        </div>
                                     </div>
-                                    <div class="finding-accordion-body">
-                                        <p>${escapeHtml(f.details)}</p>
-                                    </div>
-                                </div>
-                            `).join('')}
+                                `).join('')}
+                            </div>
                         </div>
-        `;
+            `;
+        }
+
+        // Other findings (medium/low) - compact list
+        if (otherRisk.length > 0) {
+            html += `
+                        <div class="exec-other-section">
+                            <div class="exec-other-header">Other Observations (${otherRisk.length})</div>
+                            <div class="exec-other-list">
+                                ${otherRisk.map((f, index) => `
+                                    <div class="exec-other-item ${f.risk}" data-finding-index="${highRisk.length + index}">
+                                        <span class="other-ref">${f.id}</span>
+                                        <span class="other-title">${escapeHtml(f.topic)}</span>
+                                        <span class="other-risk ${f.risk}">${f.risk.toUpperCase()}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+            `;
+        }
     }
 
     html += `
@@ -4700,31 +4796,36 @@ function toggleFindings(header) {
 }
 
 /**
- * Setup accordion behavior for findings - opening one closes others
+ * Setup accordion behavior for executive finding cards
  */
 function setupFindingsAccordion(container) {
-    const accordions = container.querySelectorAll('.finding-accordion');
+    // Handle critical finding cards
+    const findingCards = container.querySelectorAll('.exec-finding-card');
+    findingCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-    accordions.forEach(accordion => {
-        const header = accordion.querySelector('.finding-accordion-header');
-        if (header) {
-            header.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+            const isOpen = this.classList.contains('expanded');
 
-                const isOpen = accordion.classList.contains('open');
+            // Close all cards first
+            findingCards.forEach(c => c.classList.remove('expanded'));
 
-                // Close all accordions first
-                accordions.forEach(other => {
-                    other.classList.remove('open');
-                });
+            // Toggle current one
+            if (!isOpen) {
+                this.classList.add('expanded');
+            }
+        });
+    });
 
-                // Toggle current one
-                if (!isOpen) {
-                    accordion.classList.add('open');
-                }
-            });
-        }
+    // Handle other observations items (expand inline or show tooltip)
+    const otherItems = container.querySelectorAll('.exec-other-item');
+    otherItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Could add expand behavior here if needed
+        });
     });
 }
 
@@ -4734,6 +4835,10 @@ function closeEntityPanel(entityId) {
     const overlay = document.getElementById('panelOverlay');
     if (panel) panel.classList.remove('open');
     if (overlay) overlay.classList.remove('active');
+
+    // Show the hint again when panel closes
+    const hint = document.getElementById(`${entityId}-hint`);
+    if (hint) hint.classList.remove('hidden');
 
     // Handle tab ID for deepdive
     const tabId = entityId === 'deepdive' ? 'deepdive' : entityId;
@@ -4762,13 +4867,26 @@ let currentDeepDiveEntity = 'ardc';
 let currentDeepDiveFlow = 'ARDC-PP';
 
 /**
- * Toggle entity group expand/collapse in Deep-Dive TOC
+ * Toggle entity group expand/collapse in Deep-Dive TOC (accordion behavior)
  */
 function toggleEntityGroup(entityId) {
-    const group = document.querySelector(`.nav-entity-group[data-entity="${entityId}"]`);
-    if (group) {
-        group.classList.toggle('collapsed');
+    const allGroups = document.querySelectorAll('.nav-entity-group');
+    const targetGroup = document.querySelector(`.nav-entity-group[data-entity="${entityId}"]`);
+
+    if (!targetGroup) return;
+
+    const isCurrentlyCollapsed = targetGroup.classList.contains('collapsed');
+
+    // Collapse all groups first
+    allGroups.forEach(group => {
+        group.classList.add('collapsed');
+    });
+
+    // If the clicked group was collapsed, expand it
+    if (isCurrentlyCollapsed) {
+        targetGroup.classList.remove('collapsed');
     }
+    // If it was already expanded, it stays collapsed (all collapsed now)
 }
 
 /**
@@ -4819,11 +4937,47 @@ function selectDeepDiveModule(entityId, flowKey, navItem) {
     // Update header breadcrumb
     updateDeepDiveHeader(entityId, flowKey);
 
-    // Close any open panel
+    // Update progress bar
+    updateDeepDiveProgress(navItem);
+
+    // Close any open panel first
     closeEntityPanel('deepdive');
 
     // Render flowchart
     renderDeepDiveFlowchart(flowKey);
+
+    // Auto-select first process node after a short delay
+    setTimeout(() => {
+        const firstNode = deepdiveTab.querySelector('.process-node[data-step]');
+        if (firstNode) {
+            const stepId = firstNode.dataset.step;
+            const stepName = firstNode.querySelector('.label-name')?.textContent || stepId;
+            selectEntityFlowStep('deepdive', stepId, stepName);
+        }
+    }, 100);
+}
+
+/**
+ * Update Deep-Dive progress bar based on current module
+ */
+function updateDeepDiveProgress(activeNavItem) {
+    const progressBar = document.getElementById('deepdiveProgressBar');
+    if (!progressBar) return;
+
+    const allModules = document.querySelectorAll('#tab-deepdive .nav-entity-modules .nav-item');
+    const totalModules = allModules.length;
+
+    if (totalModules === 0) return;
+
+    let currentIndex = 0;
+    allModules.forEach((item, index) => {
+        if (item === activeNavItem || item.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+
+    const progress = ((currentIndex + 1) / totalModules) * 100;
+    progressBar.style.setProperty('--progress', `${progress}%`);
 }
 
 /**
@@ -4836,8 +4990,8 @@ function updateDeepDiveHeader(entityId, flowKey) {
     // Entity names mapping
     const entityNames = {
         'ardc': 'Al Rawabi Dairy',
-        'enf': 'Emirates National Factory',
-        'greenfields': 'Greenfields LLC',
+        'enf': 'Emirates National Foods',
+        'greenfields': 'Greenfields for Feeds',
         'alrawdah': 'Salwa @ Liwa'
     };
 
@@ -4892,15 +5046,17 @@ function getFlowStats(flowKey) {
 
     // Get the flow definition from VISUAL_FLOWCHARTS
     const flow = VISUAL_FLOWCHARTS[flowKey];
-    if (flow && flow.steps) {
-        flow.steps.forEach(step => {
-            const stepId = step.id;
-            const findings = REPORT_DATA.findingsByStep[stepId] || [];
-            total += findings.length;
-            findings.forEach(f => {
-                if (f.risk === 'high') high++;
-                else if (f.risk === 'medium') medium++;
-                else low++;
+    if (flow && flow.rows) {
+        // Iterate through rows and nodes (correct structure)
+        flow.rows.forEach(row => {
+            row.nodes.forEach(node => {
+                const findings = REPORT_DATA.findingsByStep[node.id] || [];
+                total += findings.length;
+                findings.forEach(f => {
+                    if (f.risk === 'high') high++;
+                    else if (f.risk === 'medium') medium++;
+                    else low++;
+                });
             });
         });
     }

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emirates Rawabi Group - SAP & Process Audit Report | NXSYS Advisory</title>
+    <title>Emirates Rawabi Group - SAP Pre-Discovery Report | NXSYS Advisory</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css?v=32">
-    <link rel="stylesheet" href="css/flowcharts.css?v=32">
-    <script src="js/data.js?v=32"></script>
+    <link rel="stylesheet" href="css/styles.css?v=76">
+    <link rel="stylesheet" href="css/flowcharts.css?v=76">
+    <script src="js/data.js?v=76"></script>
 </head>
 <body>
     <!-- Unified Header & Navigation -->
@@ -18,26 +18,25 @@
             <img src="NXSYS Logo.png" alt="NXSYS" class="header-logo-img">
             <div class="header-title">
                 <h1>Emirates Rawabi Group</h1>
-                <span>SAP & Process Audit Report</span>
+                <span>SAP Pre-Discovery Report</span>
             </div>
         </div>
 
-        <!-- Center: Navigation Tabs -->
-        <div class="nav-tabs">
-            <button class="tab active" data-tab="executive" onclick="switchTab('executive')">
-                <i class="fas fa-chart-line"></i>
-                Summary
-            </button>
-            <button class="tab" data-tab="deepdive" onclick="switchTab('deepdive')">
-                <i class="fas fa-microscope"></i>
-                Deep-Dive
-            </button>
+        <!-- Center: Page Title -->
+        <div class="header-center">
+            <h2 id="pageTitleCenter">Executive Summary</h2>
         </div>
 
-        <!-- Right: Report Info -->
+        <!-- Right: NXSYS Branding & Report Info -->
         <div class="header-info">
-            <span class="report-number">NXSYS-2026-ARG-005</span>
-            <span class="report-date">January 27, 2026</span>
+            <div class="header-nxsys-brand">
+                <span class="nxsys-name">NXSYS</span>
+                <span class="nxsys-tagline">Advisory Services</span>
+            </div>
+            <div class="header-report-meta">
+                <span class="report-number">NXSYS-2026-ARG-005</span>
+                <span class="report-date">January 27, 2026</span>
+            </div>
         </div>
     </nav>
 
@@ -114,13 +113,16 @@
                     </div>
                     <div class="nav-item" data-nav="9">
                         <span class="nav-num">10</span>
-                        <span class="nav-text">Audit Opinion</span>
+                        <span class="nav-text">Conclusion</span>
                     </div>
                 </div>
                 <div class="nav-footer">
-                    <div class="keyboard-hint">
-                        <kbd>←</kbd><kbd>→</kbd> Navigate
-                        <kbd>F</kbd> Fullscreen
+                    <div class="toc-toggle-switch" id="tocToggleSummary">
+                        <span class="toggle-label active" data-view="executive">Summary</span>
+                        <div class="toggle-track" onclick="toggleView()">
+                            <div class="toggle-thumb"></div>
+                        </div>
+                        <span class="toggle-label" data-view="deepdive">Deep-Dive</span>
                     </div>
                 </div>
             </div>
@@ -144,16 +146,10 @@
                         </div>
                         <div class="mega-title animate-item" data-delay="200">
                             <span class="line-1">SAP & Process</span>
-                            <span class="line-2">Audit Report</span>
+                            <span class="line-2">Pre-Discovery Report</span>
                         </div>
                         <div class="title-sub animate-item" data-delay="400">
                             Emirates Rawabi Group
-                        </div>
-                        <div class="cover-entities animate-item" data-delay="500">
-                            <span class="entity-tag">Al Rawabi Dairy</span>
-                            <span class="entity-tag">ENF Poultry</span>
-                            <span class="entity-tag">Greenfields</span>
-                            <span class="entity-tag">Salwa @ Liwa</span>
                         </div>
                         <div class="presenter-info animate-item" data-delay="600">
                             <img src="NXSYS Logo.png" alt="NXSYS" class="presenter-logo-img">
@@ -178,113 +174,107 @@
                     </div>
                 </section>
 
-                <!-- Slide 2: Executive Summary - The Story -->
+                <!-- Slide 2: Executive Summary - The Verdict -->
                 <section class="slide slide-stats" data-slide="1">
                     <div class="slide-bg light"></div>
                     <div class="slide-content">
-                        <div class="section-label animate-item" data-delay="0">The Bottom Line</div>
-                        <h1 class="slide-title animate-item" data-delay="100">Executive Summary</h1>
-                        <p class="slide-subtitle animate-item" data-delay="200">SAP is installed but significantly underutilized. Critical food safety, traceability, and financial controls operate outside the system.</p>
+                        <div class="section-label animate-item" data-delay="0">Strategic Assessment</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Our Verdict</h1>
 
-                        <div class="exec-highlights animate-item" data-delay="300">
-                            <div class="exec-highlight-card critical">
-                                <div class="exec-highlight-icon"><i class="fas fa-shield-virus"></i></div>
-                                <div class="exec-highlight-content">
-                                    <div class="exec-highlight-stat">Products Released</div>
-                                    <div class="exec-highlight-detail">Before microbiological test results are available - "We sleep with that risk"</div>
-                                </div>
-                            </div>
-                            <div class="exec-highlight-card warning">
-                                <div class="exec-highlight-icon"><i class="fas fa-clock"></i></div>
-                                <div class="exec-highlight-content">
-                                    <div class="exec-highlight-stat">4-Hour Recall</div>
-                                    <div class="exec-highlight-detail">Cannot trace finished goods back to raw material supplier within regulatory timeframe</div>
-                                </div>
-                            </div>
-                            <div class="exec-highlight-card danger">
-                                <div class="exec-highlight-icon"><i class="fas fa-file-excel"></i></div>
-                                <div class="exec-highlight-content">
-                                    <div class="exec-highlight-stat">Excel Dependency</div>
-                                    <div class="exec-highlight-detail">Fat balancing, planning, consolidation, recipes - all critical processes in spreadsheets</div>
-                                </div>
+                        <div class="verdict-box animate-item" data-delay="200">
+                            <div class="verdict-icon"><i class="fas fa-gavel"></i></div>
+                            <div class="verdict-text">
+                                <div class="verdict-headline">The Current System Cannot Be Salvaged</div>
+                                <p>After comprehensive assessment of 457 control points across four entities, we conclude that the existing SAP ECC implementation is <strong>fundamentally flawed in its architecture</strong>. The system was built on wrong foundations - using discrete manufacturing (PP) for process industries, omitting Quality Management entirely, and creating a fragmented landscape of disconnected systems.</p>
                             </div>
                         </div>
 
-                        <div class="stats-grid compact animate-item" data-delay="500">
-                            <div class="stat-card compact">
+                        <div class="verdict-recommendation animate-item" data-delay="400">
+                            <div class="recommendation-header">
+                                <i class="fas fa-arrow-right"></i>
+                                <span>Recommended Path Forward</span>
+                            </div>
+                            <div class="recommendation-content">
+                                <strong>Complete Greenfield ERP Implementation</strong> with proper process industry architecture, integrated quality management, full batch traceability, and unified system landscape.
+                            </div>
+                        </div>
+
+                        <div class="stats-grid compact animate-item" data-delay="600">
+                            <div class="stat-card danger compact">
                                 <div class="stat-value" data-count="457">0</div>
                                 <div class="stat-label">Total Findings</div>
                             </div>
                             <div class="stat-card danger compact">
-                                <div class="stat-value" data-count="340">0</div>
-                                <div class="stat-label">High Risk (74%)</div>
+                                <div class="stat-value" data-count="74">0</div>
+                                <div class="stat-label">% High Risk</div>
                             </div>
-                            <div class="stat-card compact">
-                                <div class="stat-value" data-count="4">0</div>
-                                <div class="stat-label">Entities Assessed</div>
+                            <div class="stat-card danger compact">
+                                <div class="stat-value" data-count="5">0</div>
+                                <div class="stat-label">Critical Modules Missing</div>
                             </div>
-                            <div class="stat-card compact">
-                                <div class="stat-value" data-count="89">0</div>
-                                <div class="stat-label">Process Steps</div>
+                            <div class="stat-card danger compact">
+                                <div class="stat-value">2.2</div>
+                                <div class="stat-label">Maturity Score (of 5)</div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Slide 3: The Five Critical Gaps -->
+                <!-- Slide 3: Why Remediation Won't Work -->
                 <section class="slide slide-concerns" data-slide="2">
                     <div class="slide-bg light"></div>
                     <div class="slide-content">
-                        <div class="section-label animate-item" data-delay="0">Top Management Attention</div>
-                        <h1 class="slide-title animate-item" data-delay="100">Five Critical Gaps</h1>
-                        <p class="slide-subtitle animate-item" data-delay="150">Issues requiring immediate executive action</p>
+                        <div class="section-label animate-item" data-delay="0">Root Cause Analysis</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Why Remediation Won't Work</h1>
+                        <p class="slide-subtitle animate-item" data-delay="150">The system is built on fundamentally wrong foundations</p>
 
                         <div class="critical-gaps-grid">
                             <div class="critical-gap-card animate-item" data-delay="200">
                                 <div class="gap-number">1</div>
-                                <div class="gap-icon"><i class="fas fa-industry"></i></div>
-                                <h4>Wrong SAP Module</h4>
-                                <p>Using PP (discrete manufacturing) instead of PP-PI (process industries). Fundamentally wrong architecture for dairy and poultry processing.</p>
-                                <div class="gap-impact"><i class="fas fa-exclamation-triangle"></i> Cannot capture process parameters, batch yields, or component tracking</div>
+                                <div class="gap-icon"><i class="fas fa-building-circle-xmark"></i></div>
+                                <h4>Wrong Module Architecture</h4>
+                                <p>The entire production backbone uses PP (discrete manufacturing) instead of PP-PI (process industries). This is like building a house on wrong foundation - you cannot fix it with renovations.</p>
+                                <div class="gap-impact"><i class="fas fa-ban"></i> Requires complete production module replacement</div>
                             </div>
                             <div class="critical-gap-card animate-item" data-delay="300">
                                 <div class="gap-number">2</div>
-                                <div class="gap-icon"><i class="fas fa-check-circle"></i></div>
-                                <h4>QM Module Not Active</h4>
-                                <p>SAP Quality Management module not live. All quality processes paper-based. No LIMS at ARDC. Products released without system holds.</p>
-                                <div class="gap-impact"><i class="fas fa-exclamation-triangle"></i> Major food safety and regulatory compliance risk</div>
+                                <div class="gap-icon"><i class="fas fa-flask-vial"></i></div>
+                                <h4>Quality Management Never Implemented</h4>
+                                <p>SAP QM was not part of original scope. Retrofitting QM into existing production orders, batch management, and workflows would require touching every process.</p>
+                                <div class="gap-impact"><i class="fas fa-ban"></i> Cannot bolt-on food safety to broken core</div>
                             </div>
                             <div class="critical-gap-card animate-item" data-delay="400">
                                 <div class="gap-number">3</div>
-                                <div class="gap-icon"><i class="fas fa-link-slash"></i></div>
-                                <h4>Integration Gaps</h4>
-                                <p>Weighbridge, LIMS, equipment, van sales all disconnected. 22 days of production without system receipts documented.</p>
-                                <div class="gap-impact"><i class="fas fa-exclamation-triangle"></i> Inventory accuracy and audit trail compromised</div>
+                                <div class="gap-icon"><i class="fas fa-puzzle-piece"></i></div>
+                                <h4>Fragmented System Landscape</h4>
+                                <p>Critical operations run in 6+ disconnected systems (Ransale, Easy Feed, LIMS, Excel). The integration debt is so severe that connecting them would cost more than replacing.</p>
+                                <div class="gap-impact"><i class="fas fa-ban"></i> Integration complexity exceeds rebuild cost</div>
                             </div>
                             <div class="critical-gap-card animate-item" data-delay="500">
                                 <div class="gap-number">4</div>
-                                <div class="gap-icon"><i class="fas fa-route"></i></div>
-                                <h4>Van Sales Invisible</h4>
-                                <p>300+ routes not created as SAP locations. No route-level P&L. All operations in external Ransale system with batch sync only.</p>
-                                <div class="gap-impact"><i class="fas fa-exclamation-triangle"></i> Cannot identify profitable vs. unprofitable routes</div>
+                                <div class="gap-icon"><i class="fas fa-database"></i></div>
+                                <h4>Data Model Fundamentally Flawed</h4>
+                                <p>No batch genealogy, no catch-weight, no component tracking, no biological asset valuation. The master data structure cannot support required functionality.</p>
+                                <div class="gap-impact"><i class="fas fa-ban"></i> Master data redesign = system rebuild</div>
                             </div>
                             <div class="critical-gap-card animate-item" data-delay="600">
                                 <div class="gap-number">5</div>
-                                <div class="gap-icon"><i class="fas fa-coins"></i></div>
-                                <h4>Costing Inaccurate</h4>
-                                <p>Livestock not IAS 41 compliant. No component-level costing for dairy. FCR 25-30% above benchmark (1.7 vs 1.4).</p>
-                                <div class="gap-impact"><i class="fas fa-exclamation-triangle"></i> Financial statements and product profitability distorted</div>
+                                <div class="gap-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                                <h4>ECC End of Life</h4>
+                                <p>SAP ECC mainstream maintenance ends 2027. Any significant investment in current system is throwing money at a platform with no future.</p>
+                                <div class="gap-impact"><i class="fas fa-ban"></i> Investment in dying platform is waste</div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Slide 4: Entity Breakdown -->
+                <!-- Slide 4: Scope of the Problem -->
                 <section class="slide slide-challenge" data-slide="3">
                     <div class="slide-bg light"></div>
                     <div class="slide-content">
-                        <div class="section-label animate-item" data-delay="0">By Entity</div>
-                        <h1 class="slide-title animate-item" data-delay="100">Findings Distribution</h1>
+                        <div class="section-label animate-item" data-delay="0">Assessment Scope</div>
+                        <h1 class="slide-title animate-item" data-delay="100">What We Found</h1>
+                        <p class="slide-subtitle animate-item" data-delay="150">457 findings across 4 entities - systemic failures at every level</p>
                         <div class="entity-breakdown-grid">
                             <div class="entity-card-large animate-item" data-delay="200">
                                 <div class="entity-card-header">
@@ -300,12 +290,9 @@
                                 </div>
                                 <div class="entity-card-body">
                                     <div class="entity-issues">
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Fat/SNF balancing in Excel - "Lot of discussion every day"</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Pasteurization temp (72C) not captured in SAP</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Components (fat, protein) not separately valued</div>
-                                    </div>
-                                    <div class="entity-modules">
-                                        <span>PP</span><span>SD</span><span>MM</span><span>FI/CO</span>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Products released BEFORE microbiological results</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> No LIMS - all quality on paper</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Cannot prove pasteurization compliance</div>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +300,7 @@
                                 <div class="entity-card-header">
                                     <div class="entity-card-icon"><i class="fas fa-drumstick-bite"></i></div>
                                     <div class="entity-card-title">
-                                        <h3>Emirates National Factory</h3>
+                                        <h3>Emirates National Foods</h3>
                                         <span class="entity-code">ENF</span>
                                     </div>
                                     <div class="entity-card-stats">
@@ -323,12 +310,9 @@
                                 </div>
                                 <div class="entity-card-body">
                                     <div class="entity-issues">
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> FCR 1.7-1.8 vs benchmark 1.4 - AED millions in excess feed</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Returns at 13% vs 10-12% target</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> No catch-weight management for variable products</div>
-                                    </div>
-                                    <div class="entity-modules">
-                                        <span>PP-PI</span><span>QM</span><span>SD</span><span>MM</span><span>FI</span>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> 22 days production without system receipts</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> FCR 25-30% above benchmark - AED millions lost</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Cannot trace bird to final product</div>
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +320,7 @@
                                 <div class="entity-card-header">
                                     <div class="entity-card-icon"><i class="fas fa-wheat-awn"></i></div>
                                     <div class="entity-card-title">
-                                        <h3>Greenfields LLC</h3>
+                                        <h3>Greenfields for Feeds</h3>
                                         <span class="entity-code">GF</span>
                                     </div>
                                     <div class="entity-card-stats">
@@ -346,12 +330,9 @@
                                 </div>
                                 <div class="entity-card-body">
                                     <div class="entity-issues">
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Easy Feed system not integrated with SAP</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Feed batch traceability incomplete</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Separate Chart of Accounts from group</div>
-                                    </div>
-                                    <div class="entity-modules">
-                                        <span>PP</span><span>MM</span><span>QM</span><span>SD</span><span>FI</span>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Completely disconnected from SAP</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Feed contamination = no traceability to flocks</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Different Chart of Accounts - no consolidation</div>
                                     </div>
                                 </div>
                             </div>
@@ -369,12 +350,9 @@
                                 </div>
                                 <div class="entity-card-body">
                                     <div class="entity-issues">
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Parent stock mortality not tracked in SAP</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Vaccination schedules on paper only</div>
-                                        <div class="entity-issue"><i class="fas fa-times-circle"></i> Biological assets not IAS 41 compliant</div>
-                                    </div>
-                                    <div class="entity-modules">
-                                        <span>PP</span><span>QM</span><span>MM</span><span>SD</span><span>FI</span>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Vaccination records on paper only</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> No withdrawal period verification</div>
+                                        <div class="entity-issue"><i class="fas fa-skull-crossbones"></i> Biological assets incorrectly valued</div>
                                     </div>
                                 </div>
                             </div>
@@ -401,7 +379,7 @@
                                 <div class="compliance-icon"><i class="fas fa-search-location"></i></div>
                                 <h4>4-Hour Recall Capability Not Possible</h4>
                                 <p>Cannot trace finished goods back to raw milk supplier or flock within 4 hours. Batch-to-batch linkage breaks at production order level.</p>
-                                <div class="compliance-consequence">Regulatory non-compliance | Expanded recall scope | Audit failure</div>
+                                <div class="compliance-consequence">Regulatory non-compliance | Expanded recall scope | Compliance failure</div>
                             </div>
                             <div class="compliance-card high">
                                 <div class="compliance-icon"><i class="fas fa-thermometer-full"></i></div>
@@ -578,39 +556,40 @@
                     </div>
                 </section>
 
-                <!-- Slide 8: Recommendations Roadmap -->
+                <!-- Slide 8: Path Forward -->
                 <section class="slide slide-challenge" data-slide="7">
                     <div class="slide-bg light"></div>
                     <div class="slide-content">
-                        <div class="section-label animate-item" data-delay="0">Action Required</div>
-                        <h1 class="slide-title animate-item" data-delay="100">Recommendations Roadmap</h1>
+                        <div class="section-label animate-item" data-delay="0">Recommendation</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Path Forward</h1>
+                        <p class="slide-subtitle animate-item" data-delay="150">A greenfield ERP implementation is required - the current system cannot be remediated</p>
 
                         <div class="roadmap-container">
                             <div class="roadmap-phase animate-item" data-delay="200">
                                 <div class="phase-header immediate">
-                                    <span class="phase-icon"><i class="fas fa-bolt"></i></span>
-                                    <span class="phase-title">Immediate (0-3 months)</span>
+                                    <span class="phase-icon"><i class="fas fa-clipboard-check"></i></span>
+                                    <span class="phase-title">Phase 1: Assessment & Selection</span>
                                 </div>
                                 <div class="phase-items">
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Activate SAP QM Module</strong>
-                                            <p>Enable inspection lots, usage decisions, quality notifications. Implement system-enforced holds pending micro results.</p>
+                                            <strong>Requirements Definition</strong>
+                                            <p>Document detailed functional requirements for food safety, traceability, process manufacturing, and financial reporting.</p>
                                         </div>
                                     </div>
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Integrate Weighbridge</strong>
-                                            <p>Connect weighbridge to SAP for automatic GR posting. Eliminate the 22-day receipt gap.</p>
+                                            <strong>Solution Evaluation</strong>
+                                            <p>Evaluate ERP options with proven Food & Beverage industry capabilities. Consider cloud vs on-premise deployment.</p>
                                         </div>
                                     </div>
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Establish Batch Traceability</strong>
-                                            <p>Implement parent-child batch relationships. Enable 4-hour recall capability.</p>
+                                            <strong>Implementation Partner Selection</strong>
+                                            <p>Select partner with demonstrated experience in dairy, poultry, and feed manufacturing implementations.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -618,29 +597,29 @@
 
                             <div class="roadmap-phase animate-item" data-delay="400">
                                 <div class="phase-header shortterm">
-                                    <span class="phase-icon"><i class="fas fa-calendar-alt"></i></span>
-                                    <span class="phase-title">Short-term (3-6 months)</span>
+                                    <span class="phase-icon"><i class="fas fa-cogs"></i></span>
+                                    <span class="phase-title">Phase 2: Core Implementation</span>
                                 </div>
                                 <div class="phase-items">
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Implement PP-PI for Process Industries</strong>
-                                            <p>Migrate from discrete PP to process orders. Capture process parameters, component tracking, variable yields.</p>
+                                            <strong>Process Industry Production</strong>
+                                            <p>Implement correct module for food manufacturing with recipe management, process parameters, and variable yields.</p>
                                         </div>
                                     </div>
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Real-Time Van Sales Integration</strong>
-                                            <p>Replace batch sync with real-time connection. Create routes as SAP locations for P&L visibility.</p>
+                                            <strong>Quality Management & Traceability</strong>
+                                            <p>Deploy integrated QM with LIMS connectivity, batch genealogy, and system-enforced quality holds.</p>
                                         </div>
                                     </div>
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Component-Level Costing</strong>
-                                            <p>Implement fat/protein/lactose tracking for dairy. Joint cost allocation by market value for poultry.</p>
+                                            <strong>System Integration</strong>
+                                            <p>Connect weighbridge, laboratory systems, van sales, and production equipment in real-time.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -648,29 +627,29 @@
 
                             <div class="roadmap-phase animate-item" data-delay="600">
                                 <div class="phase-header mediumterm">
-                                    <span class="phase-icon"><i class="fas fa-road"></i></span>
-                                    <span class="phase-title">Medium-term (6-12 months)</span>
+                                    <span class="phase-icon"><i class="fas fa-chart-line"></i></span>
+                                    <span class="phase-title">Phase 3: Optimization</span>
                                 </div>
                                 <div class="phase-items">
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>LIMS Integration</strong>
-                                            <p>Connect laboratory systems to SAP. Automatic quality results capture and trend analysis.</p>
+                                            <strong>Advanced Planning</strong>
+                                            <p>Implement demand planning with seasonal pattern recognition and shelf-life optimization.</p>
                                         </div>
                                     </div>
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>Group Reporting Implementation</strong>
-                                            <p>SAP Group Reporting for automated consolidation. Transfer pricing documentation for corporate tax.</p>
+                                            <strong>Financial Excellence</strong>
+                                            <p>Component-level costing, IAS 41 compliance, group consolidation, and transfer pricing.</p>
                                         </div>
                                     </div>
                                     <div class="phase-item">
                                         <i class="fas fa-check-circle"></i>
                                         <div>
-                                            <strong>S/4HANA Readiness</strong>
-                                            <p>Prepare for migration. Address costing-based to account-based CO-PA transition.</p>
+                                            <strong>Continuous Improvement</strong>
+                                            <p>Analytics-driven optimization, predictive quality, and automated compliance reporting.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -679,79 +658,79 @@
                     </div>
                 </section>
 
-                <!-- Slide 9: Quick Wins -->
+                <!-- Slide 9: Required Capabilities -->
                 <section class="slide slide-stats" data-slide="8">
                     <div class="slide-bg light"></div>
                     <div class="slide-content">
-                        <div class="section-label animate-item" data-delay="0">Low Effort, High Impact</div>
-                        <h1 class="slide-title animate-item" data-delay="100">Quick Wins</h1>
-                        <p class="slide-subtitle animate-item" data-delay="150">Improvements achievable within current SAP configuration</p>
+                        <div class="section-label animate-item" data-delay="0">Target State</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Required Capabilities</h1>
+                        <p class="slide-subtitle animate-item" data-delay="150">What any future system must deliver to meet regulatory and business requirements</p>
 
                         <div class="quickwins-grid animate-item" data-delay="200">
                             <div class="quickwin-card">
-                                <div class="quickwin-number">1</div>
+                                <div class="quickwin-number"><i class="fas fa-shield-halved"></i></div>
                                 <div class="quickwin-content">
-                                    <h4>Enable MRP Shelf-Life Parameters</h4>
-                                    <p>Configure MRP to consider shelf life in planning. Fresh product (7-day) treated differently from UHT (180-day).</p>
-                                    <div class="quickwin-benefit"><i class="fas fa-arrow-down"></i> Reduce spoilage 2-3%</div>
+                                    <h4>Food Safety Controls</h4>
+                                    <p>System-enforced quality holds. No product release until lab results confirm safety. Automatic lot blocking.</p>
+                                    <div class="quickwin-benefit"><i class="fas fa-exclamation-circle"></i> Currently: Products released before test results</div>
                                 </div>
                             </div>
                             <div class="quickwin-card">
-                                <div class="quickwin-number">2</div>
+                                <div class="quickwin-number"><i class="fas fa-route"></i></div>
                                 <div class="quickwin-content">
-                                    <h4>Activate Batch Conversion for Production Orders</h4>
-                                    <p>Replace "select start, select start, select start" manual conversion with batch processing.</p>
-                                    <div class="quickwin-benefit"><i class="fas fa-clock"></i> Save half-day daily</div>
+                                    <h4>End-to-End Traceability</h4>
+                                    <p>Batch genealogy linking raw materials to finished goods. Recall capability within 4-hour regulatory window.</p>
+                                    <div class="quickwin-benefit"><i class="fas fa-exclamation-circle"></i> Currently: Cannot trace within required timeframe</div>
                                 </div>
                             </div>
                             <div class="quickwin-card">
-                                <div class="quickwin-number">3</div>
+                                <div class="quickwin-number"><i class="fas fa-flask"></i></div>
                                 <div class="quickwin-content">
-                                    <h4>Implement FEFO System Enforcement</h4>
-                                    <p>Configure SAP to enforce First-Expiry-First-Out for dairy and fresh poultry products.</p>
-                                    <div class="quickwin-benefit"><i class="fas fa-arrow-down"></i> Reduce near-expiry returns</div>
+                                    <h4>Process Industry Support</h4>
+                                    <p>Recipe management, process parameters capture, variable yields, co-products and by-products handling.</p>
+                                    <div class="quickwin-benefit"><i class="fas fa-exclamation-circle"></i> Currently: Using discrete manufacturing module</div>
                                 </div>
                             </div>
                             <div class="quickwin-card">
-                                <div class="quickwin-number">4</div>
+                                <div class="quickwin-number"><i class="fas fa-plug"></i></div>
                                 <div class="quickwin-content">
-                                    <h4>Close Production Orders at Completion</h4>
-                                    <p>TECO at order completion instead of monthly. Eliminate WIP distortion and variance spikes.</p>
-                                    <div class="quickwin-benefit"><i class="fas fa-check"></i> Clean month-end close</div>
+                                    <h4>Unified Integration</h4>
+                                    <p>Real-time connection to weighbridge, laboratory, production equipment, and distribution systems.</p>
+                                    <div class="quickwin-benefit"><i class="fas fa-exclamation-circle"></i> Currently: 6+ disconnected systems</div>
                                 </div>
                             </div>
                             <div class="quickwin-card">
-                                <div class="quickwin-number">5</div>
+                                <div class="quickwin-number"><i class="fas fa-calculator"></i></div>
                                 <div class="quickwin-content">
-                                    <h4>Standardize Hatchability Estimates</h4>
-                                    <p>Update from 85-86% to actual 90-92%. Reduce egg over-ordering and waste.</p>
-                                    <div class="quickwin-benefit"><i class="fas fa-arrow-down"></i> 5% fewer eggs ordered</div>
+                                    <h4>Accurate Costing</h4>
+                                    <p>Component-level tracking, catch-weight management, proper biological asset valuation per IAS 41.</p>
+                                    <div class="quickwin-benefit"><i class="fas fa-exclamation-circle"></i> Currently: Costs and values distorted</div>
                                 </div>
                             </div>
                             <div class="quickwin-card">
-                                <div class="quickwin-number">6</div>
+                                <div class="quickwin-number"><i class="fas fa-building"></i></div>
                                 <div class="quickwin-content">
-                                    <h4>Enable Document Splitting Verification</h4>
-                                    <p>Confirm document splitting is active for accurate profit center balance sheets.</p>
-                                    <div class="quickwin-benefit"><i class="fas fa-chart-bar"></i> Segment P&L accuracy</div>
+                                    <h4>Group Reporting</h4>
+                                    <p>Unified Chart of Accounts, automated consolidation, transfer pricing documentation for Corporate Tax.</p>
+                                    <div class="quickwin-benefit"><i class="fas fa-exclamation-circle"></i> Currently: Manual Excel consolidation</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Slide 10: Opinion & Signature -->
+                <!-- Slide 10: Final Verdict -->
                 <section class="slide slide-cta" data-slide="9">
                     <div class="slide-bg light"></div>
                     <div class="slide-content centered">
-                        <div class="section-label animate-item" data-delay="0">Conclusion</div>
-                        <h1 class="cta-title animate-item" data-delay="100">Audit Opinion</h1>
+                        <div class="section-label animate-item" data-delay="0">Final Assessment</div>
+                        <h1 class="cta-title animate-item" data-delay="100">Conclusion & Recommendation</h1>
 
                         <div class="opinion-box animate-item" data-delay="200">
-                            <div class="opinion-verdict">Qualified Opinion - Significant Remediation Required</div>
-                            <p>Based on our comprehensive assessment of 457 findings across four entities, we conclude that the SAP implementation provides a <strong>foundational capability</strong> that is <strong>materially underutilized</strong>.</p>
-                            <p>There are <strong>critical gaps in food safety controls</strong> (products released before micro results, traceability below regulatory standards) and <strong>material financial reporting risks</strong> (biological asset valuation, component costing, manual consolidation) that require immediate management attention.</p>
-                            <p>With the recommended remediation roadmap, the Group can achieve a target maturity level of 3.5+ within 12 months, unlocking significant operational efficiency and compliance improvements.</p>
+                            <div class="opinion-verdict">Adverse Opinion - System Rebuild Required</div>
+                            <p>After comprehensive assessment of <strong>457 control points</strong> across four entities, examining <strong>89 process steps</strong> and interviewing key stakeholders, we conclude that the current SAP ECC implementation is <strong>beyond remediation</strong>.</p>
+                            <p>The system was built on <strong>fundamentally wrong architecture</strong> - using discrete manufacturing for process industries, omitting quality management entirely, and creating a fragmented landscape where critical operations run outside SAP. The cost and complexity of fixing these structural deficiencies would exceed a complete rebuild.</p>
+                            <p><strong>Our recommendation:</strong> Proceed with a <strong>total greenfield implementation of SAP S/4HANA</strong> with industry-specific Food & Beverage capabilities, proper PP-PI architecture, embedded quality management, and unified integration platform. This is not optional - it is the only viable path to achieve regulatory compliance, operational efficiency, and financial accuracy.</p>
                         </div>
 
                         <div class="signature-section animate-item" data-delay="400">
@@ -788,14 +767,13 @@
             <!-- Left Navigation Panel - Hierarchical TOC -->
             <nav class="pres-titles-nav deepdive-nav">
                 <div class="nav-header">
-                    <i class="fas fa-sitemap"></i>
-                    <span>Entity & Module Navigator</span>
+                    <i class="fas fa-list"></i>
+                    <span>Contents</span>
                 </div>
 
                 <!-- Al Rawabi Dairy -->
                 <div class="nav-entity-group" data-entity="ardc">
                     <div class="nav-entity-header" onclick="toggleEntityGroup('ardc')">
-                        <i class="fas fa-cow"></i>
                         <span class="entity-name">Al Rawabi Dairy</span>
                         <span class="entity-count">118</span>
                         <i class="fas fa-chevron-down toggle-icon"></i>
@@ -820,11 +798,10 @@
                     </div>
                 </div>
 
-                <!-- Emirates National Factory -->
-                <div class="nav-entity-group" data-entity="enf">
+                <!-- Emirates National Foods -->
+                <div class="nav-entity-group collapsed" data-entity="enf">
                     <div class="nav-entity-header" onclick="toggleEntityGroup('enf')">
-                        <i class="fas fa-drumstick-bite"></i>
-                        <span class="entity-name">Emirates National Factory</span>
+                        <span class="entity-name">Emirates National Foods</span>
                         <span class="entity-count">191</span>
                         <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
@@ -861,10 +838,9 @@
                 </div>
 
                 <!-- Greenfields -->
-                <div class="nav-entity-group" data-entity="greenfields">
+                <div class="nav-entity-group collapsed" data-entity="greenfields">
                     <div class="nav-entity-header" onclick="toggleEntityGroup('greenfields')">
-                        <i class="fas fa-wheat-awn"></i>
-                        <span class="entity-name">Greenfields LLC</span>
+                        <span class="entity-name">Greenfields for Feeds</span>
                         <span class="entity-count">70</span>
                         <i class="fas fa-chevron-down toggle-icon"></i>
                     </div>
@@ -893,9 +869,8 @@
                 </div>
 
                 <!-- Salwa @ Liwa -->
-                <div class="nav-entity-group" data-entity="alrawdah">
+                <div class="nav-entity-group collapsed" data-entity="alrawdah">
                     <div class="nav-entity-header" onclick="toggleEntityGroup('alrawdah')">
-                        <i class="fas fa-egg"></i>
                         <span class="entity-name">Salwa @ Liwa</span>
                         <span class="entity-count">78</span>
                         <i class="fas fa-chevron-down toggle-icon"></i>
@@ -925,22 +900,18 @@
                 </div>
 
                 <div class="nav-footer">
-                    <div class="nav-stats-summary">
-                        <div class="nav-stat-item">
-                            <span class="nav-stat-count">457</span>
-                            <span class="nav-stat-label">Total</span>
+                    <div class="toc-toggle-switch right" id="tocToggleDeepDive">
+                        <span class="toggle-label" data-view="executive">Summary</span>
+                        <div class="toggle-track" onclick="toggleView()">
+                            <div class="toggle-thumb"></div>
                         </div>
-                        <div class="nav-stat-item danger">
-                            <span class="nav-stat-count">340</span>
-                            <span class="nav-stat-label">High</span>
-                        </div>
-                        <div class="nav-stat-item warning">
-                            <span class="nav-stat-count">110</span>
-                            <span class="nav-stat-label">Medium</span>
-                        </div>
+                        <span class="toggle-label active" data-view="deepdive">Deep-Dive</span>
                     </div>
                 </div>
             </nav>
+
+            <!-- Progress Bar -->
+            <div class="deepdive-progress-bar" id="deepdiveProgressBar"></div>
 
             <!-- Main Content Area -->
             <div class="entity-main">
@@ -961,6 +932,14 @@
                     <!-- Process Flows Container -->
                     <div id="deepdive-flowcharts" class="flowcharts-container">
                         <!-- Populated by JavaScript -->
+                    </div>
+
+                    <!-- Hint for users when panel is closed -->
+                    <div id="deepdive-hint" class="content-hint">
+                        <div class="hint-icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <p class="hint-text">Click on any process step above to view detailed findings</p>
                     </div>
                 </div>
             </div>
@@ -991,12 +970,12 @@
 
     <!-- App Footer -->
     <footer class="app-footer">
-        <div class="footer-left">NXSYS Advisory Services</div>
-        <div class="footer-center">Emirates Rawabi Group - SAP & Process Audit Report</div>
+        <div class="footer-left">NXSYS ADVISORY</div>
+        <div class="footer-center">Emirates Rawabi Group - SAP Pre-Discovery Report</div>
         <div class="footer-right">Confidential</div>
     </footer>
 
-    <script src="js/app.js?v=32"></script>
-    <script src="js/visual-flowcharts.js?v=32"></script>
+    <script src="js/app.js?v=76"></script>
+    <script src="js/visual-flowcharts.js?v=76"></script>
 </body>
 </html>
