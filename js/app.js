@@ -76,6 +76,7 @@ function updateToggleButton() {
     // Update both TOC toggle switches
     const summaryToggle = document.getElementById('tocToggleSummary');
     const deepDiveToggle = document.getElementById('tocToggleDeepDive');
+    const hintArrow = document.getElementById('deepDiveHint');
 
     if (currentView === 'executive') {
         if (summaryToggle) {
@@ -86,6 +87,10 @@ function updateToggleButton() {
             deepDiveToggle.classList.remove('right');
             updateToggleLabels(deepDiveToggle, true);
         }
+        // Show hint arrow in Summary view
+        if (hintArrow) {
+            hintArrow.classList.remove('hidden');
+        }
     } else {
         if (summaryToggle) {
             summaryToggle.classList.add('right');
@@ -94,6 +99,10 @@ function updateToggleButton() {
         if (deepDiveToggle) {
             deepDiveToggle.classList.add('right');
             updateToggleLabels(deepDiveToggle, false);
+        }
+        // Hide hint arrow in Deep-Dive view
+        if (hintArrow) {
+            hintArrow.classList.add('hidden');
         }
     }
 }
@@ -567,6 +576,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Populate critical findings
     populateCriticalFindings();
+
+    // Initialize hint arrow click handler
+    const hintArrow = document.getElementById('deepDiveHint');
+    if (hintArrow) {
+        hintArrow.addEventListener('click', function() {
+            switchTab('deepdive');
+        });
+    }
 });
 
 // =====================================================
