@@ -6,9 +6,9 @@
     <title>Emirates Rawabi Group - SAP Pre-Discovery Report | NXSYS Advisory</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css?v=95">
-    <link rel="stylesheet" href="css/flowcharts.css?v=95">
-    <script src="js/data.js?v=95"></script>
+    <link rel="stylesheet" href="css/styles.css?v=113">
+    <link rel="stylesheet" href="css/flowcharts.css?v=113">
+    <script src="js/data.js?v=113"></script>
 </head>
 <body>
     <!-- Unified Header & Navigation -->
@@ -29,10 +29,6 @@
 
         <!-- Right: NXSYS Branding & Report Info -->
         <div class="header-info">
-            <div class="header-nxsys-brand">
-                <span class="nxsys-name">NXSYS</span>
-                <span class="nxsys-tagline">Advisory Services</span>
-            </div>
             <div class="header-report-meta">
                 <span class="report-number">NXSYS-2026-ARG-005</span>
                 <span class="report-date">January 27, 2026</span>
@@ -52,7 +48,7 @@
             <div class="pres-slide-counter" id="presSlideCounter">
                 <span class="current">01</span>
                 <span class="divider">/</span>
-                <span class="total">10</span>
+                <span class="total">11</span>
             </div>
 
             <!-- Navigation Arrows -->
@@ -85,34 +81,38 @@
                     </div>
                     <div class="nav-item" data-nav="2">
                         <span class="nav-num">03</span>
-                        <span class="nav-text">Five Critical Gaps</span>
+                        <span class="nav-text">Findings Overview</span>
                     </div>
                     <div class="nav-item" data-nav="3">
                         <span class="nav-num">04</span>
-                        <span class="nav-text">Entity Breakdown</span>
+                        <span class="nav-text">Five Critical Gaps</span>
                     </div>
                     <div class="nav-item" data-nav="4">
                         <span class="nav-num">05</span>
-                        <span class="nav-text">Food Safety & Compliance</span>
+                        <span class="nav-text">Entity Breakdown</span>
                     </div>
                     <div class="nav-item" data-nav="5">
                         <span class="nav-num">06</span>
-                        <span class="nav-text">Financial Impact</span>
+                        <span class="nav-text">Food Safety & Compliance</span>
                     </div>
                     <div class="nav-item" data-nav="6">
                         <span class="nav-num">07</span>
-                        <span class="nav-text">SAP Maturity</span>
+                        <span class="nav-text">Financial Impact</span>
                     </div>
                     <div class="nav-item" data-nav="7">
                         <span class="nav-num">08</span>
-                        <span class="nav-text">Recommendations</span>
+                        <span class="nav-text">SAP Maturity</span>
                     </div>
                     <div class="nav-item" data-nav="8">
                         <span class="nav-num">09</span>
-                        <span class="nav-text">Quick Wins</span>
+                        <span class="nav-text">Recommendations</span>
                     </div>
                     <div class="nav-item" data-nav="9">
                         <span class="nav-num">10</span>
+                        <span class="nav-text">Quick Wins</span>
+                    </div>
+                    <div class="nav-item" data-nav="10">
+                        <span class="nav-num">11</span>
                         <span class="nav-text">Conclusion</span>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                             <div class="verdict-icon"><i class="fas fa-gavel"></i></div>
                             <div class="verdict-text">
                                 <div class="verdict-headline">The Current System Cannot Be Salvaged</div>
-                                <p>After comprehensive assessment of 457 control points across four entities, we conclude that the existing SAP ECC implementation is <strong>fundamentally flawed in its architecture</strong>. The system was built on wrong foundations - using discrete manufacturing (PP) for process industries, omitting Quality Management entirely, and creating a fragmented landscape of disconnected systems.</p>
+                                <p>After comprehensive assessment of <span id="verdict-count">0</span> control points across four entities, we conclude that the existing SAP ECC implementation is <strong>fundamentally flawed in its architecture</strong>. The system was built on wrong foundations - using discrete manufacturing (PP) for process industries, omitting Quality Management entirely, and creating a fragmented landscape of disconnected systems.</p>
                             </div>
                         </div>
 
@@ -207,11 +207,11 @@
 
                         <div class="stats-grid compact animate-item" data-delay="600">
                             <div class="stat-card danger compact">
-                                <div class="stat-value" data-count="457">0</div>
+                                <div class="stat-value" id="stat-total-findings" data-count="0">0</div>
                                 <div class="stat-label">Total Findings</div>
                             </div>
                             <div class="stat-card danger compact">
-                                <div class="stat-value" data-count="74">0</div>
+                                <div class="stat-value" id="stat-high-risk-pct" data-count="0">0</div>
                                 <div class="stat-label">% High Risk</div>
                             </div>
                             <div class="stat-card danger compact">
@@ -280,7 +280,7 @@
                     <div class="slide-content">
                         <div class="section-label animate-item" data-delay="0">Assessment Scope</div>
                         <h1 class="slide-title animate-item" data-delay="100">What We Found</h1>
-                        <p class="slide-subtitle animate-item" data-delay="150">457 findings across 4 entities - systemic failures at every level</p>
+                        <p class="slide-subtitle animate-item" data-delay="150" id="entity-subtitle"><span id="entity-count">0</span> findings across 4 entities - systemic failures at every level</p>
                         <div class="entity-breakdown-grid">
                             <div class="entity-card-large animate-item" data-delay="200">
                                 <div class="entity-card-header">
@@ -725,8 +725,272 @@
                     </div>
                 </section>
 
-                <!-- Slide 10: Final Verdict -->
-                <section class="slide slide-cta" data-slide="9">
+                <!-- Slide 10: Findings Overview Chart -->
+                <section class="slide slide-chart" data-slide="9">
+                    <div class="slide-bg light"></div>
+                    <div class="slide-content">
+                        <div class="section-label animate-item" data-delay="0">Findings Analysis</div>
+                        <h1 class="slide-title animate-item" data-delay="100">Findings Overview</h1>
+                        <p class="slide-subtitle animate-item" data-delay="150" id="findings-subtitle">Loading findings data...</p>
+                        <p class="chart-interactive-hint animate-item" data-delay="175">
+                            <i class="fas fa-hand-pointer"></i> Click any row to explore detailed findings in Deep-Dive view
+                        </p>
+
+                        <div class="findings-chart-container animate-item" data-delay="200">
+                            <!-- ARDC Section -->
+                            <div class="chart-entity-section">
+                                <div class="chart-entity-header">
+                                    <i class="fas fa-cow"></i>
+                                    <span>Al Rawabi Dairy (ARDC)</span>
+                                    <span class="entity-total-badge">118</span>
+                                </div>
+                                <div class="chart-bars">
+                                    <div class="chart-row clickable" data-entity="ardc" data-flow="ARDC-PP" onclick="navigateToDeepDive('ardc', 'ARDC-PP')">
+                                        <span class="chart-module">Production Planning</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 51%;" data-count="23"></div>
+                                            <div class="chart-bar medium" style="width: 13%;" data-count="6"></div>
+                                        </div>
+                                        <span class="chart-total">29</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="ardc" data-flow="ARDC-SD" onclick="navigateToDeepDive('ardc', 'ARDC-SD')">
+                                        <span class="chart-module">Sales & Distribution</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 31%;" data-count="14"></div>
+                                            <div class="chart-bar medium" style="width: 44%;" data-count="20"></div>
+                                            <div class="chart-bar low" style="width: 16%;" data-count="7"></div>
+                                        </div>
+                                        <span class="chart-total">41</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="ardc" data-flow="ARDC-MM" onclick="navigateToDeepDive('ardc', 'ARDC-MM')">
+                                        <span class="chart-module">Materials Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 42%;" data-count="19"></div>
+                                            <div class="chart-bar medium" style="width: 11%;" data-count="5"></div>
+                                        </div>
+                                        <span class="chart-total">24</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="ardc" data-flow="ARDC-FICO" onclick="navigateToDeepDive('ardc', 'ARDC-FICO')">
+                                        <span class="chart-module">Finance & Controlling</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 40%;" data-count="18"></div>
+                                            <div class="chart-bar medium" style="width: 13%;" data-count="6"></div>
+                                        </div>
+                                        <span class="chart-total">24</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ENF Section -->
+                            <div class="chart-entity-section">
+                                <div class="chart-entity-header">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                    <span>Emirates National Foods (ENF)</span>
+                                    <span class="entity-total-badge">191</span>
+                                </div>
+                                <div class="chart-bars">
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-PROC" onclick="navigateToDeepDive('enf', 'ENF-PROC')">
+                                        <span class="chart-module">Processing Plant</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 47%;" data-count="21"></div>
+                                        </div>
+                                        <span class="chart-total">21</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-SD" onclick="navigateToDeepDive('enf', 'ENF-SD')">
+                                        <span class="chart-module">Sales & Distribution</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 27%;" data-count="12"></div>
+                                            <div class="chart-bar medium" style="width: 16%;" data-count="7"></div>
+                                        </div>
+                                        <span class="chart-total">19</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-HATCH" onclick="navigateToDeepDive('enf', 'ENF-HATCH')">
+                                        <span class="chart-module">Hatchery Operations</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 31%;" data-count="14"></div>
+                                            <div class="chart-bar medium" style="width: 9%;" data-count="4"></div>
+                                        </div>
+                                        <span class="chart-total">18</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-FARM" onclick="navigateToDeepDive('enf', 'ENF-FARM')">
+                                        <span class="chart-module">Farm Operations</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 36%;" data-count="16"></div>
+                                            <div class="chart-bar medium" style="width: 4%;" data-count="2"></div>
+                                        </div>
+                                        <span class="chart-total">18</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-QM" onclick="navigateToDeepDive('enf', 'ENF-QM')">
+                                        <span class="chart-module">Quality Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 29%;" data-count="13"></div>
+                                            <div class="chart-bar medium" style="width: 9%;" data-count="4"></div>
+                                        </div>
+                                        <span class="chart-total">17</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-MM" onclick="navigateToDeepDive('enf', 'ENF-MM')">
+                                        <span class="chart-module">Materials Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 27%;" data-count="12"></div>
+                                            <div class="chart-bar medium" style="width: 11%;" data-count="5"></div>
+                                        </div>
+                                        <span class="chart-total">17</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="enf" data-flow="ENF-FICO" onclick="navigateToDeepDive('enf', 'ENF-FICO')">
+                                        <span class="chart-module">Finance & Controlling</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 33%;" data-count="15"></div>
+                                            <div class="chart-bar medium" style="width: 4%;" data-count="2"></div>
+                                        </div>
+                                        <span class="chart-total">17</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- GF Section -->
+                            <div class="chart-entity-section">
+                                <div class="chart-entity-header">
+                                    <i class="fas fa-wheat-awn"></i>
+                                    <span>Greenfields for Feeds (GF)</span>
+                                    <span class="entity-total-badge">70</span>
+                                </div>
+                                <div class="chart-bars">
+                                    <div class="chart-row clickable" data-entity="greenfields" data-flow="GF-PP" onclick="navigateToDeepDive('greenfields', 'GF-PP')">
+                                        <span class="chart-module">Production Planning</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 33%;" data-count="15"></div>
+                                            <div class="chart-bar medium" style="width: 4%;" data-count="2"></div>
+                                        </div>
+                                        <span class="chart-total">17</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="greenfields" data-flow="GF-SD" onclick="navigateToDeepDive('greenfields', 'GF-SD')">
+                                        <span class="chart-module">Sales & Distribution</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 20%;" data-count="9"></div>
+                                            <div class="chart-bar medium" style="width: 13%;" data-count="6"></div>
+                                        </div>
+                                        <span class="chart-total">15</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="greenfields" data-flow="GF-FICO" onclick="navigateToDeepDive('greenfields', 'GF-FICO')">
+                                        <span class="chart-module">Finance & Controlling</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 20%;" data-count="9"></div>
+                                            <div class="chart-bar medium" style="width: 11%;" data-count="5"></div>
+                                        </div>
+                                        <span class="chart-total">14</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="greenfields" data-flow="GF-MM" onclick="navigateToDeepDive('greenfields', 'GF-MM')">
+                                        <span class="chart-module">Materials Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 20%;" data-count="9"></div>
+                                            <div class="chart-bar medium" style="width: 9%;" data-count="4"></div>
+                                        </div>
+                                        <span class="chart-total">13</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="greenfields" data-flow="GF-QM" onclick="navigateToDeepDive('greenfields', 'GF-QM')">
+                                        <span class="chart-module">Quality Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 18%;" data-count="8"></div>
+                                            <div class="chart-bar medium" style="width: 7%;" data-count="3"></div>
+                                        </div>
+                                        <span class="chart-total">11</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SL Section -->
+                            <div class="chart-entity-section">
+                                <div class="chart-entity-header">
+                                    <i class="fas fa-egg"></i>
+                                    <span>Salwa @ Liwa (SL)</span>
+                                    <span class="entity-total-badge">78</span>
+                                </div>
+                                <div class="chart-bars">
+                                    <div class="chart-row clickable" data-entity="alrawdah" data-flow="SL-PP" onclick="navigateToDeepDive('alrawdah', 'SL-PP')">
+                                        <span class="chart-module">Production Planning</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 29%;" data-count="13"></div>
+                                            <div class="chart-bar medium" style="width: 11%;" data-count="5"></div>
+                                        </div>
+                                        <span class="chart-total">18</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="alrawdah" data-flow="SL-SD" onclick="navigateToDeepDive('alrawdah', 'SL-SD')">
+                                        <span class="chart-module">Sales & Distribution</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 27%;" data-count="12"></div>
+                                            <div class="chart-bar medium" style="width: 13%;" data-count="6"></div>
+                                        </div>
+                                        <span class="chart-total">18</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="alrawdah" data-flow="SL-MM" onclick="navigateToDeepDive('alrawdah', 'SL-MM')">
+                                        <span class="chart-module">Materials Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 27%;" data-count="12"></div>
+                                            <div class="chart-bar medium" style="width: 7%;" data-count="3"></div>
+                                        </div>
+                                        <span class="chart-total">15</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="alrawdah" data-flow="SL-FICO" onclick="navigateToDeepDive('alrawdah', 'SL-FICO')">
+                                        <span class="chart-module">Finance & Controlling</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 24%;" data-count="11"></div>
+                                            <div class="chart-bar medium" style="width: 9%;" data-count="4"></div>
+                                        </div>
+                                        <span class="chart-total">15</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                    <div class="chart-row clickable" data-entity="alrawdah" data-flow="SL-QM" onclick="navigateToDeepDive('alrawdah', 'SL-QM')">
+                                        <span class="chart-module">Quality Management</span>
+                                        <div class="chart-bar-container">
+                                            <div class="chart-bar high" style="width: 18%;" data-count="8"></div>
+                                            <div class="chart-bar medium" style="width: 9%;" data-count="4"></div>
+                                        </div>
+                                        <span class="chart-total">12</span>
+                                        <i class="fas fa-chevron-right chart-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="chart-legend animate-item" data-delay="400">
+                            <div class="legend-item">
+                                <span class="legend-color high"></span>
+                                <span class="legend-label" id="legend-high">High Risk (0)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color medium"></span>
+                                <span class="legend-label" id="legend-medium">Medium Risk (0)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color low"></span>
+                                <span class="legend-label" id="legend-low">Low Risk (0)</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 11: Final Verdict -->
+                <section class="slide slide-cta" data-slide="10">
                     <div class="slide-bg light"></div>
                     <div class="slide-content centered">
                         <div class="section-label animate-item" data-delay="0">Final Assessment</div>
@@ -734,7 +998,7 @@
 
                         <div class="opinion-box animate-item" data-delay="200">
                             <div class="opinion-verdict">Adverse Opinion - System Rebuild Required</div>
-                            <p>After comprehensive assessment of <strong>457 control points</strong> across four entities, examining <strong>89 process steps</strong> and interviewing key stakeholders, we conclude that the current SAP ECC implementation is <strong>beyond remediation</strong>.</p>
+                            <p>After comprehensive assessment of <strong><span id="conclusion-count">0</span> control points</strong> across four entities, examining <strong>89 process steps</strong> and interviewing key stakeholders, we conclude that the current SAP ECC implementation is <strong>beyond remediation</strong>.</p>
                             <p>The system was built on <strong>fundamentally wrong architecture</strong> - using discrete manufacturing for process industries, omitting quality management entirely, and creating a fragmented landscape where critical operations run outside SAP. The cost and complexity of fixing these structural deficiencies would exceed a complete rebuild.</p>
                             <p><strong>Our recommendation:</strong> Proceed with a <strong>total greenfield implementation of SAP S/4HANA</strong> with industry-specific Food & Beverage capabilities, proper PP-PI architecture, embedded quality management, and unified integration platform. This is not optional - it is the only viable path to achieve regulatory compliance, operational efficiency, and financial accuracy.</p>
                         </div>
@@ -923,6 +1187,11 @@
             <div class="entity-main">
                 <div class="slide-content entity-content">
                     <!-- Current Entity/Module Header -->
+                    <!-- Floating Back Button -->
+                    <button id="backToChartBtn" class="back-to-chart-btn" onclick="navigateBackToChart()">
+                        <i class="fas fa-arrow-left"></i> Back to Findings Chart
+                    </button>
+
                     <div id="deepdive-header" class="deepdive-header">
                         <div class="deepdive-breadcrumb">
                             <span class="breadcrumb-entity">Al Rawabi Dairy</span>
@@ -981,7 +1250,7 @@
         <div class="footer-right">Confidential</div>
     </footer>
 
-    <script src="js/app.js?v=95"></script>
-    <script src="js/visual-flowcharts.js?v=95"></script>
+    <script src="js/app.js?v=113"></script>
+    <script src="js/visual-flowcharts.js?v=113"></script>
 </body>
 </html>

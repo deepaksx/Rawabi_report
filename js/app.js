@@ -72,6 +72,212 @@ function toggleView() {
     }
 }
 
+// Track if we came from the findings chart
+let cameFromFindingsChart = false;
+let findingsChartSlideIndex = 2; // Findings Overview is now logical slide 3 (0-indexed = 2)
+
+// Navigate from Findings Chart to Deep-Dive
+function navigateToDeepDive(entityId, flowKey) {
+    // Store that we came from the chart
+    cameFromFindingsChart = true;
+
+    // Show the back button
+    showBackToChartButton(true);
+
+    // Switch to deep-dive tab
+    switchTab('deepdive');
+
+    // Expand the correct entity group
+    toggleEntityGroup(entityId);
+
+    // Find and click the correct nav item
+    setTimeout(() => {
+        const navItem = document.querySelector(`.nav-item[data-flow="${flowKey}"][data-entity="${entityId}"]`);
+        if (navItem) {
+            navItem.classList.add('active');
+            selectDeepDiveModule(entityId, flowKey, navItem);
+        }
+    }, 100);
+}
+
+// Navigate back to Findings Chart
+function navigateBackToChart() {
+    cameFromFindingsChart = false;
+    showBackToChartButton(false);
+    switchTab('executive');
+    goToSlide(findingsChartSlideIndex);
+}
+
+// Show/hide the back button
+function showBackToChartButton(show) {
+    const backBtn = document.getElementById('backToChartBtn');
+    if (backBtn) {
+        backBtn.style.display = show ? 'flex' : 'none';
+    }
+}
+
+// =====================================================
+// DYNAMIC FINDINGS CHART
+// =====================================================
+// Mapping of chart rows to their step IDs
+const CHART_STEP_MAPPINGS = {
+    'ARDC-PP': ['PP-01', 'PP-02', 'PP-03', 'PP-04', 'PP-05', 'PP-06', 'PP-07', 'PP-08', 'PP-09', 'PP-10'],
+    'ARDC-SD': ['SD-01', 'SD-02', 'SD-03', 'SD-04', 'SD-05', 'SD-06', 'SD-07', 'SD-08', 'SD-09', 'SD-10', 'SD-11'],
+    'ARDC-MM': ['ARDC-MM-01', 'ARDC-MM-02', 'ARDC-MM-03', 'ARDC-MM-04', 'ARDC-MM-05', 'ARDC-MM-06', 'ARDC-MM-07', 'ARDC-MM-08'],
+    'ARDC-FICO': ['ARDC-FI-01', 'ARDC-FI-02', 'ARDC-FI-03', 'ARDC-FI-04', 'ARDC-FI-05', 'ARDC-FI-06', 'ARDC-FI-07', 'ARDC-FI-08'],
+    'ENF-PROC': ['ENF-P-01', 'ENF-P-02', 'ENF-P-03', 'ENF-P-04', 'ENF-P-05', 'ENF-P-06'],
+    'ENF-SD': ['ENF-SD-01', 'ENF-SD-02', 'ENF-SD-03', 'ENF-SD-04', 'ENF-SD-05', 'ENF-SD-06', 'ENF-SD-07'],
+    'ENF-HATCH': ['ENF-H-01', 'ENF-H-02', 'ENF-H-03', 'ENF-H-04', 'ENF-H-05', 'ENF-H-06'],
+    'ENF-FARM': ['ENF-F-01', 'ENF-F-02', 'ENF-F-03', 'ENF-F-04', 'ENF-F-05', 'ENF-F-06'],
+    'ENF-QM': ['ENF-QM-01', 'ENF-QM-02', 'ENF-QM-03', 'ENF-QM-04', 'ENF-QM-05', 'ENF-QM-06'],
+    'ENF-MM': ['ENF-MM-01', 'ENF-MM-02', 'ENF-MM-03', 'ENF-MM-04', 'ENF-MM-05', 'ENF-MM-06'],
+    'ENF-FICO': ['ENF-FI-01', 'ENF-FI-02', 'ENF-FI-03', 'ENF-FI-04', 'ENF-FI-05', 'ENF-FI-06'],
+    'GF-PP': ['GF-PP-01', 'GF-PP-02', 'GF-PP-03', 'GF-PP-04', 'GF-PP-05', 'GF-PP-06'],
+    'GF-SD': ['GF-SD-01', 'GF-SD-02', 'GF-SD-03', 'GF-SD-04', 'GF-SD-05'],
+    'GF-FICO': ['GF-FI-01', 'GF-FI-02', 'GF-FI-03', 'GF-FI-04', 'GF-FI-05'],
+    'GF-MM': ['GF-MM-01', 'GF-MM-02', 'GF-MM-03', 'GF-MM-04', 'GF-MM-05'],
+    'GF-QM': ['GF-QM-01', 'GF-QM-02', 'GF-QM-03', 'GF-QM-04'],
+    'SL-PP': ['SL-PP-01', 'SL-PP-02', 'SL-PP-03', 'SL-PP-04', 'SL-PP-05', 'SL-PP-06'],
+    'SL-SD': ['SL-SD-01', 'SL-SD-02', 'SL-SD-03', 'SL-SD-04', 'SL-SD-05', 'SL-SD-06'],
+    'SL-MM': ['SL-MM-01', 'SL-MM-02', 'SL-MM-03', 'SL-MM-04', 'SL-MM-05'],
+    'SL-FICO': ['SL-FI-01', 'SL-FI-02', 'SL-FI-03', 'SL-FI-04', 'SL-FI-05'],
+    'SL-QM': ['SL-QM-01', 'SL-QM-02', 'SL-QM-03', 'SL-QM-04']
+};
+
+// Calculate findings for a set of step IDs
+function calculateFindingsForSteps(stepIds) {
+    let high = 0, medium = 0, low = 0;
+
+    stepIds.forEach(stepId => {
+        const findings = REPORT_DATA.findingsByStep[stepId] || [];
+        findings.forEach(f => {
+            if (f.risk === 'high') high++;
+            else if (f.risk === 'medium') medium++;
+            else if (f.risk === 'low') low++;
+        });
+    });
+
+    return { high, medium, low, total: high + medium + low };
+}
+
+// Update chart with dynamic data
+function updateFindingsChart() {
+    const chartRows = document.querySelectorAll('.chart-row.clickable');
+    let maxTotal = 0;
+    let totalHigh = 0, totalMedium = 0, totalLow = 0;
+
+    // First pass: calculate all totals to find max for scaling
+    const rowData = [];
+    chartRows.forEach(row => {
+        const flowKey = row.dataset.flow;
+        const stepIds = CHART_STEP_MAPPINGS[flowKey] || [];
+        const stats = calculateFindingsForSteps(stepIds);
+        rowData.push({ row, stats });
+        if (stats.total > maxTotal) maxTotal = stats.total;
+
+        // Accumulate totals for legend
+        totalHigh += stats.high;
+        totalMedium += stats.medium;
+        totalLow += stats.low;
+    });
+
+    // Second pass: update the chart
+    rowData.forEach(({ row, stats }) => {
+        const container = row.querySelector('.chart-bar-container');
+        const totalSpan = row.querySelector('.chart-total');
+
+        if (container && totalSpan) {
+            // Clear existing bars
+            container.innerHTML = '';
+
+            // Create new bars with correct proportions
+            const scale = maxTotal > 0 ? 100 / maxTotal : 0;
+
+            if (stats.high > 0) {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar high';
+                bar.style.width = (stats.high * scale * 0.9) + '%';
+                bar.dataset.count = stats.high;
+                container.appendChild(bar);
+            }
+
+            if (stats.medium > 0) {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar medium';
+                bar.style.width = (stats.medium * scale * 0.9) + '%';
+                bar.dataset.count = stats.medium;
+                container.appendChild(bar);
+            }
+
+            if (stats.low > 0) {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar low';
+                bar.style.width = (stats.low * scale * 0.9) + '%';
+                bar.dataset.count = stats.low;
+                container.appendChild(bar);
+            }
+
+            // Update total
+            totalSpan.textContent = stats.total;
+        }
+    });
+
+    // Update legend totals
+    const legendHigh = document.getElementById('legend-high');
+    const legendMedium = document.getElementById('legend-medium');
+    const legendLow = document.getElementById('legend-low');
+
+    if (legendHigh) legendHigh.textContent = `High Risk (${totalHigh})`;
+    if (legendMedium) legendMedium.textContent = `Medium Risk (${totalMedium})`;
+    if (legendLow) legendLow.textContent = `Low Risk (${totalLow})`;
+
+    // Calculate totals
+    const totalFindings = totalHigh + totalMedium + totalLow;
+    const highRiskPct = totalFindings > 0 ? Math.round((totalHigh / totalFindings) * 100) : 0;
+
+    // Update all dynamic counts across the website
+    updateDynamicCounts(totalFindings, totalHigh, totalMedium, totalLow, highRiskPct);
+}
+
+// Update all dynamic count elements across the website
+function updateDynamicCounts(total, high, medium, low, highPct) {
+    // Findings Overview subtitle
+    const subtitle = document.getElementById('findings-subtitle');
+    if (subtitle) {
+        subtitle.textContent = `${total} findings across 4 entities and 21 modules - breakdown by severity`;
+    }
+
+    // Executive Summary - Verdict text
+    const verdictCount = document.getElementById('verdict-count');
+    if (verdictCount) verdictCount.textContent = total;
+
+    // Executive Summary - Stat cards
+    const statTotal = document.getElementById('stat-total-findings');
+    if (statTotal) {
+        statTotal.dataset.count = total;
+        statTotal.textContent = total;
+    }
+
+    const statHighPct = document.getElementById('stat-high-risk-pct');
+    if (statHighPct) {
+        statHighPct.dataset.count = highPct;
+        statHighPct.textContent = highPct;
+    }
+
+    // Entity Breakdown subtitle
+    const entityCount = document.getElementById('entity-count');
+    if (entityCount) entityCount.textContent = total;
+
+    // Conclusion page
+    const conclusionCount = document.getElementById('conclusion-count');
+    if (conclusionCount) conclusionCount.textContent = total;
+}
+
+// Initialize chart when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(updateFindingsChart, 500);
+});
+
 function updateToggleButton() {
     // Update both TOC toggle switches
     const summaryToggle = document.getElementById('tocToggleSummary');
@@ -160,7 +366,22 @@ function autoSelectFirstProcess(entityId) {
 // PRESENTATION ENGINE
 // =====================================================
 let currentSlide = 0;
-const totalSlides = 10;
+const totalSlides = 11;
+
+// Slide order mapping: logical order -> DOM order
+// New story flow: Cover, Exec Summary, Findings Overview, Five Critical Gaps, Entity Breakdown,
+// Food Safety, Financial Impact, SAP Maturity, Recommendations, Quick Wins, Conclusion
+const SLIDE_ORDER = [0, 1, 9, 2, 3, 4, 5, 6, 7, 8, 10];
+
+// Convert logical slide index to DOM slide index
+function logicalToDOM(logicalIndex) {
+    return SLIDE_ORDER[logicalIndex] !== undefined ? SLIDE_ORDER[logicalIndex] : logicalIndex;
+}
+
+// Convert DOM slide index to logical slide index
+function domToLogical(domIndex) {
+    return SLIDE_ORDER.indexOf(domIndex);
+}
 let isAnimating = false;
 
 function initPresentation() {
@@ -250,27 +471,28 @@ function handleKeyboard(e) {
     }
 }
 
-function goToSlide(index) {
-    if (isAnimating || index === currentSlide) return;
-    if (index < 0 || index >= totalSlides) return;
+function goToSlide(logicalIndex) {
+    if (isAnimating || logicalIndex === currentSlide) return;
+    if (logicalIndex < 0 || logicalIndex >= totalSlides) return;
 
     isAnimating = true;
 
     const slides = document.querySelectorAll('.presentation .slide');
+    const domIndex = logicalToDOM(logicalIndex);
 
     // Remove active from all slides
     slides.forEach((slide, i) => {
         slide.classList.remove('active');
     });
 
-    // Activate target slide
-    if (slides[index]) {
-        slides[index].classList.add('active');
+    // Activate target slide using DOM index
+    if (slides[domIndex]) {
+        slides[domIndex].classList.add('active');
     }
 
-    currentSlide = index;
+    currentSlide = logicalIndex;
     updatePresentationUI();
-    animateCountersOnSlide(index);
+    animateCountersOnSlide(domIndex);
 
     // Reset animation lock
     setTimeout(() => {
@@ -326,7 +548,7 @@ function updatePresentationUI() {
 }
 
 function animateCurrentSlide() {
-    animateCountersOnSlide(currentSlide);
+    animateCountersOnSlide(logicalToDOM(currentSlide));
 }
 
 // =====================================================

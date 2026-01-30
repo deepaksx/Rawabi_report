@@ -881,7 +881,14 @@ function renderVisualFlowchart(flowKey, config, entityId) {
         html += `<div class="flow-row ${row.reverse ? 'reverse' : ''}">`;
 
         row.nodes.forEach((node, nodeIndex) => {
-            const stats = REPORT_DATA.stepStats[node.id] || { total: 0, high: 0, medium: 0, low: 0 };
+            // Dynamically count findings from actual data
+            const findings = REPORT_DATA.findingsByStep[node.id] || [];
+            const stats = {
+                total: findings.length,
+                high: findings.filter(f => f.risk === 'high').length,
+                medium: findings.filter(f => f.risk === 'medium').length,
+                low: findings.filter(f => f.risk === 'low').length
+            };
 
             let riskClass = 'risk-none';
             if (stats.high > 0) riskClass = 'risk-high';
@@ -889,7 +896,6 @@ function renderVisualFlowchart(flowKey, config, entityId) {
             else if (stats.low > 0) riskClass = 'risk-low';
 
             const hasFindings = stats.total > 0;
-            const stepNumber = String(nodeIndex + 1).padStart(2, '0');
 
             // Explicit color class (cycles through 4 colors: teal, orange, green, red)
             const colorIndex = (nodeIndex % 4) + 1;
@@ -909,7 +915,7 @@ function renderVisualFlowchart(flowKey, config, entityId) {
                      data-step="${node.id}"
                      data-entity="${entityId}"
                      onclick="selectEntityFlowStep('${entityId}', '${node.id}', '${node.name}')">
-                    <div class="node-number">${stepNumber}</div>
+                    <div class="node-number">${stats.total}</div>
                     <div class="node-label">
                         <span class="label-name">${node.name}</span>
                         <span class="label-desc">${node.desc || ''}</span>

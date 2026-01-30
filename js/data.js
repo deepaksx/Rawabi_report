@@ -23,7 +23,7 @@ const REPORT_DATA = {
     "SL": { "total": 78, "high": 56, "medium": 22, "low": 0 }
   },
   "stepStats": {
-    "PP-01": { "total": 3, "high": 3, "medium": 0, "low": 0 },
+    "PP-01": { "total": 4, "high": 4, "medium": 0, "low": 0 },
     "PP-02": { "total": 2, "high": 2, "medium": 0, "low": 0 },
     "PP-03": { "total": 2, "high": 2, "medium": 0, "low": 0 },
     "PP-04": { "total": 3, "high": 3, "medium": 0, "low": 0 },
