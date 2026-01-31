@@ -5369,3 +5369,474 @@ console.log(`
 'color: #1a2744; font-size: 10px;',
 'color: #888; font-size: 9px; font-style: italic;'
 );
+
+// =====================================================
+// PDF EXPORT FUNCTIONALITY
+// =====================================================
+
+/**
+ * Show export overlay with progress
+ */
+function showExportOverlay(title, status) {
+    const overlay = document.getElementById('exportOverlay');
+    const titleEl = document.getElementById('exportTitle');
+    const statusEl = document.getElementById('exportStatus');
+    const progressBar = document.getElementById('exportProgressBar');
+
+    if (titleEl) titleEl.textContent = title;
+    if (statusEl) statusEl.textContent = status;
+    if (progressBar) progressBar.style.width = '0%';
+    if (overlay) overlay.classList.add('active');
+}
+
+/**
+ * Update export progress
+ */
+function updateExportProgress(status, percent) {
+    const statusEl = document.getElementById('exportStatus');
+    const progressBar = document.getElementById('exportProgressBar');
+
+    if (statusEl) statusEl.textContent = status;
+    if (progressBar) progressBar.style.width = percent + '%';
+}
+
+/**
+ * Hide export overlay
+ */
+function hideExportOverlay() {
+    const overlay = document.getElementById('exportOverlay');
+    if (overlay) overlay.classList.remove('active');
+}
+
+/**
+ * Pre-load and cache images as base64 to avoid CORS issues
+ */
+const imageCache = new Map();
+
+async function preloadImagesAsBase64() {
+    const images = document.querySelectorAll('img');
+
+    for (const img of images) {
+        if (!img.src || img.src.startsWith('data:') || imageCache.has(img.src)) {
+            continue;
+        }
+
+        try {
+            // Method 1: Try using canvas to extract data from already-loaded image
+            if (img.complete && img.naturalWidth > 0) {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+
+                try {
+                    const base64 = canvas.toDataURL('image/png');
+                    imageCache.set(img.src, base64);
+                    continue;
+                } catch (e) {
+                    // Canvas tainted, try fetch
+                }
+            }
+
+            // Method 2: Try fetch (works for same-origin or CORS-enabled images)
+            const response = await fetch(img.src, { mode: 'cors' });
+            const blob = await response.blob();
+            const base64 = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.onerror = () => resolve('');
+                reader.readAsDataURL(blob);
+            });
+            imageCache.set(img.src, base64);
+
+        } catch (e) {
+            console.warn('Could not cache image:', img.src);
+            imageCache.set(img.src, '');
+        }
+    }
+}
+
+/**
+ * Replace images in element with cached base64 versions or placeholders
+ */
+function replaceImagesWithBase64(element) {
+    const images = element.querySelectorAll('img');
+
+    images.forEach(img => {
+        const originalSrc = img.getAttribute('src');
+        let cachedBase64 = null;
+
+        // Try to find cached version
+        for (const [key, value] of imageCache.entries()) {
+            if (originalSrc && (key === originalSrc || key.includes(originalSrc) || originalSrc.includes(key.split('?')[0]))) {
+                cachedBase64 = value;
+                break;
+            }
+        }
+
+        if (cachedBase64) {
+            img.src = cachedBase64;
+        } else {
+            // Create styled text placeholder for logos
+            const isLogo = originalSrc?.includes('Logo') || originalSrc?.includes('NXSYS') ||
+                           img.alt?.toLowerCase().includes('logo') || img.alt?.includes('NXSYS');
+
+            if (isLogo) {
+                const placeholder = document.createElement('div');
+                placeholder.style.cssText = `
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 8px 20px;
+                    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                    color: #C8102E;
+                    font-weight: 700;
+                    font-size: 16px;
+                    letter-spacing: 2px;
+                    border-radius: 4px;
+                    font-family: 'Poppins', sans-serif;
+                `;
+                placeholder.textContent = 'NXSYS';
+                if (img.parentNode) {
+                    img.parentNode.replaceChild(placeholder, img);
+                }
+            } else {
+                // Hide other images that can't be loaded
+                img.style.opacity = '0';
+                img.style.visibility = 'hidden';
+            }
+        }
+    });
+}
+
+/**
+ * Export Summary Slides as PDF - Using html2canvas + jsPDF
+ */
+async function exportSummaryPDF() {
+    showExportOverlay('Generating Summary PDF', 'Loading images...');
+
+    try {
+        // Check libraries
+        if (typeof html2canvas === 'undefined') {
+            throw new Error('html2canvas not loaded. Please refresh the page.');
+        }
+        if (typeof window.jspdf === 'undefined') {
+            throw new Error('jsPDF not loaded. Please refresh the page.');
+        }
+
+        // Pre-load all images as base64
+        await preloadImagesAsBase64();
+
+        const { jsPDF } = window.jspdf;
+        const slides = document.querySelectorAll('.presentation .slide');
+        const totalSlideCount = slides.length;
+
+        if (totalSlideCount === 0) {
+            throw new Error('No slides found');
+        }
+
+        updateExportProgress('Creating PDF...', 10);
+
+        // Create PDF (landscape A4-ish dimensions in mm)
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: [297, 167] // 16:9 aspect ratio
+        });
+
+        const pageWidth = 297;
+        const pageHeight = 167;
+
+        // Create render container
+        const renderContainer = document.createElement('div');
+        renderContainer.id = 'pdf-render-container';
+        renderContainer.style.cssText = `
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 1920px;
+            height: 1080px;
+            z-index: 99999;
+            overflow: hidden;
+            background: #f0f2f5;
+        `;
+        document.body.appendChild(renderContainer);
+
+        // Process each slide
+        for (let i = 0; i < totalSlideCount; i++) {
+            const domIndex = SLIDE_ORDER[i];
+            const slide = slides[domIndex];
+
+            if (!slide) continue;
+
+            updateExportProgress(`Rendering slide ${i + 1} of ${totalSlideCount}...`, 10 + Math.round(((i + 1) / totalSlideCount) * 80));
+
+            // Clone slide
+            const slideClone = slide.cloneNode(true);
+            slideClone.classList.add('active');
+            slideClone.style.cssText = `
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 1920px !important;
+                height: 1080px !important;
+                opacity: 1 !important;
+                transform: none !important;
+                visibility: visible !important;
+                display: flex !important;
+            `;
+
+            // Fix animated items
+            slideClone.querySelectorAll('.animate-item').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.transition = 'none';
+                el.style.animation = 'none';
+            });
+
+            // Remove problematic elements
+            slideClone.querySelectorAll('.floating-orb').forEach(el => el.remove());
+
+            // Replace images with cached base64 versions
+            replaceImagesWithBase64(slideClone);
+
+            // Clear and add slide
+            renderContainer.innerHTML = '';
+            renderContainer.appendChild(slideClone);
+
+            // Wait for rendering
+            await new Promise(resolve => setTimeout(resolve, 200));
+
+            // Capture canvas
+            const canvas = await html2canvas(renderContainer, {
+                scale: 1.5,
+                useCORS: true,
+                allowTaint: false,
+                logging: false,
+                backgroundColor: '#f0f2f5',
+                width: 1920,
+                height: 1080,
+                imageTimeout: 0,
+                removeContainer: false
+            });
+
+            // Add new page if not first slide
+            if (i > 0) {
+                pdf.addPage([297, 167], 'landscape');
+            }
+
+            // Add image to PDF
+            const imgData = canvas.toDataURL('image/jpeg', 0.90);
+            pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
+        }
+
+        // Cleanup render container
+        document.body.removeChild(renderContainer);
+
+        updateExportProgress('Saving PDF...', 95);
+
+        // Save PDF
+        pdf.save('Emirates_Rawabi_Group_Summary_Report.pdf');
+
+        updateExportProgress('Complete!', 100);
+        setTimeout(hideExportOverlay, 800);
+
+    } catch (error) {
+        console.error('PDF Export Error:', error);
+
+        // Cleanup
+        const container = document.getElementById('pdf-render-container');
+        if (container) container.remove();
+
+        updateExportProgress('Error: ' + (error.message || 'Unknown error'), 0);
+        setTimeout(hideExportOverlay, 3000);
+    }
+}
+
+/**
+ * Export Deep-Dive content as PDF - Captures actual visual flowcharts
+ */
+async function exportDeepDivePDF() {
+    showExportOverlay('Generating Deep-Dive PDF', 'Preparing...');
+
+    // Save current state
+    const wasOnDeepDive = currentView === 'deepdive';
+    const originalScroll = window.scrollY;
+
+    try {
+        // Check libraries
+        if (typeof html2canvas === 'undefined') {
+            throw new Error('html2canvas not loaded. Please refresh the page.');
+        }
+        if (typeof window.jspdf === 'undefined') {
+            throw new Error('jsPDF not loaded. Please refresh the page.');
+        }
+
+        const { jsPDF } = window.jspdf;
+
+        // Entity and flow configurations
+        const entities = [
+            { id: 'ardc', name: 'Al Rawabi Dairy', flows: ['ARDC-PP', 'ARDC-SD', 'ARDC-MM', 'ARDC-FICO'] },
+            { id: 'enf', name: 'Emirates National Foods', flows: ['ENF-SD', 'ENF-HATCH', 'ENF-FARM', 'ENF-PROC', 'ENF-MM', 'ENF-QM', 'ENF-FICO'] },
+            { id: 'greenfields', name: 'Greenfields for Feeds', flows: ['GF-SD', 'GF-MM', 'GF-PP', 'GF-QM', 'GF-FICO'] },
+            { id: 'alrawdah', name: 'Salwa @ Liwa', flows: ['SL-PP', 'SL-QM', 'SL-MM', 'SL-FICO', 'SL-SD'] }
+        ];
+
+        const flowNames = {
+            'ARDC-PP': 'Production Planning', 'ARDC-SD': 'Sales & Distribution',
+            'ARDC-MM': 'Materials Management', 'ARDC-FICO': 'Finance & Controlling',
+            'ENF-PROC': 'Processing Plant', 'ENF-SD': 'Sales & Distribution',
+            'ENF-HATCH': 'Hatchery Operations', 'ENF-FARM': 'Farm Operations',
+            'ENF-QM': 'Quality Management', 'ENF-MM': 'Materials Management',
+            'ENF-FICO': 'Finance & Controlling', 'GF-PP': 'Production Planning',
+            'GF-SD': 'Sales & Distribution', 'GF-MM': 'Materials Management',
+            'GF-QM': 'Quality Management', 'GF-FICO': 'Finance & Controlling',
+            'SL-PP': 'Production Planning', 'SL-SD': 'Sales & Distribution',
+            'SL-MM': 'Materials Management', 'SL-QM': 'Quality Management',
+            'SL-FICO': 'Finance & Controlling'
+        };
+
+        // Switch to Deep-Dive view
+        switchTab('deepdive');
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // Create PDF (landscape for flowcharts)
+        const pdf = new jsPDF({
+            orientation: 'landscape',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        const pageWidth = 297;
+        const pageHeight = 210;
+
+        let totalFlows = entities.reduce((sum, e) => sum + e.flows.length, 0);
+        let processedFlows = 0;
+        let isFirstPage = true;
+
+        // Process each entity and flow
+        for (const entity of entities) {
+            for (const flowKey of entity.flows) {
+                processedFlows++;
+                const flowName = flowNames[flowKey] || flowKey;
+                updateExportProgress(
+                    `Capturing ${entity.name} - ${flowName}...`,
+                    Math.round((processedFlows / totalFlows) * 90)
+                );
+
+                // Find and click the nav item to load the flowchart
+                const navItem = document.querySelector(`.nav-item[data-flow="${flowKey}"][data-entity="${entity.id}"]`);
+                if (!navItem) continue;
+
+                // Expand entity group if collapsed
+                const entityGroup = document.querySelector(`.nav-entity-group[data-entity="${entity.id}"]`);
+                if (entityGroup && entityGroup.classList.contains('collapsed')) {
+                    toggleEntityGroup(entity.id);
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                }
+
+                // Select the module
+                selectDeepDiveModule(entity.id, flowKey, navItem);
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // Get the flowchart container
+                const flowchartContainer = document.getElementById('deepdive-flowcharts');
+                const headerElement = document.getElementById('deepdive-header');
+
+                if (!flowchartContainer) continue;
+
+                // Create a wrapper with header + flowchart for capture
+                const captureWrapper = document.createElement('div');
+                captureWrapper.style.cssText = `
+                    position: fixed;
+                    left: 0;
+                    top: 0;
+                    width: 1400px;
+                    background: #f0f2f5;
+                    padding: 30px;
+                    z-index: 99999;
+                `;
+
+                // Add title header
+                const headerClone = document.createElement('div');
+                headerClone.innerHTML = `
+                    <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 3px solid #C8102E;">
+                        <div style="font-size: 12px; color: #C8102E; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;">
+                            ${entity.name}
+                        </div>
+                        <div style="font-size: 28px; font-weight: 700; color: #1a1a1a;">
+                            ${flowName}
+                        </div>
+                    </div>
+                `;
+                captureWrapper.appendChild(headerClone);
+
+                // Clone the flowchart
+                const flowchartClone = flowchartContainer.cloneNode(true);
+                flowchartClone.style.cssText = `
+                    background: white;
+                    border-radius: 12px;
+                    padding: 20px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                `;
+                captureWrapper.appendChild(flowchartClone);
+
+                document.body.appendChild(captureWrapper);
+                await new Promise(resolve => setTimeout(resolve, 200));
+
+                try {
+                    // Capture the flowchart
+                    const canvas = await html2canvas(captureWrapper, {
+                        scale: 1.5,
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        backgroundColor: '#f0f2f5',
+                        width: 1400
+                    });
+
+                    // Add new page if not first
+                    if (!isFirstPage) {
+                        pdf.addPage();
+                    }
+                    isFirstPage = false;
+
+                    // Calculate dimensions to fit page
+                    const imgWidth = pageWidth - 20;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    const finalHeight = Math.min(imgHeight, pageHeight - 20);
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                    pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, finalHeight);
+
+                } catch (err) {
+                    console.warn(`Failed to capture ${flowKey}:`, err);
+                }
+
+                // Cleanup
+                document.body.removeChild(captureWrapper);
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+        }
+
+        updateExportProgress('Saving PDF...', 95);
+
+        // Save PDF
+        pdf.save('Emirates_Rawabi_Group_DeepDive_Report.pdf');
+
+        updateExportProgress('Complete!', 100);
+        setTimeout(hideExportOverlay, 800);
+
+    } catch (error) {
+        console.error('PDF Export Error:', error);
+        updateExportProgress('Error: ' + (error.message || 'Unknown error'), 0);
+        setTimeout(hideExportOverlay, 3000);
+    }
+
+    // Restore original view if needed
+    if (!wasOnDeepDive) {
+        switchTab('executive');
+    }
+    window.scrollTo(0, originalScroll);
+}

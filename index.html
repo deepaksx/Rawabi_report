@@ -6,9 +6,12 @@
     <title>Emirates Rawabi Group - SAP Pre-Discovery Report | NXSYS Advisory</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css?v=113">
-    <link rel="stylesheet" href="css/flowcharts.css?v=113">
-    <script src="js/data.js?v=113"></script>
+    <link rel="stylesheet" href="css/styles.css?v=121">
+    <link rel="stylesheet" href="css/flowcharts.css?v=121">
+    <script src="js/data.js?v=121"></script>
+    <!-- PDF Export Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <!-- Unified Header & Navigation -->
@@ -27,8 +30,18 @@
             <h2 id="pageTitleCenter">Executive Summary</h2>
         </div>
 
-        <!-- Right: NXSYS Branding & Report Info -->
+        <!-- Right: Export Buttons & Report Info -->
         <div class="header-info">
+            <div class="header-export-buttons">
+                <button class="export-btn" onclick="exportSummaryPDF()" title="Export Summary Slides as PDF">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Summary PDF</span>
+                </button>
+                <button class="export-btn" onclick="exportDeepDivePDF()" title="Export Deep-Dive as PDF">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Deep-Dive PDF</span>
+                </button>
+            </div>
             <div class="header-report-meta">
                 <span class="report-number">NXSYS-2026-ARG-005</span>
                 <span class="report-date">January 27, 2026</span>
@@ -1243,6 +1256,18 @@
     <!-- Panel Overlay -->
     <div id="panelOverlay" class="panel-overlay" onclick="closeAllPanels()"></div>
 
+    <!-- Export Progress Overlay -->
+    <div id="exportOverlay" class="export-overlay">
+        <div class="export-content">
+            <div class="export-spinner"></div>
+            <div class="export-title" id="exportTitle">Generating PDF</div>
+            <div class="export-status" id="exportStatus">Preparing slides...</div>
+            <div class="export-progress">
+                <div class="export-progress-bar" id="exportProgressBar"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- App Footer -->
     <footer class="app-footer">
         <div class="footer-left">NXSYS ADVISORY</div>
@@ -1250,7 +1275,7 @@
         <div class="footer-right">Confidential</div>
     </footer>
 
-    <script src="js/app.js?v=113"></script>
-    <script src="js/visual-flowcharts.js?v=113"></script>
+    <script src="js/app.js?v=121"></script>
+    <script src="js/visual-flowcharts.js?v=121"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@
     --gold-dark: #a00d24;
 
     /* Risk Colors */
-    --danger: #c41e3a;
+    --danger: #C8102E; /* NXSYS brand red */
     --danger-light: #fef2f2;
     --warning: #d4820a;
     --warning-light: #fffbeb;
@@ -477,6 +477,128 @@ html, body {
     color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* Export Buttons */
+.header-export-buttons {
+    display: flex;
+    gap: 8px;
+    margin-right: 16px;
+    padding-right: 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(200, 16, 46, 0.15) 0%, rgba(200, 16, 46, 0.25) 100%);
+    border: 1px solid rgba(200, 16, 46, 0.4);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.export-btn:hover {
+    background: linear-gradient(135deg, rgba(200, 16, 46, 0.3) 0%, rgba(200, 16, 46, 0.5) 100%);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
+}
+
+.export-btn:active {
+    transform: translateY(0);
+}
+
+.export-btn i {
+    font-size: 12px;
+    color: var(--accent);
+}
+
+.export-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.export-btn:disabled:hover {
+    background: linear-gradient(135deg, rgba(200, 16, 46, 0.15) 0%, rgba(200, 16, 46, 0.25) 100%);
+    box-shadow: none;
+}
+
+/* Export Progress Overlay */
+.export-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.export-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.export-overlay .export-content {
+    text-align: center;
+    color: white;
+}
+
+.export-overlay .export-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.export-overlay .export-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.export-overlay .export-status {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.export-overlay .export-progress {
+    width: 300px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.export-overlay .export-progress-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
 }
 
 .header-report-meta {
@@ -5827,7 +5949,7 @@ summary.panel-finding-header:hover {
 }
 
 .chart-bar.high {
-    background: #9B2C2C;
+    background: #C8102E; /* NXSYS brand red */
 }
 
 .chart-bar.medium {
@@ -5869,7 +5991,7 @@ summary.panel-finding-header:hover {
 }
 
 .legend-color.high {
-    background: #9B2C2C;
+    background: #C8102E; /* NXSYS brand red */
 }
 
 .legend-color.medium {
@@ -5894,7 +6016,7 @@ summary.panel-finding-header:hover {
 }
 
 @media print {
-    .app-header, .tabs, .app-footer, .pres-titles-nav, .pres-nav-arrows, .pres-slide-indicators, .pres-slide-counter {
+    .app-header, .tabs, .app-footer, .pres-titles-nav, .pres-nav-arrows, .pres-slide-indicators, .pres-slide-counter, .export-overlay {
         display: none !important;
     }
     .tab-content { position: static; }
@@ -5902,4 +6024,29 @@ summary.panel-finding-header:hover {
     .presentation { position: static; left: 0; }
     .slide { display: block !important; opacity: 1 !important; transform: none !important; position: relative; page-break-after: always; }
     .animate-item { opacity: 1 !important; transform: none !important; }
+}
+
+/* PDF Export Container Styles */
+#pdf-export-container {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#pdf-export-container .slide {
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    position: relative !important;
+}
+
+#pdf-export-container .animate-item {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+#pdf-export-container .slide-bg {
+    position: absolute !important;
+}
+
+#pdf-export-container .floating-orb {
+    display: none !important;
 }
